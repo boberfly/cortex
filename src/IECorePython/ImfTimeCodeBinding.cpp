@@ -32,8 +32,8 @@
 //
 //////////////////////////////////////////////////////////////////////////
 
-#include "boost/format.hpp"
 #include "boost/python.hpp"
+#include "boost/format.hpp"
 
 #include <string>
 #include <sstream>

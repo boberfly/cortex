@@ -1,8 +1,8 @@
-FILE( GLOB H_FILES RELATIVE ${CMAKE_CURRENT_SOURCE_DIR}/../../../include/IECoreMaya/bindings/ "*.h" )
+FILE( GLOB H_FILES RELATIVE ${CMAKE_CURRENT_SOURCE_DIR}/../../../include/IECoreMaya/bindings "../../../include/IECoreMaya/bindings/*.h" )
 
 FILE( GLOB CXX_FILES RELATIVE ${CMAKE_CURRENT_SOURCE_DIR} "*.cpp" )
 
-FILE( GLOB PY_FILES RELATIVE ${CMAKE_CURRENT_SOURCE_DIR}/../../../python/IECoreMaya/ "*.py" )
+FILE( GLOB PY_FILES RELATIVE ${CMAKE_CURRENT_SOURCE_DIR}/../../../python/IECoreMaya/ "../../../python/IECoreMaya/*.py" )
 
 SET( SOURCE_FILES ${CXX_FILES} ${H_FILES} )
 
@@ -21,6 +21,8 @@ ADD_LIBRARY( _IECoreMaya MODULE ${SOURCE_FILES} )
 
 IF ( WINDOWS )
     SET_TARGET_PROPERTIES( _IECoreMaya PROPERTIES SUFFIX ".pyd" )
+ELSE ()
+  SET_TARGET_PROPERTIES( _IECoreMaya PROPERTIES PREFIX "" )
 ENDIF ()
 
 TARGET_LINK_LIBRARIES( _IECoreMaya ${THIS_LIBS} )
