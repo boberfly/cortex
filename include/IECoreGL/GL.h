@@ -41,7 +41,7 @@
 
 // now we're using glew we can just include that instead
 // and it'll do all the cross platform worrying for us
-#include "glew.h"
+#include "GL/glew.h"
 
 #include "OpenEXR/ImathVec.h"
 #include "OpenEXR/ImathColor.h"
