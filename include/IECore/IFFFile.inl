@@ -67,8 +67,11 @@ size_t IFFFile::Chunk::read( std::vector<T> &data )
 	{
 		msg( Msg::Error, "IFFFile::Chunk::read()", boost::format( "Attempting to read '%d' pieces of data of size '%d' for a Chunk '%s' with dataSize '%d'." ) % length % sizeof(T) % m_type.name() % m_dataSize );
 	}
-	
+#ifdef WIN32
+	T *dataBuffer = new T[length];
+#else
 	T dataBuffer[length];
+#endif
 	readData( dataBuffer, length );
 	
 	for ( size_t i = 0; i < length; i++ )
@@ -76,6 +79,9 @@ size_t IFFFile::Chunk::read( std::vector<T> &data )
 		data[i] = dataBuffer[i];
 	}
 	
+#ifdef WIN32
+	delete[] dataBuffer;
+#endif
 	return data.size();
 }
 
@@ -89,7 +95,11 @@ size_t IFFFile::Chunk::read( std::vector<Imath::Vec3<T> > &data )
 		msg( Msg::Error, "IFFFile::Chunk::read()", boost::format( "Attempting to read %d pieces of IMath::Vec3 data of size %d for a Chunk '%s' with dataSize %d." ) % length % sizeof(T) % m_type.name() % m_dataSize );
 	}
 	
+#ifdef WIN32
+	T *dataBuffer = new T(length * 3);
+#else
 	T dataBuffer[length * 3];
+#endif
 	readData( dataBuffer, length * 3 );
 	
 	for ( size_t i = 0; i < length ; i++ )
@@ -99,6 +109,9 @@ size_t IFFFile::Chunk::read( std::vector<Imath::Vec3<T> > &data )
 		data[ i ][2] = dataBuffer[ 3*i + 2 ];
 	}
 	
+#ifdef WIN32
+	delete[] dataBuffer;
+#endif
 	return data.size();
 }
 
@@ -107,10 +120,17 @@ void IFFFile::Chunk::readData( T *dataBuffer, unsigned long n )
 {
 	m_file->m_iStream->seekg( m_filePosition, std::ios_base::beg );
 	
+#ifdef WIN32
+	char *buffer = new char[m_dataSize];
+#else
 	char buffer[m_dataSize];
+#endif
 	m_file->m_iStream->read( buffer, m_dataSize );
 	
 	IFFFile::readData( buffer, dataBuffer, n );
+#ifdef WIN32
+	delete[] buffer;
+#endif
 }
 
 template<typename T>
