@@ -1,0 +1,6 @@
+INCLUDE_DIRECTORIES( CORTEX_ALEMBIC_INCLUDE_DIRECTORY )
+ADD_SUBDIRECTORY( src/IECoreAlembic )
+IF( WITH_TESTS )
+  MESSAGE( STATUS "CMake build scripts for IECoreAlembic tests are currently not implemented!" )
+  #ADD_SUBDIRECTORY( test/IECoreAlembic )
+ENDIF()

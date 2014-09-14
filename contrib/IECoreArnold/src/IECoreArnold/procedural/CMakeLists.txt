@@ -1,0 +1,16 @@
+FILE( GLOB CXX_FILES RELATIVE ${CMAKE_CURRENT_SOURCE_DIR} "*.cpp" )
+
+SET( SOURCE_FILES ${CXX_FILES} )
+
+SET( THIS_LIBS
+     ${CORTEX_ARNOLD_LIBS}
+     ${Boost_LIBRARIES} )
+
+ADD_LIBRARY( arnoldProcedural MODULE ${SOURCE_FILES} )
+
+#SET_TARGET_PROPERTIES( arnoldProcedural PROPERTIES OUTPUT_NAME ieProcedural )
+
+TARGET_LINK_LIBRARIES( arnoldProcedural ${THIS_LIBS} )
+
+INSTALL( TARGETS arnoldProcedural
+         LIBRARY DESTINATION arnold/procedurals )
