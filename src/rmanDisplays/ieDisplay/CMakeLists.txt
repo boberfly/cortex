@@ -16,4 +16,4 @@ SET_TARGET_PROPERTIES( rmanDisplay PROPERTIES PREFIX "" )
 TARGET_LINK_LIBRARIES( rmanDisplay ${THIS_LIBS} )
 
 INSTALL( TARGETS rmanDisplay
-         LIBRARY DESTINATION rmanDisplays/ieDisplay )
+         LIBRARY DESTINATION renderMan/displayDrivers )

@@ -68,5 +68,4 @@ INSTALL( TARGETS IECorePython
          ARCHIVE DESTINATION lib/static )
 
 INSTALL( FILES ${H_FILES}
-         DESTINATION include/IECore
-         PERMISSIONS OWNER_READ GROUP_READ WORLD_READ )
+         DESTINATION include/IECore )

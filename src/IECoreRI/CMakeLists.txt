@@ -130,8 +130,7 @@ INSTALL( TARGETS IECoreRI
          ARCHIVE DESTINATION lib/static )
 
 INSTALL( FILES ${H_FILES}
-         DESTINATION include/IECoreRI
-         PERMISSIONS OWNER_READ GROUP_READ WORLD_READ )
+         DESTINATION include/IECoreRI )
 
 # Adding subdirectory at the bottom so we inherit all those checks when building the python bindings,
 # so we need to unset a few things also.
