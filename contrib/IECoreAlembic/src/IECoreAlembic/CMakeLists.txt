@@ -1,6 +1,6 @@
 ADD_SUBDIRECTORY( bindings )
 
-FILE( GLOB H_FILES RELATIVE ${CMAKE_CURRENT_SOURCE_DIR}/../../include/IECoreAlembic/private/ "*.h" "*.inl" )
+FILE( GLOB H_FILES RELATIVE ${CMAKE_CURRENT_SOURCE_DIR} "../../include/IECoreAlembic/*.h" "../../include/IECoreAlembic/*.inl" )
 
 FILE( GLOB CXX_FILES RELATIVE ${CMAKE_CURRENT_SOURCE_DIR} "*.cpp" )
 

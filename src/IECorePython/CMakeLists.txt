@@ -1,4 +1,4 @@
-FILE( GLOB H_FILES RELATIVE ${CMAKE_CURRENT_SOURCE_DIR}/../../include/IECorePython/ "*.h" "*.inl" )
+FILE( GLOB H_FILES RELATIVE ${CMAKE_CURRENT_SOURCE_DIR} "../../include/IECorePython/*.h" "../../include/IECorePython/*.inl" )
 
 FILE( GLOB CXX_FILES RELATIVE ${CMAKE_CURRENT_SOURCE_DIR} "*.cpp" )
 

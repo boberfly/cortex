@@ -2,9 +2,9 @@ ADD_SUBDIRECTORY( bindings )
 ADD_SUBDIRECTORY( outputDriver )
 ADD_SUBDIRECTORY( procedural )
 
-FILE( GLOB H_FILES_PRIVATE RELATIVE ${CMAKE_CURRENT_SOURCE_DIR}/../../include/IECoreArnold/private/ "*.h" "*.inl" )
+FILE( GLOB H_FILES_PRIVATE RELATIVE ${CMAKE_CURRENT_SOURCE_DIR} "../../include/IECoreArnold/private/*.h" "../../include/IECoreArnold/private/*.inl" )
 
-FILE( GLOB H_FILES RELATIVE ${CMAKE_CURRENT_SOURCE_DIR}/../../include/IECoreArnold/ "*.h" "*.inl" )
+FILE( GLOB H_FILES RELATIVE ${CMAKE_CURRENT_SOURCE_DIR} "../../include/IECoreArnold/*.h" "../../include/IECoreArnold/*.inl" )
 
 FILE( GLOB CXX_FILES RELATIVE ${CMAKE_CURRENT_SOURCE_DIR} "*.cpp" )
 
