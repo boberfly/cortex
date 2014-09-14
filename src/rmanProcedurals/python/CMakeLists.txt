@@ -16,4 +16,4 @@ SET_TARGET_PROPERTIES( rmanProcedural PROPERTIES PREFIX "" )
 TARGET_LINK_LIBRARIES( rmanProcedural ${THIS_LIBS} )
 
 INSTALL( TARGETS rmanProcedural
-         LIBRARY DESTINATION rmanProcedurals/python )
+         LIBRARY DESTINATION renderMan/procedurals )

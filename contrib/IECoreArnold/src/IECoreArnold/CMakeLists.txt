@@ -32,5 +32,4 @@ INSTALL( TARGETS IECoreArnold
          ARCHIVE DESTINATION lib/static )
 
 INSTALL( FILES ${H_FILES}
-         DESTINATION include/IECoreArnold
-         PERMISSIONS OWNER_READ GROUP_READ WORLD_READ )
+         DESTINATION include/IECoreArnold )
