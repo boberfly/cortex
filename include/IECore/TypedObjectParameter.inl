@@ -50,6 +50,9 @@ namespace IECore
 {
 
 template<typename T>
+#ifdef WIN32
+typename
+#endif
 TypedObjectParameter<T>::TypeDescription<TypedObjectParameter<T> > TypedObjectParameter<T>::g_typeDescription;
 
 template<typename T>

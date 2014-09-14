@@ -64,7 +64,11 @@ struct DespatchTypedData
 		{
 			assert( data );
 
+#ifdef WIN32
+			errorHandler.operator() < DataType, Functor > (data, functor);
+#else
 			errorHandler.template operator()< DataType, Functor >( data, functor );
+#endif
 
 			return ReturnType();
 		}
@@ -79,7 +83,11 @@ struct DespatchTypedData
 		{
 			assert( data );
 
+#ifdef WIN32
+			return functor.operator()<DataType>( data );
+#else
 			return functor.template operator()<DataType>( data );
+#endif
 		}
 	};
 };
