@@ -4,7 +4,7 @@ FILE( GLOB H_FILES RELATIVE ${CMAKE_CURRENT_SOURCE_DIR} "../../include/IECore/*.
 
 FILE( GLOB CXX_FILES RELATIVE ${CMAKE_CURRENT_SOURCE_DIR} "*.cpp" )
 
-IF(NOT ${Boost_INCLUDE_DIRS}/boost/asio.hpp )
+IF( NOT EXISTS "${Boost_INCLUDE_DIRS}/boost/asio.hpp" )
   LIST( REMOVE_ITEM CXX_FILES 
         ClientDisplayDriver.cpp
         DisplayDriver.cpp
@@ -13,7 +13,7 @@ IF(NOT ${Boost_INCLUDE_DIRS}/boost/asio.hpp )
         OBJReaderBinding.cpp )
 ENDIF()
 
-IF(NOT ${Boost_INCLUDE_DIRS}/boost/math/special_functions/factorials.hpp )
+IF( NOT EXISTS "${Boost_INCLUDE_DIRS}/boost/math/special_functions/factorials.hpp" )
   LIST( REMOVE_ITEM CXX_FILES
         AssociatedLegendre.cpp
         src/IECore/SphericalHarmonics.cpp
@@ -25,7 +25,7 @@ IF(NOT ${Boost_INCLUDE_DIRS}/boost/math/special_functions/factorials.hpp )
         src/IECore/ImageConvolveOp.cpp )
 ENDIF()
 
-IF(NOT ${CORTEX_OPENEXR_INCLUDE_PATH}/OpenEXR/ImfDeepFrameBuffer.h )
+IF( NOT EXISTS "${CORTEX_OPENEXR_INCLUDE_PATH}/OpenEXR/ImfDeepFrameBuffer.h" )
   LIST( REMOVE_ITEM CXX_FILES
         EXRDeepImageReader.cpp
         EXRDeepImageWriter.cpp )
