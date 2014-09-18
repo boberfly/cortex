@@ -40,6 +40,9 @@
 #include <cassert>
 #include <map>
 #include <set>
+#ifdef WIN32
+#include <climits>
+#endif
 
 #include "boost/tokenizer.hpp"
 #include "boost/optional.hpp"
@@ -1287,8 +1290,11 @@ NodeBase *StreamIndexedIO::Index::readNodeV4( F &f )
 		}
 		result = n;
 	}
-
+#ifdef WIN32
+	if ( nodeId && parentId != ULLONG_MAX )
+#else
 	if ( nodeId && parentId != Imath::limits<Imf::Int64>::max() )
+#endif
 	{
 		DirectoryNode* parent = 0;
 		if ( parentId < m_indexToNodeMap.size() )
