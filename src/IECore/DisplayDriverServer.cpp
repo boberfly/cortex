@@ -32,7 +32,11 @@
 //
 //////////////////////////////////////////////////////////////////////////
 
+#ifdef _WIN32
+#include <io.h>
+#else
 #include <unistd.h>
+#endif
 #include <fcntl.h>
 
 #include "boost/asio.hpp"
@@ -116,11 +120,13 @@ class DisplayDriverServer::PrivateData : public RefCounted
 /* Set the FD_CLOEXEC flag for the given socket descriptor, so that it will not exist on child processes.*/
 static void fixSocketFlags( int socketDesc )
 {
+#ifndef _WIN32
 	int oldflags = fcntl (socketDesc, F_GETFD, 0);
 	if ( oldflags >= 0 )
 	{
 		fcntl( socketDesc, F_SETFD, oldflags | FD_CLOEXEC );
 	}
+#endif
 }
 
 DisplayDriverServer::DisplayDriverServer( int portNumber ) :
