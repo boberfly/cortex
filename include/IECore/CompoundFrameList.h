@@ -35,6 +35,7 @@
 #ifndef IE_CORE_COMPOUNDFRAMELIST_H
 #define IE_CORE_COMPOUNDFRAMELIST_H
 
+#include "IECore/IECoreExport.h"
 #include "IECore/FrameList.h"
 
 namespace IECore
@@ -44,7 +45,7 @@ namespace IECore
 /// set of FrameList objects, and returning an order preserving union of all the frames they represent
 /// in its asList() method.
 /// \ingroup fileSequenceGroup
-class CompoundFrameList : public FrameList
+class IECORE_EXPORT CompoundFrameList : public FrameList
 {
 	public:
 

@@ -35,6 +35,7 @@
 #ifndef IE_CORE_PRIMITIVEOP_H
 #define IE_CORE_PRIMITIVEOP_H
 
+#include "IECore/IECoreExport.h"
 #include "IECore/ModifyOp.h"
 
 namespace IECore
@@ -44,7 +45,7 @@ IE_CORE_FORWARDDECLARE( Primitive )
 
 /// The PrimitiveOp class defines a base class for Ops which
 /// modify Primitives.
-class PrimitiveOp : public ModifyOp
+class IECORE_EXPORT PrimitiveOp : public ModifyOp
 {
 	public :
 

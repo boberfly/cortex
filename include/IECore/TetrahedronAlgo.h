@@ -39,13 +39,14 @@
 #ifndef IECORE_TETRAHEDRONALGO_H
 #define IECORE_TETRAHEDRONALGO_H
 
+#include "IECore/IECoreExport.h"
 #include "IECore/VectorTraits.h"
 
 namespace IECore
 {
 
 /// Returns the volume of the tetrahedron defined by the 4 specified vertices
-template<typename Vec>
+template<typename Vec> IECORE_EXPORT
 typename VectorTraits<Vec>::BaseType tetrahedronVolume(
 	const Vec &v0,
 	const Vec &v1,
@@ -54,7 +55,7 @@ typename VectorTraits<Vec>::BaseType tetrahedronVolume(
 );
 
 /// Returns the point of the tetrahedron which has the given barycentric coordinates
-template<typename Vec>
+template<typename Vec> IECORE_EXPORT
 Vec tetrahedronPoint(
 	const Vec &v0,
 	const Vec &v1,
@@ -65,7 +66,7 @@ Vec tetrahedronPoint(
 
 /// Returns the barycentric coordinates of the given point relative to the tetrahedron. The point is
 /// assumed to be inside the tetrahedron.
-template<typename Vec>
+template<typename Vec> IECORE_EXPORT
 void tetrahedronBarycentric(
 	const Vec &v0,
 	const Vec &v1,
@@ -76,7 +77,7 @@ void tetrahedronBarycentric(
 );
 
 /// Returns the squared-distance to the closest point on the tetrahedron, and computes that point's barycentric coordinates
-template<typename Vec>
+template<typename Vec> IECORE_EXPORT
 typename VectorTraits<Vec>::BaseType tetrahedronClosestBarycentric(
 	const Vec &v0,
 	const Vec &v1,
@@ -88,7 +89,7 @@ typename VectorTraits<Vec>::BaseType tetrahedronClosestBarycentric(
 
 /// A tetrahedron has 4 faces, each of which is triangle. This function returns the vertex indices which make up
 /// the triangle on the specified face.
-inline Imath::V3i tetrahedronFaceIndices( int face );
+IECORE_EXPORT inline Imath::V3i tetrahedronFaceIndices(int face);
 
 } // namespace IECore
 

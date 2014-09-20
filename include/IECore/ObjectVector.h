@@ -35,13 +35,14 @@
 #ifndef IECORE_OBJECTVECTOR_H
 #define IECORE_OBJECTVECTOR_H
 
+#include "IECore/IECoreExport.h"
 #include "IECore/Object.h"
 
 namespace IECore
 {
 
 /// An Object which holds a vector of child Objects.
-class ObjectVector : public Object
+class IECORE_EXPORT ObjectVector : public Object
 {
 	public:
 

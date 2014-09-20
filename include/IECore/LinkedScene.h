@@ -35,6 +35,7 @@
 #ifndef IECORE_LINKEDSCENE_H
 #define IECORE_LINKEDSCENE_H
 
+#include "IECore/IECoreExport.h"
 #include "IECore/SampledSceneInterface.h"
 #include "IECore/SimpleTypedData.h"
 #include "IECore/VectorTypedData.h"
@@ -60,7 +61,7 @@ IE_CORE_FORWARDDECLARE( LinkedScene );
 /// (1) calls to the function writeLink() or 
 /// (2) calls to the function writeAttribute( LinkedScene::linkSceneAttribute, LinkedScene::linkAttributeData(), ... ). 
 /// Note that the link can be animated, allowing for time remapped animations.
-class LinkedScene : public  SampledSceneInterface
+class IECORE_EXPORT LinkedScene : public  SampledSceneInterface
 {
 	public :
 

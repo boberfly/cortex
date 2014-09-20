@@ -40,6 +40,8 @@
 #define IE_CORE_MATRIXALGO_H
 
 #include "OpenEXR/ImathMatrix.h"
+
+#include "IECore/IECoreExport.h"
 #include "IECore/Convert.h"
 
 namespace IECore
@@ -47,19 +49,19 @@ namespace IECore
 
 /// Returns a matrix specified by the orientation of the unit vectors x,y,z and origin o after transformation
 /// by the matrix.
-template<typename T>
+	template<typename T> IECORE_EXPORT
 Imath::Matrix44<T> matrixFromBasis( const Imath::Vec3<T> &x, const Imath::Vec3<T> &y, const Imath::Vec3<T> &z, const Imath::Vec3<T> &o );
 
-template<class T>
+template<class T> IECORE_EXPORT
 float determinant( const Imath::Matrix33<T> &m );
 
-template<class T>
+template<class T> IECORE_EXPORT
 float determinant( const Imath::Matrix44<T> &m );
 
 // provide function for convertion between float to double matrix (not available in OpenEXR)
-template<> Imath::M44d convert( const Imath::M44f &in );
+template<> IECORE_EXPORT Imath::M44d convert(const Imath::M44f &in);
 // provide function for convertion between double to float matrix (not available in OpenEXR)
-template<> Imath::M44f convert( const Imath::M44d &in );
+template<> IECORE_EXPORT Imath::M44f convert(const Imath::M44d &in);
 
 } // namespace IECore
 

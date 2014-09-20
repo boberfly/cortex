@@ -35,6 +35,7 @@
 #ifndef IECORE_DISPLAY_H
 #define IECORE_DISPLAY_H
 
+#include "IECore/IECoreExport.h"
 #include "IECore/PreWorldRenderable.h"
 
 namespace IECore
@@ -42,7 +43,7 @@ namespace IECore
 
 /// The Display class implements a simple PreWorldRenderable that calls renderer->display() in the render() method.
 /// \ingroup renderingGroup
-class Display : public PreWorldRenderable
+class IECORE_EXPORT Display : public PreWorldRenderable
 {
 	public:
 

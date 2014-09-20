@@ -35,6 +35,7 @@
 #ifndef IECORE_GEOMETRICTYPEDDATA_H
 #define IECORE_GEOMETRICTYPEDDATA_H
 
+#include "IECore/IECoreExport.h"
 #include "IECore/TypedData.h"
 
 namespace IECore
@@ -66,7 +67,7 @@ enum Interpretation
 /// or VectorTypedData.h, rather than include this header directly.
 /// \ingroup coreGroup
 template <class T>
-class GeometricTypedData : public TypedData<T>
+class IECORE_EXPORT GeometricTypedData : public TypedData<T>
 {
 	public :
 		

@@ -37,6 +37,8 @@
 
 #include <string>
 
+#include "IECore/IECoreExport.h"
+
 namespace IECore
 {
 
@@ -45,7 +47,7 @@ namespace IECore
 /// by keeping a static table with the actual values in it, with
 /// the object instances just referencing the values in the table.
 /// \ingroup utilityGroup
-class InternedString
+class IECORE_EXPORT InternedString
 {
 	public :
 

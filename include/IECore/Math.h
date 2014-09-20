@@ -39,15 +39,17 @@
 #ifndef IECORE_MATH_H
 #define IECORE_MATH_H
 
+#include "IECore/IECoreExport.h"
+
 namespace IECore
 {
 
 /// Returns -1 for negative numbers, 1 for positive, and 0 for 0.
-template<typename T>
+template<typename T> IECORE_EXPORT
 int sign( T x );
 
 /// Computes smoothstep function from Ken Perlin's original noise implementation.
-template<typename T>
+template<typename T> IECORE_EXPORT
 T smoothstep( T v0, T v1, T x );
 
 } // namespace IECore

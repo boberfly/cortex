@@ -37,13 +37,15 @@
 
 #include "OpenEXR/ImathMatrix.h"
 
+#include "IECore/IECoreExport.h"
+
 namespace IECore
 {
 
 /// Provides a basis matrix class for use in constructing cubic curves.
 /// \ingroup mathGroup
 template<typename T>
-class CubicBasis
+class IECORE_EXPORT CubicBasis
 {
 
 	public :

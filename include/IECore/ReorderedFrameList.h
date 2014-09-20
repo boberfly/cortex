@@ -35,6 +35,7 @@
 #ifndef IE_CORE_REORDEREDFRAMELIST_H
 #define IE_CORE_REORDEREDFRAMELIST_H
 
+#include "IECore/IECoreExport.h"
 #include "IECore/FrameList.h"
 
 namespace IECore
@@ -44,7 +45,7 @@ namespace IECore
 /// hold a child FrameList and return some reordering of that list in the
 /// asList() method.
 /// \ingroup fileSequenceGroup
-class ReorderedFrameList : public FrameList
+class IECORE_EXPORT ReorderedFrameList : public FrameList
 {
 	public:
 

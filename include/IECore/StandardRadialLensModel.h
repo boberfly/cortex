@@ -38,6 +38,7 @@
 #include <string>
 #include <map>
 
+#include "IECore/IECoreExport.h"
 #include "IECore/LensModel.h"
 
 namespace IECore
@@ -53,7 +54,7 @@ namespace IECore
 /// Lens Distortion Plugin Kit v1.3 by Uwe Sassenberg, Science-D-Visions 
 /// http://www.3dequalizer.com/index.php#?site=tech_docs&id=110216_01
 
-class StandardRadialLensModel : public LensModel
+class IECORE_EXPORT StandardRadialLensModel : public LensModel
 {
 	public:
 

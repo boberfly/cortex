@@ -44,6 +44,7 @@
 #include "OpenEXR/ImathColor.h"
 #include "OpenEXR/half.h"
 
+#include "IECore/IECoreExport.h"
 #include "IECore/TypedData.h"
 #include "IECore/GeometricTypedData.h"
 
@@ -96,7 +97,7 @@ IECORE_DECLARE_TYPEDDATA( Color4dVectorData, std::vector<Imath::Color4<double> >
 /// \deprecated This class allows data of the obsolete typeId LongVectorDataTypeId or typename "LongVectorData" to register
 /// itself with an IntVectorData constructor to the Object factory. This allows temporary backwards compatibility (since
 /// long and int were both 32-bits wide on 32-bit platforms)
-class LongVectorDataAlias : private IntVectorData
+class IECORE_EXPORT LongVectorDataAlias : private IntVectorData
 {
 	protected:
 		static TypeDescription<IntVectorData> m_typeDescription;

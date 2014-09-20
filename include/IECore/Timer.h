@@ -37,6 +37,8 @@
 
 #include "boost/timer.hpp"
 
+#include "IECore/IECoreExport.h"
+
 namespace IECore
 {
 
@@ -45,7 +47,7 @@ namespace IECore
 /// that allows for starting and stopping while accumulating
 /// elapsed time. Time values returned are in seconds.
 /// \ingroup utilityGroup
-class Timer
+class IECORE_EXPORT Timer
 {
 
 	public :

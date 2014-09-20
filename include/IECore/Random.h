@@ -37,21 +37,23 @@
 
 #include "OpenEXR/ImathRandom.h"
 
+#include "IECore/IECoreExport.h"
+
 namespace IECore
 {
 
 /// Returns a random barycentric coordinate.
 template<class Vec, class Rand>
-Vec barycentricRand( Rand &rand );
+IECORE_EXPORT Vec barycentricRand(Rand &rand);
 
 /// Returns a random point within the specified triangle.
 template<class Vec, class Rand>
-Vec triangleRand( const Vec &v0, const Vec &v1, const Vec &v2, Rand &rand );
+IECORE_EXPORT Vec triangleRand(const Vec &v0, const Vec &v1, const Vec &v2, Rand &rand);
 
 /// Returns a random point uniformly distributed on a hemisphere of
 /// unit radius where z>0 for all points.
 template<class Vec, class Rand>
-Vec cosineHemisphereRand( Rand &rand );
+IECORE_EXPORT Vec cosineHemisphereRand(Rand &rand);
 
 } // namespace IECore
 

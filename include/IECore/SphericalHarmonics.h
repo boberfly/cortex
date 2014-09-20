@@ -35,6 +35,7 @@
 #ifndef IECORE_SPHERICALHARMONICS_H
 #define IECORE_SPHERICALHARMONICS_H
 
+#include "IECore/IECoreExport.h"
 #include "IECore/VectorTraits.h"
 #include "OpenEXR/ImathVec.h"
 #include "OpenEXR/ImathColor.h"
@@ -48,7 +49,7 @@ namespace IECore
 /// Based mainly on "Spherical Harmonic Lighting: The Gritty Details" by Robin Green.
 /// \ingroup shGroup
 template < typename V >
-class SphericalHarmonics 
+class IECORE_EXPORT SphericalHarmonics 
 {
 	public :
 		typedef typename VectorTraits<V>::BaseType BaseType;
@@ -159,32 +160,32 @@ typedef SphericalHarmonics<Imath::Color3f> SHColor3f;
 
 // Define addition of two SphericalHarmonics object.
 // The resulting object will be resized to accomodate the maximum number of bands between the two SH.
-template <class S>
+template <class S> IECORE_EXPORT
 SphericalHarmonics<S> operator + ( const SphericalHarmonics<S> &lsh, const SphericalHarmonics<S> &rsh );
 
 // Define inplace addition of two SphericalHarmonics object.
 // The resulting object will be resized to accomodate the maximum number of bands between the two SH.
-template <class S>
+template <class S> IECORE_EXPORT
 const SphericalHarmonics<S> & operator += ( SphericalHarmonics<S> &lsh, const SphericalHarmonics<S> &rsh );
 
 // Define subtraction of two SphericalHarmonics object.
 // The resulting object will be resized to accomodate the maximum number of bands between the two SH.
-template <class S>
+template <class S> IECORE_EXPORT
 SphericalHarmonics<S> operator - ( const SphericalHarmonics<S> &lsh, const SphericalHarmonics<S> &rsh );
 
 // Define inplace subtraction of two SphericalHarmonics object.
 // The resulting object will be resized to accomodate the maximum number of bands between the two SH.
-template <class S>
+template <class S> IECORE_EXPORT
 const SphericalHarmonics<S> & operator -= ( SphericalHarmonics<S> &lsh, const SphericalHarmonics<S> &rsh );
 
 // Define scaling of an SphericalHarmonics object.
 // Each coefficient will be scaled independently.
-template <class S, class T>
+template <class S, class T> IECORE_EXPORT
 SphericalHarmonics<S> operator * ( const SphericalHarmonics<S> &lsh, const T &scale );
 
 // Define inplace scaling of an SphericalHarmonics object.
 // Each coefficient will be scaled independently.
-template <class S, class T>
+template <class S, class T> IECORE_EXPORT
 const SphericalHarmonics<S> & operator *= ( SphericalHarmonics<S> &lsh, const T &scale );
 
 

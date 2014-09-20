@@ -35,6 +35,7 @@
 #ifndef IE_CORE_RENDERER_H
 #define IE_CORE_RENDERER_H
 
+#include "IECore/IECoreExport.h"
 #include "IECore/RunTimeTyped.h"
 #include "IECore/PrimitiveVariable.h"
 #include "IECore/VectorTypedData.h"
@@ -89,7 +90,7 @@ IE_CORE_FORWARDDECLARE( Renderer );
 /// and make it available for query, but otherwise it should have no effect. This applies
 /// mostly to the attribute and option calls.
 /// \ingroup renderingGroup
-class Renderer : public RunTimeTyped
+class IECORE_EXPORT Renderer : public RunTimeTyped
 {
 
 	public :

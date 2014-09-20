@@ -35,6 +35,7 @@
 #ifndef IECORE_TYPEDDATA_H
 #define IECORE_TYPEDDATA_H
 
+#include "IECore/IECoreExport.h"
 #include "IECore/Data.h"
 #include "IECore/TypedDataInternals.h"
 #include <limits>
@@ -61,7 +62,7 @@ namespace IECore
 /// TypedData class - see comments in those files for further details.
 /// \ingroup coreGroup
 template <class T>
-class TypedData : public Data
+class IECORE_EXPORT TypedData : public Data
 {
 	public:
 	

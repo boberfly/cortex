@@ -35,6 +35,7 @@
 #ifndef IE_CORE_RUNTIMETYPED_H
 #define IE_CORE_RUNTIMETYPED_H
 
+#include "IECore/IECoreExport.h"
 #include "IECore/RefCounted.h"
 #include "IECore/TypeIds.h"
 
@@ -207,7 +208,7 @@ namespace IECore
 /// of serialised objects in files (see the serialisation
 /// interface defined in Object), but the C++ type_info object
 /// provides us with no information we can usefully use for that.
-class RunTimeTyped : public RefCounted
+class IECORE_EXPORT RunTimeTyped : public RefCounted
 {
 	public:
 
@@ -331,25 +332,25 @@ IE_CORE_DECLAREPTR( RunTimeTyped );
 /// Equivalent to boost::dynamic_pointer_cast but using the type identification
 /// system implemented in RunTimeTyped. This should be used in preference to
 /// boost::dynamic_pointer_cast wherever possible.
-template<typename T, typename S>
+template<typename T, typename S> IECORE_EXPORT
 boost::intrusive_ptr<T> runTimeCast( const boost::intrusive_ptr<S> &src );
 /// Equivalent to dynamic_cast but using the type identification system
 /// implemented in RunTimeTyped. This should be used in preference to
 /// dynamic_cast wherever possible.
-template<typename T, typename S>
+template<typename T, typename S> IECORE_EXPORT
 T *runTimeCast( S *src );
 
 /// Equivalent to boost::static_pointer_cast, but using the type identification
 /// system implemented in RunTimeTyped to fire an assert if the equivalent runTimeCast
 /// would not succeed. In a non-asserted build this will compile directly down to
 /// a single boost::static_pointer_cast.
-template<typename T, typename S>
+template<typename T, typename S> IECORE_EXPORT
 inline boost::intrusive_ptr<T> assertedStaticCast( const boost::intrusive_ptr<T> &src );
 
 /// Equivalent to static_cast, but using the type identifaction system implemented in
 /// RunTimeTyped to fire an assert if the equivalent runTimeCast would not succeed.
 /// In a non-asserted build this will compile directly down to a single static_cast.
-template<typename T, typename S>
+template<typename T, typename S> IECORE_EXPORT
 inline T* assertedStaticCast( S* src );
 
 } // namespace IECore

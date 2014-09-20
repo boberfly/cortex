@@ -37,6 +37,7 @@
 
 #include <vector>
 
+#include "IECore/IECoreExport.h"
 #include "IECore/ImageWriter.h"
 #include "IECore/VectorTypedData.h"
 #include "IECore/NumericParameter.h"
@@ -71,7 +72,7 @@ namespace IECore
 /// TIFFTAG_RESOLUTIONUNIT<br>
 ///
 /// \ingroup ioGroup
-class TIFFImageWriter : public ImageWriter
+class IECORE_EXPORT TIFFImageWriter : public ImageWriter
 {
 
 	public:
