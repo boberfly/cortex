@@ -35,6 +35,7 @@
 #ifndef IE_CORE_NUMERICPARAMETER_H
 #define IE_CORE_NUMERICPARAMETER_H
 
+#include "IECore/IECoreExport.h"
 #include "IECore/Parameter.h"
 #include "IECore/TypedData.h"
 #include "OpenEXR/ImathLimits.h"
@@ -45,7 +46,7 @@ namespace IECore
 /// A template class for numeric parameters, with value validation
 /// on a min/max range. TypedData<T> is used to store the value.
 template<typename T>
-class NumericParameter : public Parameter
+class IECORE_EXPORT NumericParameter : public Parameter
 {
 	public :
 

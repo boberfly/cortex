@@ -41,23 +41,25 @@
 #ifndef IE_CORE_COMPOSITEALGO_H
 #define IE_CORE_COMPOSITEALGO_H
 
+#include "IECore/IECoreExport.h"
+
 namespace IECore
 {
 
 /// A over B
-template<typename T>
+template<typename T> IECORE_EXPORT
 inline T compositeOver( T aVal, T aAlpha, T bVal, T bAlpha );
 
 /// max(A, B)
-template<typename T>
+template<typename T> IECORE_EXPORT
 inline T compositeMax( T aVal, T aAlpha, T bVal, T bAlpha );
 
 /// min(A, B)
-template<typename T>
+template<typename T> IECORE_EXPORT
 inline T compositeMin( T aVal, T aAlpha, T bVal, T bAlpha );
 
 /// A*B
-template<typename T>
+template<typename T> IECORE_EXPORT
 inline T compositeMultiply( T aVal, T aAlpha, T bVal, T bAlpha );
 
 } // namespace IECore

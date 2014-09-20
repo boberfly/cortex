@@ -37,6 +37,7 @@
 
 #include <vector>
 
+#include "IECore/IECoreExport.h"
 #include "IECore/PrimitiveEvaluator.h"
 #include "IECore/ImagePrimitive.h"
 
@@ -45,7 +46,7 @@ namespace IECore
 
 /// An implementation of PrimitiveEvaluator to allow queries to be performed on ImagePrimitive instances
 /// \ingroup imageProcessingGroup
-class ImagePrimitiveEvaluator : public PrimitiveEvaluator
+class IECORE_EXPORT ImagePrimitiveEvaluator : public PrimitiveEvaluator
 {
 	public:
 

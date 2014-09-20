@@ -35,6 +35,7 @@
 #ifndef IECORE_NURBSPRIMITIVE_H
 #define IECORE_NURBSPRIMITIVE_H
 
+#include "IECore/IECoreExport.h"
 #include "IECore/Primitive.h"
 #include "IECore/VectorTypedData.h"
 
@@ -44,7 +45,7 @@ namespace IECore
 /// The NURBSPrimitive class represents a single NURBS surface
 /// \todo createPlane, createSphere static member functions
 /// \ingroup geometryGroup
-class NURBSPrimitive : public Primitive
+class IECORE_EXPORT NURBSPrimitive : public Primitive
 {
 
 	public:

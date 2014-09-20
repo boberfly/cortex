@@ -35,16 +35,16 @@
 #ifndef IE_CORE_MEMORYINDEXEDIO_H
 #define IE_CORE_MEMORYINDEXEDIO_H
 
-
-#include "StreamIndexedIO.h"
-#include "VectorTypedData.h"
+#include "IECore/IECoreExport.h"
+#include "IECore/StreamIndexedIO.h"
+#include "IECore/VectorTypedData.h"
 
 namespace IECore
 {
 
 /// An implementation of StreamIndexedIO which operates with a buffer in memory.
 /// \ingroup ioGroup
-class MemoryIndexedIO : public StreamIndexedIO
+class IECORE_EXPORT MemoryIndexedIO : public StreamIndexedIO
 {
 	public:
 

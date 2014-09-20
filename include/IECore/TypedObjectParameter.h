@@ -40,6 +40,7 @@
 
 #include <string>
 
+#include "IECore/IECoreExport.h"
 #include "IECore/ObjectParameter.h"
 
 namespace IECore
@@ -60,7 +61,7 @@ IE_CORE_FORWARDDECLARE( SmoothSkinningData )
 /// The TypedObjectParameter class implements an ObjectParameter which rigidly only
 /// accepts one type of Object
 template<typename T>
-class TypedObjectParameter : public ObjectParameter
+class IECORE_EXPORT TypedObjectParameter : public ObjectParameter
 {
 	public :
 

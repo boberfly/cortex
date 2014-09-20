@@ -35,6 +35,7 @@
 #ifndef IECORE_CINEONTOLINEAROP_H
 #define IECORE_CINEONTOLINEAROP_H
 
+#include "IECore/IECoreExport.h"
 #include "IECore/ChannelOp.h"
 #include "IECore/NumericParameter.h"
 #include "IECore/ColorSpaceTransformOp.h"
@@ -44,7 +45,7 @@ namespace IECore
 
 /// Applies Cineon to linear conversion on ImagePrimitive channels.
 /// \ingroup imageProcessingGroup
-class CineonToLinearOp : public ChannelOp
+class IECORE_EXPORT CineonToLinearOp : public ChannelOp
 {
 	public:
 

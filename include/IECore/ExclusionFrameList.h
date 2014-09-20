@@ -35,6 +35,7 @@
 #ifndef IE_CORE_EXCLUSIONFRAMELIST_H
 #define IE_CORE_EXCLUSIONFRAMELIST_H
 
+#include "IECore/IECoreExport.h"
 #include "IECore/FrameList.h"
 
 namespace IECore
@@ -43,7 +44,7 @@ namespace IECore
 /// This is the simplest FrameList derived type, and it has few uses as it simply
 /// returns an empty list.
 /// \ingroup fileSequenceGroup
-class ExclusionFrameList : public FrameList
+class IECORE_EXPORT ExclusionFrameList : public FrameList
 {
 	public:
 

@@ -39,6 +39,7 @@
 #include "OpenEXR/ImathBox.h"
 #include "OpenEXR/ImathColor.h"
 
+#include "IECore/IECoreExport.h"
 #include "IECore/TypedData.h"
 #include "IECore/Interpolator.h"
 
@@ -47,7 +48,7 @@ namespace IECore
 
 /// The CubeColorLookup, templated on either float or double, performs interpolated lookups into color tables.
 template<typename T>
-class CubeColorLookup
+class IECORE_EXPORT CubeColorLookup
 {
 	public:
 

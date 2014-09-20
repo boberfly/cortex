@@ -38,6 +38,7 @@
 #include "boost/static_assert.hpp"
 #include "boost/type_traits/is_floating_point.hpp"
 
+#include "IECore/IECoreExport.h"
 #include "IECore/HalfTypeTraits.h"
 #include "IECore/DataConversion.h"
 
@@ -49,7 +50,7 @@ template<typename, typename> struct LinearToSRGBDataConversion;
 
 /// A class to perform data conversion from sRGB values to linear
 template<typename F, typename T>
-struct SRGBToLinearDataConversion : public DataConversion< F, T >
+struct IECORE_EXPORT SRGBToLinearDataConversion : public DataConversion< F, T >
 {
 	BOOST_STATIC_ASSERT( boost::is_floating_point< F >::value );
 	BOOST_STATIC_ASSERT( boost::is_floating_point< T >::value );

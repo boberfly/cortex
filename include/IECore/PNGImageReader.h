@@ -35,6 +35,7 @@
 #ifndef IE_CORE_PNGIMAGEREADER_H
 #define IE_CORE_PNGIMAGEREADER_H
 
+#include "IECore/IECoreExport.h"
 #include "IECore/ImageReader.h"
 
 struct PNGImageData;
@@ -44,7 +45,7 @@ namespace IECore
 
 /// The PNGImageReader reads Portable Network Graphics (PNG) files
 /// \ingroup ioGroup
-class PNGImageReader : public ImageReader
+class IECORE_EXPORT PNGImageReader : public ImageReader
 {
 
 	public:

@@ -38,6 +38,7 @@
 #include "OpenEXR/ImathBox.h"
 #include "OpenEXR/ImathMatrix.h"
 
+#include "IECore/IECoreExport.h"
 #include "IECore/DeepPixel.h"
 #include "IECore/Reader.h"
 
@@ -50,7 +51,7 @@ namespace IECore
 /// only supports float channels.
 /// \ingroup deepCompositingGroup
 /// \ingroup ioGroup
-class DeepImageReader : public Reader
+class IECORE_EXPORT DeepImageReader : public Reader
 {
 
 	public :

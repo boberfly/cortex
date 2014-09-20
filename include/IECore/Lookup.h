@@ -42,6 +42,8 @@
 
 #include "OpenEXR/ImathColor.h"
 
+#include "IECore/IECoreExport.h"
+
 namespace IECore
 {
 
@@ -50,7 +52,7 @@ namespace IECore
 /// values stored in a table.
 /// \ingroup mathGroup
 template<typename X, typename Y>
-class Lookup
+class IECORE_EXPORT Lookup
 {
 	
 	public :

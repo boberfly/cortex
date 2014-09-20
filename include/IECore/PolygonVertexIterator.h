@@ -37,6 +37,8 @@
 
 #include <vector>
 
+#include "IECore/IECoreExport.h"
+
 namespace IECore
 {
 
@@ -47,7 +49,7 @@ namespace IECore
 /// the PolygonIterator::vertexBegin() and PolygonIterator::vertexEnd() methods.
 /// \ingroup geometryProcessingGroup
 template<typename VertexValueIterator, typename VertexIndexIterator=std::vector<int>::const_iterator>
-class PolygonVertexIterator
+class IECORE_EXPORT PolygonVertexIterator
 {
 
 	public :

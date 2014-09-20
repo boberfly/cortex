@@ -40,6 +40,7 @@
 #include "boost/static_assert.hpp"
 #include "boost/type_traits/is_floating_point.hpp"
 
+#include "IECore/IECoreExport.h"
 #include "IECore/HalfTypeTraits.h"
 #include "IECore/DataConversion.h"
 
@@ -51,7 +52,7 @@ template< typename, typename > class LinearToPanalogDataConversion;
 
 /// A class to perform data conversion from Panalog values to linear
 template<typename F, typename T>
-class PanalogToLinearDataConversion : public DataConversion< F, T >
+class IECORE_EXPORT PanalogToLinearDataConversion : public DataConversion< F, T >
 {
 	public:
 

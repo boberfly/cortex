@@ -40,11 +40,13 @@
 
 #include "RefCounted.h"
 
+#include "IECore/IECoreExport.h"
+
 namespace IECore
 {
 	/// The base class from which all IE core library exceptions should derive.
 	/// \ingroup utilityGroup
-	class Exception : public std::exception
+	class IECORE_EXPORT Exception : public std::exception
 	{
 		public:
 			/// Construct with cause of exception

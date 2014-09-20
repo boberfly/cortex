@@ -35,12 +35,13 @@
 #ifndef IE_CORE_MATRIXTRANSFORM_H
 #define IE_CORE_MATRIXTRANSFORM_H
 
+#include "IECore/IECoreExport.h"
 #include "IECore/Transform.h"
 
 namespace IECore
 {
 
-class MatrixTransform : public Transform
+class IECORE_EXPORT MatrixTransform : public Transform
 {
 	public:
 

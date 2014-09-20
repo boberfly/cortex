@@ -39,6 +39,8 @@
 #include <vector>
 #include <math.h>
 
+#include "IECore/IECoreExport.h"
+
 namespace IECore
 {
 
@@ -51,7 +53,7 @@ template<typename T>
 struct CubicInterpolator;
 
 template<typename T>
-struct LinearInterpolator
+struct IECORE_EXPORT LinearInterpolator
 {
 		/// Interpolate between y0 and y1
 		void operator()(const T &y0, const T &y1, double x, T &result ) const;
@@ -59,7 +61,7 @@ struct LinearInterpolator
 };
 
 template<typename T>
-struct CubicInterpolator
+struct IECORE_EXPORT CubicInterpolator
 {
 		/// Interpolate between y1 and y2. Requires additional data points on either side.
 		void operator()(const T &y0, const T &y1, const T &y2, T const &y3, double x, T &result ) const;
