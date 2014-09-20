@@ -40,13 +40,14 @@
 #include "boost/iostreams/detail/fstream.hpp"
 #include "boost/iostreams/operations.hpp"
 
+#include "IECore/IECoreExport.h"
 #include "IECore/RefCounted.h"
 
 namespace IECore
 {
 
 /// A boost.iostreams "device" for reading to/writing from memory.
-class MemoryStream
+class IECORE_EXPORT MemoryStream
 {
 	public:
 		struct category

@@ -35,6 +35,7 @@
 #ifndef IECORE_SPLINE_H
 #define IECORE_SPLINE_H
 
+#include "IECore/IECoreExport.h"
 #include "IECore/CubicBasis.h"
 
 #include "OpenEXR/ImathColor.h"
@@ -50,7 +51,7 @@ namespace IECore
 /// a series of control points or for creating simple animation curves.
 /// \ingroup mathGroup
 template<typename X, typename Y>
-class Spline
+class IECORE_EXPORT Spline
 {
 
 	public :

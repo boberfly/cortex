@@ -39,6 +39,8 @@
 #include <fstream>
 
 #include "OpenEXR/ImathVec.h"
+
+#include "IECore/IECoreExport.h"
 #include "IECore/RefCounted.h"
 
 namespace IECore
@@ -48,7 +50,7 @@ IE_CORE_FORWARDDECLARE( IFFFile );
 
 /// The IFFFile class defines a low level class for reading IFF files.
 /// For specific IFF file types use a more specific implementation (i.e. NParticleReader, IFFHairReader, IFFImageReader).
-class IFFFile : public RefCounted
+class IECORE_EXPORT IFFFile : public RefCounted
 {
 	public :
 

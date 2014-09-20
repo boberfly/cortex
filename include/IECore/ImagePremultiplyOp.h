@@ -35,6 +35,7 @@
 #ifndef IECORE_IMAGEPREMULTIPLYOP_H
 #define IECORE_IMAGEPREMULTIPLYOP_H
 
+#include "IECore/IECoreExport.h"
 #include "IECore/ChannelOp.h"
 
 namespace IECore
@@ -42,7 +43,7 @@ namespace IECore
 
 /// Performs premultiplication.
 /// \ingroup imageProcessingGroup
-class ImagePremultiplyOp : public ChannelOp
+class IECORE_EXPORT ImagePremultiplyOp : public ChannelOp
 {
 	public:
 

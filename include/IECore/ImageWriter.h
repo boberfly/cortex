@@ -38,6 +38,7 @@
 #include <vector>
 #include <string>
 
+#include "IECore/IECoreExport.h"
 #include "IECore/Writer.h"
 #include "IECore/SimpleTypedParameter.h"
 #include "IECore/VectorTypedParameter.h"
@@ -49,7 +50,7 @@ IE_CORE_FORWARDDECLARE( ImagePrimitive );
 
 /// Abstract base class for serializing images
 /// \ingroup ioGroup
-class ImageWriter : public Writer
+class IECORE_EXPORT ImageWriter : public Writer
 {
 
 	public:

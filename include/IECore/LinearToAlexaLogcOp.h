@@ -35,6 +35,7 @@
 #ifndef IECORE_LINEARTOALEXALOGCOP_H
 #define IECORE_LINEARTOALEXALOGCOP_H
 
+#include "IECore/IECoreExport.h"
 #include "IECore/ChannelOp.h"
 #include "IECore/ColorSpaceTransformOp.h"
 
@@ -43,7 +44,7 @@ namespace IECore
 
 /// Applies linear to Alexa (V3) Log C conversion on ImagePrimitive channels.
 /// \ingroup imageProcessingGroup
-class LinearToAlexaLogcOp : public ChannelOp
+class IECORE_EXPORT LinearToAlexaLogcOp : public ChannelOp
 {
 	public:
 

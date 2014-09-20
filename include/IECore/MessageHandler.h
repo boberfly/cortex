@@ -40,6 +40,7 @@
 #include "boost/format.hpp"
 #include "boost/noncopyable.hpp"
 
+#include "IECore/IECoreExport.h"
 #include "IECore/RefCounted.h"
 
 namespace IECore
@@ -54,7 +55,7 @@ IE_CORE_DECLAREPTR( MessageHandler );
 /// to implement multiple message handlers appropriate to
 /// specific application contexts.
 /// \ingroup utilityGroup
-class MessageHandler : public RefCounted
+class IECORE_EXPORT MessageHandler : public RefCounted
 {
 
 	public :

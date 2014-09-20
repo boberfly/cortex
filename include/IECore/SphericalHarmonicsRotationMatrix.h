@@ -36,6 +36,7 @@
 #define SPHERICALHARMONICSROTATIONMATRIX_H
 
 #include "OpenEXR/ImathEuler.h"
+#include "IECore/IECoreExport.h"
 #include "IECore/SphericalHarmonics.h"
 
 namespace IECore
@@ -72,7 +73,7 @@ namespace IECore
 /// \todo Current implementation does not take advantage of the matrix sparsity.
 /// \ingroup shGroup 
 template < typename V >
-class SphericalHarmonicsRotationMatrix
+class IECORE_EXPORT SphericalHarmonicsRotationMatrix
 {
 	public:
 

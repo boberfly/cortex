@@ -1,6 +1,10 @@
+#ifndef IECOREEXPORT_H
+#define IECOREEXPORT_H
+
 //////////////////////////////////////////////////////////////////////////
 //
-//  Copyright (c) 2008-2011, Image Engine Design Inc. All rights reserved.
+//  Copyright (c) 2012, John Haddon. All rights reserved.
+//  Copyright (c) 2013, Image Engine Design Inc. All rights reserved.
 //
 //  Redistribution and use in source and binary forms, with or without
 //  modification, are permitted provided that the following conditions are
@@ -32,53 +36,17 @@
 //
 //////////////////////////////////////////////////////////////////////////
 
-#ifndef IE_CORE_SWEEPANDPRUNE_H
-#define IE_CORE_SWEEPANDPRUNE_H
+#if defined(IECORE_DLL)
+    #if defined(IECORE_EXPORTS)
+    #define IECORE_EXPORT __declspec(dllexport)
+    #else
+    #define IECORE_EXPORT __declspec(dllimport)
+    #endif
+    #define IECORE_EXPORT_CONST
+#else
+    #define IECORE_EXPORT
+    #define IECORE_EXPORT_CONST const
+#endif
 
-#include <vector>
+#endif // #ifndef IECOREEXPORT_H
 
-#include "boost/static_assert.hpp"
-
-#include "IECore/IECoreExport.h"
-#include "IECore/RadixSort.h"
-
-namespace IECore
-{
-
-/// \ingroup mathGroup
-template<typename BoundIterator, template<typename> class CB>
-class IECORE_EXPORT SweepAndPrune
-{
-	public:
-		typedef BoundIterator Iterator;
-		typedef typename std::iterator_traits<BoundIterator>::value_type Bound;
-
-		typedef CB<BoundIterator> Callback;
-
-		typedef enum
-		{
-			XYZ,
-			XZY,
-			YXZ,
-			YZX,
-			ZXY,
-			ZYX
-		} AxisOrder;
-
-		SweepAndPrune();
-		virtual ~SweepAndPrune();
-
-		void intersectingBounds( BoundIterator first, BoundIterator last, Callback &cb, AxisOrder axisOrder = XZY );
-
-	protected:
-
-		inline bool axisIntersects( const Bound &b1, const Bound &b2, char axis );
-
-		RadixSort m_radixSort;
-};
-
-} // namespace IECore
-
-#include "IECore/SweepAndPrune.inl"
-
-#endif // IE_CORE_SWEEPANDPRUNE_H

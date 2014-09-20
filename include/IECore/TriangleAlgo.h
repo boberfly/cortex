@@ -39,6 +39,7 @@
 #ifndef IECORE_TRIANGLEALGO_H
 #define IECORE_TRIANGLEALGO_H
 
+#include "IECore/IECoreExport.h"
 #include "IECore/VectorTraits.h"
 
 #include "OpenEXR/ImathVec.h"
@@ -47,24 +48,24 @@ namespace IECore
 {
 
 /// \todo It might be nice to make a triangle class and make these methods.
-template<class Vec>
+template<class Vec> IECORE_EXPORT
 typename VectorTraits<Vec>::BaseType triangleArea( const Vec &v0, const Vec &v1, const Vec &v2 );
 
 /// Returns the normal for the specified triangle. Winding order is considered to be counter-clockwise as
 /// with the rest of cortex - the normal will face towards a viewer who sees the loop v0->v1->v2->v0
 /// as being counter-clockwise.
-template<class Vec>
+template<class Vec> IECORE_EXPORT
 Vec triangleNormal( const Vec &v0, const Vec &v1, const Vec &v2 );
 
-template<class Vec>
+template<class Vec> IECORE_EXPORT
 Vec trianglePoint( const Vec &v0, const Vec &v1, const Vec &v2, const Imath::Vec3<typename VectorTraits<Vec>::BaseType> &barycentric );
 
 /// Returns the squared-distance to the closest point on the triangle, and places that point's barycentric coordinates in the 4th argument.
-template<class Vec>
+template<class Vec> IECORE_EXPORT
 typename VectorTraits<Vec>::BaseType triangleClosestBarycentric( const Vec &v0, const Vec &v1, const Vec &v2, const Vec &p, Imath::Vec3<typename VectorTraits<Vec>::BaseType> &barycentric );
 
 /// Returns the closest point on the triangle, and places that point's barycentric coordinates in the 4th argument.
-template<class Vec>
+template<class Vec> IECORE_EXPORT
 Vec triangleClosestPoint( const Vec &v0, const Vec &v1, const Vec &v2, const Vec &p, Imath::Vec3<typename VectorTraits<Vec>::BaseType> &barycentric );
 
 /// Returns information regarding the feature region of a barycentric coordinate on the triangle.
@@ -75,22 +76,22 @@ Vec triangleClosestPoint( const Vec &v0, const Vec &v1, const Vec &v2, const Vec
 /// - 4 is vertex v0
 /// - 5 is the edge connecting v0 and v1
 /// - 6 is vertex v1
-template<class Vec>
+template<class Vec> IECORE_EXPORT
 int triangleBarycentricFeature( const Vec &barycentric, typename VectorTraits<Vec>::BaseType tolerance = 1.e-6 );
 
 /// Returns the closest feature on the triangle to the given point. The return values are as barycentricFeature.
-template<class Vec>
+template<class Vec> IECORE_EXPORT
 int triangleClosestFeature( const Vec &v0, const Vec &v1, const Vec &v2, const Vec &p );
 
-template<class Vec>
+template<class Vec> IECORE_EXPORT
 bool triangleContainsPoint( const Vec &v0, const Vec &v1, const Vec &v2, const Vec &p );
 
-template<class Vec>
+template<class Vec> IECORE_EXPORT
 bool triangleContainsPoint( const Vec &v0, const Vec &v1, const Vec &v2, const Vec &p, Imath::Vec3<typename VectorTraits<Vec>::BaseType> &barycentric );
 
 /// Returns true if the ray hits the triangle. Also fills pt, barycentric and front in the same way as Imath::intersect()
 /// This function treats the ray as finite on the origin and infinite on the other end and Imath::intersect considers both ends to be infinite.
-template <class Vec>
+template <class Vec> IECORE_EXPORT
 bool triangleRayIntersection( const Vec &v0, const Vec &v1, const Vec &v2, const Vec &origin, const Vec &dir, Vec &pt, Vec &barycentric, bool &front );
 
 } // namespace IECore

@@ -104,6 +104,10 @@ if( MSVC AND DEFINED BUILD_STATIC_LIBS AND BUILD_STATIC_LIBS )
 	endforeach (MODE)
 endif ()
 
+if( MSVC AND NOT BUILD_STATIC_LIBS )
+  ADD_DEFINITIONS( -DIECORE_DLL -D_DLL )
+ENDIF()
+
 ADD_DEFINITIONS( -DBOOST_PYTHON_MAX_ARITY=20 )
 
 #-******************************************************************************

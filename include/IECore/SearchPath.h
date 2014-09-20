@@ -43,12 +43,14 @@
 
 #include "boost/filesystem/path.hpp"
 
+#include "IECore/IECoreExport.h"
+
 namespace IECore
 {
 
 /// The SearchPath class provides a simple means of finding a file on a set of searchpaths.
 /// \ingroup utilityGroup
-class SearchPath
+class IECORE_EXPORT SearchPath
 {
 	public :
 

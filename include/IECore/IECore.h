@@ -38,35 +38,37 @@
 
 #include <string>
 
+#include "IECore/IECoreExport.h"
+
 /// This namespace contains all components of the core library.
 namespace IECore
 {
 
 /// Returns the major version for the IECore library
-int majorVersion();
+IECORE_EXPORT int majorVersion();
 /// Returns the minor version for the IECore library
-int minorVersion();
+IECORE_EXPORT int minorVersion();
 /// Returns the patch version for the IECore library
-int patchVersion();
+IECORE_EXPORT int patchVersion();
 /// Returns a string of the form "major.minor.patch"
-const std::string &versionString();
+IECORE_EXPORT const std::string &versionString();
 
 /// Returns true if IECore was built with boost::asio support
-bool withASIO();
+IECORE_EXPORT bool withASIO();
 /// Returns true if IECore was built with boost::signals support
-bool withSignals();
+IECORE_EXPORT bool withSignals();
 /// Returns true if IECore was built with boost::math::factorial support
-bool withBoostFactorial();
+IECORE_EXPORT bool withBoostFactorial();
 /// Returns true if IECore was built with TIFF support
-bool withTIFF();
+IECORE_EXPORT bool withTIFF();
 /// Returns true if IECore was built with JPEG support
-bool withJPEG();
+IECORE_EXPORT bool withJPEG();
 /// Returns true if IECore was built with FreeType suppport
-bool withFreeType();
+IECORE_EXPORT bool withFreeType();
 /// Returns true if IECore was built with PNG suppport
-bool withPNG();
+IECORE_EXPORT bool withPNG();
 /// Returns true if IECore was built with Deep EXR support
-bool withDeepEXR();
+IECORE_EXPORT bool withDeepEXR();
 
 }
 

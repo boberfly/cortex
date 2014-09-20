@@ -40,6 +40,7 @@
 
 #include "OpenEXR/ImathVec.h"
 
+#include "IECore/IECoreExport.h"
 #include "IECore/VectorTraits.h"
 
 namespace IECore
@@ -50,7 +51,7 @@ namespace IECore
 /// the VectorTraits.h and VectorOps.h functionality to assist in this.
 /// \ingroup mathGroup
 template<class PointIterator>
-class KDTree
+class IECORE_EXPORT KDTree
 {
 	public :
 

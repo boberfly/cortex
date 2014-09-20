@@ -37,6 +37,7 @@
 
 #include "boost/function.hpp"
 
+#include "IECore/IECoreExport.h"
 #include "IECore/LRUCache.h"
 #include "IECore/ObjectPool.h"
 
@@ -47,7 +48,7 @@ namespace IECore
 /// the computation results, and internally it only holds a map of computationHash to objectHash. The get functions will return the resulting 
 /// Object, which should be copied prior to modification. The retrieve function will only query the cache and not force computation.
 template< typename T >
-class ComputationCache : public RefCounted
+class IECORE_EXPORT ComputationCache : public RefCounted
 {
 	public :
 

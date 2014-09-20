@@ -41,13 +41,15 @@
 #ifndef IE_CORE_FASTFLOAT_H
 #define IE_CORE_FASTFLOAT_H
 
+#include "IECore/IECoreExport.h"
+
 namespace IECore
 {
 
-inline int fastFloat2Int( double v );
-inline int fastFloatRound( double v );
-inline int fastFloatFloor( double v );
-inline int fastFloatCeil( double v );
+IECORE_EXPORT inline int fastFloat2Int( double v );
+IECORE_EXPORT inline int fastFloatRound(double v);
+IECORE_EXPORT inline int fastFloatFloor(double v);
+IECORE_EXPORT inline int fastFloatCeil(double v);
 
 } // namespace IECore
 

@@ -41,6 +41,8 @@
 #include "boost/function.hpp"
 #include "boost/tuple/tuple.hpp"
 #include "tbb/queuing_rw_mutex.h"
+#include "IECore/IECoreExport.h"
+
 
 namespace IECore
 {
@@ -57,7 +59,7 @@ namespace IECore
 /// Sage Documentation : http://www.sagemath.org/doc/reference/sage/functions/wigner.html
 /// Lucio Moser - March 2010
 /// \ingroup shGroup
-class SphericalHarmonicsTensor : private boost::noncopyable
+class IECORE_EXPORT SphericalHarmonicsTensor : private boost::noncopyable
 {
 	public :
 
