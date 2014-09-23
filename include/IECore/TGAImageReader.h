@@ -37,7 +37,7 @@
 
 #include "boost/shared_ptr.hpp"
 
-#include "IECore/IECoreExport.h"
+#include "IECore/Export.h"
 #include "IECore/ImageReader.h"
 #include "IECore/VectorTypedData.h"
 
@@ -46,7 +46,7 @@ namespace IECore
 
 /// The TGAImageReader reads version 1 Truevision Targa files
 /// \ingroup ioGroup
-class IECORE_EXPORT TGAImageReader : public ImageReader
+class IECORE_API TGAImageReader : public ImageReader
 {
 
 	public:

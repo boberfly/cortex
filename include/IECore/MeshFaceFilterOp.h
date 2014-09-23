@@ -35,7 +35,7 @@
 #ifndef IECORE_MESHFACEFILTEROP_H
 #define IECORE_MESHFACEFILTEROP_H
 
-#include "IECore/IECoreExport.h"
+#include "IECore/Export.h"
 #include "IECore/TypedPrimitiveOp.h"
 #include "IECore/CompoundData.h"
 #include "IECore/NumericParameter.h"
@@ -49,7 +49,7 @@ namespace IECore
 
 /// An Op to chop out all but a subset of a mesh's polygons.
 /// \ingroup geometryProcessingGroup
-class IECORE_EXPORT MeshFaceFilterOp : public MeshPrimitiveOp
+class IECORE_API MeshFaceFilterOp : public MeshPrimitiveOp
 {
 	public:
 	

@@ -35,7 +35,7 @@
 #ifndef IECORE_SRGBTOLINEAROP_H
 #define IECORE_SRGBTOLINEAROP_H
 
-#include "IECore/IECoreExport.h"
+#include "IECore/Export.h"
 #include "IECore/ChannelOp.h"
 #include "IECore/ColorSpaceTransformOp.h"
 
@@ -44,7 +44,7 @@ namespace IECore
 
 /// Applies SRGB to linear conversion on ImagePrimitive channels.
 /// \ingroup imageProcessingGroup
-class IECORE_EXPORT SRGBToLinearOp : public ChannelOp
+class IECORE_API SRGBToLinearOp : public ChannelOp
 {
 	public:
 

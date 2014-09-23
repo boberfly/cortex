@@ -39,7 +39,7 @@
 
 #include "tbb/mutex.h"
 
-#include "IECore/IECoreExport.h"
+#include "IECore/Export.h"
 #include "IECore/PrimitiveEvaluator.h"
 #include "IECore/MeshPrimitive.h"
 #include "IECore/BoundedKDTree.h"
@@ -49,7 +49,7 @@ namespace IECore
 
 /// An implementation of PrimitiveEvaluator to allow spatial queries to be performed on MeshPrimitive instances
 /// \ingroup geometryProcessingGroup
-class IECORE_EXPORT MeshPrimitiveEvaluator : public PrimitiveEvaluator
+class IECORE_API MeshPrimitiveEvaluator : public PrimitiveEvaluator
 {
 	public:
 

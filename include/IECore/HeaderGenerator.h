@@ -35,7 +35,7 @@
 #ifndef IE_CORE_HEADERGENERATOR_H
 #define IE_CORE_HEADERGENERATOR_H
 
-#include "IECore/IECoreExport.h"
+#include "IECore/Export.h"
 #include "IECore/CompoundObject.h"
 
 namespace IECore
@@ -46,7 +46,7 @@ IE_CORE_DECLAREPTR( HeaderGenerator )
 
 /// This class helps on generating meta-data information for file headers.
 /// It registers HeaderGenerator subclasses responsible for one single Object instance that will be assigned to specific keys in the final CompoundObject.
-class IECORE_EXPORT HeaderGenerator
+class IECORE_API HeaderGenerator
 {
 	public :
 		typedef void (*DataHeaderFn)( CompoundObjectPtr );

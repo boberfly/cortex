@@ -35,7 +35,7 @@
 #ifndef IE_CORE_VISIBLERENDERABLE_H
 #define IE_CORE_VISIBLERENDERABLE_H
 
-#include "IECore/IECoreExport.h"
+#include "IECore/Export.h"
 #include "IECore/Renderable.h"
 
 #include "OpenEXR/ImathBox.h"
@@ -48,7 +48,7 @@ namespace IECore
 /// VisibleRenderables guarantee to leave the Renderer state (attributes, transforms, shaders)
 /// unchanged across calls to VisibleRenderable::render().
 /// \ingroup renderingGroup
-class IECORE_EXPORT VisibleRenderable : public Renderable
+class IECORE_API VisibleRenderable : public Renderable
 {
 	public:
 

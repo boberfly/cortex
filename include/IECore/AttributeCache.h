@@ -39,7 +39,7 @@
 #include <vector>
 #include <set>
 
-#include "IECore/IECoreExport.h"
+#include "IECore/Export.h"
 #include "IECore/Object.h"
 
 namespace IECore
@@ -54,7 +54,7 @@ IE_CORE_FORWARDDECLARE( CompoundObject );
 /// the InterpolatedCache class for a threadsafe means of reading the files with automatic
 /// interpolation.
 /// \ingroup ioGroup
-class IECORE_EXPORT AttributeCache : public RefCounted
+class IECORE_API AttributeCache : public RefCounted
 {
 	public:
 

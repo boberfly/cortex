@@ -35,7 +35,7 @@
 #ifndef IECORE_MESHMERGEOP_H
 #define IECORE_MESHMERGEOP_H
 
-#include "IECore/IECoreExport.h"
+#include "IECore/Export.h"
 #include "IECore/TypedPrimitiveOp.h"
 #include "IECore/TypedPrimitiveParameter.h"
 
@@ -44,7 +44,7 @@ namespace IECore
 
 /// A MeshPrimitiveOp to merge one mesh with another.
 /// \ingroup geometryProcessingGroup
-class IECORE_EXPORT MeshMergeOp : public MeshPrimitiveOp
+class IECORE_API MeshMergeOp : public MeshPrimitiveOp
 {
 	public :
 

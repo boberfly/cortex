@@ -35,7 +35,7 @@
 #ifndef IECORE_CURVESMERGEOP_H
 #define IECORE_CURVESMERGEOP_H
 
-#include "IECore/IECoreExport.h"
+#include "IECore/Export.h"
 #include "IECore/TypedPrimitiveOp.h"
 #include "IECore/TypedPrimitiveParameter.h"
 
@@ -44,7 +44,7 @@ namespace IECore
 
 /// An op to merge one set of curves with another.
 /// \ingroup geometryProcessingGroup
-class IECORE_EXPORT CurvesMergeOp : public CurvesPrimitiveOp
+class IECORE_API CurvesMergeOp : public CurvesPrimitiveOp
 {
 	public :
 

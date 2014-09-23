@@ -35,7 +35,7 @@
 #ifndef IE_CORE_TURBULENCE_H
 #define IE_CORE_TURBULENCE_H
 
-#include "IECore/IECoreExport.h"
+#include "IECore/Export.h"
 #include "IECore/PerlinNoise.h"
 
 namespace IECore
@@ -49,7 +49,7 @@ namespace IECore
 /// \ingroup mathGroup
 /// \ingroup renderingGroup
 template<typename N>
-class IECORE_EXPORT Turbulence
+class IECORE_API Turbulence
 {
 
 	public :

@@ -35,7 +35,7 @@
 #ifndef IECORE_CURVESPRIMITIVE_H
 #define IECORE_CURVESPRIMITIVE_H
 
-#include "IECore/IECoreExport.h"
+#include "IECore/Export.h"
 #include "IECore/Primitive.h"
 #include "IECore/VectorTypedData.h"
 #include "IECore/CubicBasis.h"
@@ -46,7 +46,7 @@ namespace IECore
 /// The CurvesPrimitive class represents a number of curves with either cubic
 /// or linear interpolation. It is equivalent to the RenderMan RiCurves primitive.
 /// \ingroup geometryGroup
-class IECORE_EXPORT CurvesPrimitive : public Primitive
+class IECORE_API CurvesPrimitive : public Primitive
 {
 	public :
 

@@ -35,7 +35,7 @@
 #ifndef IE_CORE_FILENAMEPARAMETER_H
 #define IE_CORE_FILENAMEPARAMETER_H
 
-#include "IECore/IECoreExport.h"
+#include "IECore/Export.h"
 #include "IECore/PathParameter.h"
 
 namespace IECore
@@ -43,7 +43,7 @@ namespace IECore
 
 /// This class implements a StringParameter object with validation
 /// of the value based on it representing a filename.
-class IECORE_EXPORT FileNameParameter : public PathParameter
+class IECORE_API FileNameParameter : public PathParameter
 {
 	public :
 

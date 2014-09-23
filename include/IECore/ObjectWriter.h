@@ -35,7 +35,7 @@
 #ifndef IE_CORE_OBJECTWRITER_H
 #define IE_CORE_OBJECTWRITER_H
 
-#include "IECore/IECoreExport.h"
+#include "IECore/Export.h"
 #include "IECore/Writer.h"
 
 namespace IECore
@@ -45,7 +45,7 @@ IE_CORE_FORWARDDECLARE( ObjectParameter )
 
 /// An ObjectWriter writes instances of a single Object to a file with a .cob extension
 /// \ingroup ioGroup
-class IECORE_EXPORT ObjectWriter : public Writer
+class IECORE_API ObjectWriter : public Writer
 {
 
 	public :

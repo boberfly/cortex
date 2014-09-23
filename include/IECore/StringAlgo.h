@@ -35,23 +35,23 @@
 #ifndef IECORE_STRINGALGO_H
 #define IECORE_STRINGALGO_H
 
-#include "IECore/IECoreExport.h"
+#include "IECore/Export.h"
 
 namespace IECore
 {
 
-template<class Iterator> IECORE_EXPORT
+template<class Iterator> IECORE_API
 typename std::iterator_traits<Iterator>::value_type join( Iterator begin, Iterator end, const typename std::iterator_traits<Iterator>::reference separator );
 
 /// Returns true if s has no lower case letters and at least one upper case
 /// letter - non alphabetic characters are ignored.
 template<class String>
-IECORE_EXPORT bool isUpperCase( const String &s );
+IECORE_API bool isUpperCase( const String &s );
 
 /// Returns true if s has no upper case letters and at least one lower case
 /// letter - non alphabetic characters are ignored.
 template<class String>
-IECORE_EXPORT bool isLowerCase( const String &s );
+IECORE_API bool isLowerCase( const String &s );
 
 } // namespace IECore
 

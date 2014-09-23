@@ -35,7 +35,7 @@
 #ifndef IECORE_COMPRESSSMOOTHSKINNINGDATAOP_H
 #define IECORE_COMPRESSSMOOTHSKINNINGDATAOP_H
 
-#include "IECore/IECoreExport.h"
+#include "IECore/Export.h"
 #include "IECore/ModifyOp.h"
 #include "IECore/NumericParameter.h"
 
@@ -44,7 +44,7 @@ namespace IECore
 
 /// The CompressSmoothSkinningDataOp compresses SmoothSkinningData by removing weights below a threshold value
 /// \ingroup skinningGroup
-class IECORE_EXPORT CompressSmoothSkinningDataOp : public ModifyOp
+class IECORE_API CompressSmoothSkinningDataOp : public ModifyOp
 {
 	public :
 

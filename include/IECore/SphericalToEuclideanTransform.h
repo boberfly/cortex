@@ -35,7 +35,7 @@
 #ifndef IE_CORE_SPHERICALTOEUCLIDEANTRANSFORM_H
 #define IE_CORE_SPHERICALTOEUCLIDEANTRANSFORM_H
 
-#include "IECore/IECoreExport.h"
+#include "IECore/Export.h"
 #include "IECore/SpaceTransform.h"
 #include "boost/static_assert.hpp"
 
@@ -52,7 +52,7 @@ template< typename, typename > class EuclideanToSphericalTransform;
 /// The theta ranges from 0 to PI and it represents the angle from Z axis. The phi component ranges from 0 to 2*PI and represents the angle of rotation on the XY plane.
 /// \ingroup mathGroup
 template<typename F, typename T>
-class IECORE_EXPORT SphericalToEuclideanTransform : public SpaceTransform< F, T >
+class IECORE_API SphericalToEuclideanTransform : public SpaceTransform< F, T >
 {
 	public:
 		BOOST_STATIC_ASSERT( (boost::mpl::or_< TypeTraits::IsVec3<F>, TypeTraits::IsVec2<F> >::value == true) );

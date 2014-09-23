@@ -35,7 +35,7 @@
 #ifndef IE_CORE_NULLOBJECT_H
 #define IE_CORE_NULLOBJECT_H
 
-#include "IECore/IECoreExport.h"
+#include "IECore/Export.h"
 #include "IECore/Object.h"
 
 namespace IECore
@@ -47,7 +47,7 @@ IE_CORE_FORWARDDECLARE( NullObject )
 /// but there's no suitable value - it's current primary use
 /// is for setting invalid values in the children of
 /// CompoundParameter objects.
-class IECORE_EXPORT NullObject : public Object
+class IECORE_API NullObject : public Object
 {
 	public:
 

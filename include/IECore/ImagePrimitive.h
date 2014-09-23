@@ -38,7 +38,7 @@
 #include <string>
 #include <vector>
 
-#include "IECore/IECoreExport.h"
+#include "IECore/Export.h"
 #include "IECore/Primitive.h"
 #include "IECore/Data.h"
 #include "IECore/VectorTypedData.h"
@@ -85,7 +85,7 @@ namespace IECore
 /// \todo I think we should perhaps rethink the centering of the object space. It seems odd that rendering two images
 /// where one has an offset display window should result in them rendering over the top of each other.
 /// \ingroup imageProcessingGroup
-class IECORE_EXPORT ImagePrimitive : public Primitive
+class IECORE_API ImagePrimitive : public Primitive
 {
 
 	public:

@@ -35,7 +35,7 @@
 #ifndef IE_CORE_DIRNAMEPARAMETER_H
 #define IE_CORE_DIRNAMEPARAMETER_H
 
-#include "IECore/IECoreExport.h"
+#include "IECore/Export.h"
 #include "IECore/PathParameter.h"
 
 namespace IECore
@@ -43,7 +43,7 @@ namespace IECore
 
 /// This class implements a StringParameter object with validation
 /// of the value based on it representing a directory name.
-class IECORE_EXPORT DirNameParameter : public PathParameter
+class IECORE_API DirNameParameter : public PathParameter
 {
 	public :
 

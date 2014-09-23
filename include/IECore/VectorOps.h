@@ -44,125 +44,125 @@
 #ifndef IE_CORE_VECTOROPS_H
 #define IE_CORE_VECTOROPS_H
 
-#include "IECore/IECoreExport.h"
+#include "IECore/Export.h"
 #include "IECore/VectorTraits.h"
 
 namespace IECore
 {
 
 /// Sets the ith component of v to the value x.
-template<typename T> IECORE_EXPORT
+template<typename T> IECORE_API
 inline void vecSet( T &v, unsigned int i, typename VectorTraits<T>::BaseType x );
 
 /// Sets all components of v to the value x.
-template<typename T> IECORE_EXPORT
+template<typename T> IECORE_API
 inline void vecSetAll( T &v, typename VectorTraits<T>::BaseType x );
 
 /// Returns the value of the ith component of v.
-template<typename T> IECORE_EXPORT
+template<typename T> IECORE_API
 inline typename VectorTraits<T>::BaseType vecGet( const T &v, unsigned int i );
 
 /// Adds v1 to v2 returning a new vector.
-template<typename T> IECORE_EXPORT
+template<typename T> IECORE_API
 inline T vecAdd( const T &v1, const T &v2 );
 
 /// Adds v1 to v2, placing the result in result. It is safe for result
 /// to be the same as either v1 or v2 to peform addition in place.
-template<typename T> IECORE_EXPORT
+template<typename T> IECORE_API
 inline void vecAdd( const T &v1, const T &v2, T &result );
 
 /// Subtracts v2 from v1, returning a new vector.
-template<typename T> IECORE_EXPORT
+template<typename T> IECORE_API
 inline T vecSub( const T &v1, const T &v2 );
 
 /// Subtracts v2 from v1, placing the result in result. It is safe for
 /// result to be the same as either v1 or v2 to perform subtraction in place.
-template<typename T> IECORE_EXPORT
+template<typename T> IECORE_API
 inline void vecSub( const T &v1, const T &v2, T &result );
 
 /// Perform multiplication of v1 by scalar value v2, returning a new vector.
-template<typename T> IECORE_EXPORT
+template<typename T> IECORE_API
 inline T vecMul( const T& v1, typename VectorTraits<T>::BaseType v2);
 
 /// Perform multiplication of v1 by scalar value v2, placing the result in result.
 /// It is safe for result to be the same as v1 to perform multiplication in place.
-template<typename T> IECORE_EXPORT
+template<typename T> IECORE_API
 inline void vecMul( const T &v1, typename VectorTraits<T>::BaseType v2, T &result );
 
 /// Multiplies v1 by v2, returning a new vector.
-template<typename T> IECORE_EXPORT
+template<typename T> IECORE_API
 inline T vecMul( const T &v1, const T &v2 );
 
 /// Multiplies v1 by v2, placing the result in result. It is safe for result
 /// to be the same as either v1 or v2 to perform multiplication in place.
-template<typename T> IECORE_EXPORT
+template<typename T> IECORE_API
 inline void vecMul( const T &v1, const T &v2, T &result);
 
 /// Division by a scalar returning a new vector.
-template<typename T> IECORE_EXPORT
+template<typename T> IECORE_API
 inline T vecDiv( const T &v1, typename VectorTraits<T>::BaseType v2 );
 
 /// Division by a scalar placing the result in result. It is safe
 /// for result to be the same as v1 to perform division in place.
-template<typename T> IECORE_EXPORT
+template<typename T> IECORE_API
 inline void vecDiv( const T &v1, typename VectorTraits<T>::BaseType v2, T &result );
 
 /// Component-wise division of v1 by v2 returning a new vector.
-template<typename T> IECORE_EXPORT
+template<typename T> IECORE_API
 inline T vecDiv( const T &v1, const T &v2 );
 
 /// Component-wise division of v1 by v2 placing the result in result. It is safe
 /// for result to be the same as either v1 or v2 to perform division in place.
-template<typename T> IECORE_EXPORT
+template<typename T> IECORE_API
 inline void vecDiv( const T &v1, const T &v2, T &result );
 
 /// Returns the dot product of v1 and v2.
-template<typename T> IECORE_EXPORT
+template<typename T> IECORE_API
 inline typename VectorTraits<T>::BaseType vecDot( const T &v1, const T &v2 );
 
 /// Returns the squared length of v.
-template<typename T> IECORE_EXPORT
+template<typename T> IECORE_API
 inline typename VectorTraits<T>::BaseType vecLength2( const T &v );
 
 /// Returns the length of v.
-template<typename T> IECORE_EXPORT
+template<typename T> IECORE_API
 inline typename VectorTraits<T>::BaseType vecLength( const T &v );
 
 /// Normalizes v in place. If the length of v is zero then has no effect.
-template<typename T> IECORE_EXPORT
+template<typename T> IECORE_API
 inline void vecNormalize( T &v );
 
 /// Returns the distance squared between v1 and v2.
-template<typename T> IECORE_EXPORT
+template<typename T> IECORE_API
 inline typename VectorTraits<T>::BaseType vecDistance2( const T &v1, const T &v2 );
 
 /// Returns the distance between v1 and v2.
-template<typename T> IECORE_EXPORT
+template<typename T> IECORE_API
 inline typename VectorTraits<T>::BaseType vecDistance( const T &v1, const T &v2 );
 
 /// Converts from one vector type to another.
-template<typename T, typename S> IECORE_EXPORT
+template<typename T, typename S> IECORE_API
 inline S vecConvert( const T &v );
 
 /// Converts from one vector type to another.
-template<typename T, typename S> IECORE_EXPORT
+template<typename T, typename S> IECORE_API
 inline void vecConvert( const T &v1, S &v2 );
 
 /// A functor suitable for use with stl algorithms such as transform(), allowing
 /// the copying of a container of vectors of type T into a container of vectors of type S.
 template<typename T, typename S>
-struct IECORE_EXPORT VecConvert
+struct IECORE_API VecConvert
 {
 	inline S operator()( const T &v ) const;
 };
 
 /// Constructs a new vector and returns it. The components array must be at
 /// least VectorTraits<T>::dimensions() long.
-template<typename T> IECORE_EXPORT
+template<typename T> IECORE_API
 inline T vecConstruct( const typename VectorTraits<T>::BaseType *components );
 
 /// Returns the cross product of v1 and v2, which must be 3-dimensional vectors
-template<typename T> IECORE_EXPORT
+template<typename T> IECORE_API
 inline T vecCross( const T &v1, const T &v2 );
 
 } // namespace IECore

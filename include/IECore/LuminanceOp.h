@@ -35,7 +35,7 @@
 #ifndef IECORE_LUMINANCEOP_H
 #define IECORE_LUMINANCEOP_H
 
-#include "IECore/IECoreExport.h"
+#include "IECore/Export.h"
 #include "IECore/PrimitiveOp.h"
 
 namespace IECore
@@ -43,7 +43,7 @@ namespace IECore
 
 /// The LuminanceOp calculates a primvar representing luminance.
 /// \ingroup imageProcessingGroup
-class IECORE_EXPORT LuminanceOp : public PrimitiveOp
+class IECORE_API LuminanceOp : public PrimitiveOp
 {
 	public :
 

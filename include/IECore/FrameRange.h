@@ -35,7 +35,7 @@
 #ifndef IE_CORE_FRAMERANGE_H
 #define IE_CORE_FRAMERANGE_H
 
-#include "IECore/IECoreExport.h"
+#include "IECore/Export.h"
 #include "IECore/FrameList.h"
 
 namespace IECore
@@ -44,7 +44,7 @@ namespace IECore
 /// The FrameRange class simply stores an integer range consisting of a start, end and step.
 /// Exceptions are thrown if these members are modified in such a way as to create an invalid range.
 /// \ingroup fileSequenceGroup
-class IECORE_EXPORT FrameRange : public FrameList
+class IECORE_API FrameRange : public FrameList
 {
 	public:
 

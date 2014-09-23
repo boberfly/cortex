@@ -35,7 +35,7 @@
 #ifndef IECORE_SUMMEDAREAOP_H
 #define IECORE_SUMMEDAREAOP_H
 
-#include "IECore/IECoreExport.h"
+#include "IECore/Export.h"
 #include "IECore/ChannelOp.h"
 
 namespace IECore
@@ -43,7 +43,7 @@ namespace IECore
 
 /// Turns image channels into summed area table of their contents.
 /// \ingroup imageProcessingGroup
-class IECORE_EXPORT SummedAreaOp : public ChannelOp
+class IECORE_API SummedAreaOp : public ChannelOp
 {
 	public:
 

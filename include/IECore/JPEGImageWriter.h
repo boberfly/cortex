@@ -35,7 +35,7 @@
 #ifndef IE_CORE_JPEGIMAGEWRITER_H
 #define IE_CORE_JPEGIMAGEWRITER_H
 
-#include "IECore/IECoreExport.h"
+#include "IECore/Export.h"
 #include "IECore/ImageWriter.h"
 #include "IECore/VectorTypedData.h"
 #include "IECore/NumericParameter.h"
@@ -45,7 +45,7 @@ namespace IECore
 
 /// The JPEGImageWriter class serializes images to the Joint Photographic Experts Group (JPEG) format
 /// \ingroup ioGroup
-class IECORE_EXPORT JPEGImageWriter : public ImageWriter
+class IECORE_API JPEGImageWriter : public ImageWriter
 {
 	public:
 

@@ -35,7 +35,7 @@
 #ifndef IE_CORE_POINTSPRIMITIVE_H
 #define IE_CORE_POINTSPRIMITIVE_H
 
-#include "IECore/IECoreExport.h"
+#include "IECore/Export.h"
 #include "IECore/Primitive.h"
 #include "IECore/VectorTypedData.h"
 
@@ -48,7 +48,7 @@ namespace IECore
 /// may also contain a primitive variable "r", containing FloatVectorData
 /// defining the radii of the points - this is also of interpolation type Vertex.
 /// \ingroup geometryGroup
-class IECORE_EXPORT PointsPrimitive : public Primitive
+class IECORE_API PointsPrimitive : public Primitive
 {
 	public:
 

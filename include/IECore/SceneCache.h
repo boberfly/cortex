@@ -35,7 +35,7 @@
 #ifndef IECORE_SCENECACHE_H
 #define IECORE_SCENECACHE_H
 
-#include "IECore/IECoreExport.h"
+#include "IECore/Export.h"
 #include "IECore/SampledSceneInterface.h"
 
 namespace IECore
@@ -50,7 +50,7 @@ IE_CORE_FORWARDDECLARE( SceneCache );
 /// locations that no bounds were written. It will also store (without duplication) all the
 /// sample times used by objects, transforms, bounds and attributes.
 /// \ingroup ioGroup
-class IECORE_EXPORT SceneCache : public SampledSceneInterface
+class IECORE_API SceneCache : public SampledSceneInterface
 {
 	public :
 

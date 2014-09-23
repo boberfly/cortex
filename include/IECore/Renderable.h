@@ -35,7 +35,7 @@
 #ifndef IE_CORE_RENDERABLE_H
 #define IE_CORE_RENDERABLE_H
 
-#include "IECore/IECoreExport.h"
+#include "IECore/Export.h"
 #include "IECore/BlindDataHolder.h"
 
 namespace IECore
@@ -45,7 +45,7 @@ IE_CORE_FORWARDDECLARE( Renderer );
 
 /// An abstract class to define objects which are renderable
 /// \ingroup renderingGroup
-class IECORE_EXPORT Renderable : public BlindDataHolder
+class IECORE_API Renderable : public BlindDataHolder
 {
 	public:
 

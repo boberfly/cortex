@@ -37,7 +37,7 @@
 
 #include <map>
 
-#include "IECore/IECoreExport.h"
+#include "IECore/Export.h"
 #include "IECore/Deleter.h"
 
 namespace IECore
@@ -83,7 +83,7 @@ namespace IECore
 /// }
 /// \endcode
 template< typename ClassTypeT, typename DataTypeT, typename DataDeletePolicyT = NullDeleter<DataTypeT> >
-class IECORE_EXPORT ClassData
+class IECORE_API ClassData
 {
 	public:
 

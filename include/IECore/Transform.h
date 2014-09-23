@@ -35,7 +35,7 @@
 #ifndef IE_CORE_TRANSFORM_H
 #define IE_CORE_TRANSFORM_H
 
-#include "IECore/IECoreExport.h"
+#include "IECore/Export.h"
 #include "IECore/StateRenderable.h"
 
 #include "OpenEXR/ImathMatrix.h"
@@ -46,7 +46,7 @@ namespace IECore
 /// An abstract class to define objects which apply a transform to the
 /// state of a Renderer.
 /// \ingroup renderingGroup
-class IECORE_EXPORT Transform : public StateRenderable
+class IECORE_API Transform : public StateRenderable
 {
 	public:
 

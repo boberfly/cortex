@@ -37,7 +37,7 @@
 
 #include "boost/multi_array.hpp"
 
-#include "IECore/IECoreExport.h"
+#include "IECore/Export.h"
 #include "IECore/CubeColorLookup.h"
 #include "IECore/CubeColorLookupData.h"
 #include "IECore/CubeColorLookupParameter.h"
@@ -51,7 +51,7 @@ namespace IECore
 {
 
 /// \ingroup imageProcessingGroup
-class IECORE_EXPORT CubeColorTransformOp : public ColorTransformOp
+class IECORE_API CubeColorTransformOp : public ColorTransformOp
 {
 	public :
 

@@ -35,7 +35,7 @@
 #ifndef IECORE_COORDINATESYSTEM_H
 #define IECORE_COORDINATESYSTEM_H
 
-#include "IECore/IECoreExport.h"
+#include "IECore/Export.h"
 #include "IECore/StateRenderable.h"
 
 namespace IECore
@@ -46,7 +46,7 @@ IE_CORE_FORWARDDECLARE( Transform )
 /// This calls allows the specification of coordinate systems to
 /// Renderers.
 /// \ingroup renderingGroup
-class IECORE_EXPORT CoordinateSystem : public StateRenderable
+class IECORE_API CoordinateSystem : public StateRenderable
 {
 	public:
 

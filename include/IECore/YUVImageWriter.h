@@ -35,7 +35,7 @@
 #ifndef IE_CORE_YUVIMAGEWRITER_H
 #define IE_CORE_YUVIMAGEWRITER_H
 
-#include "IECore/IECoreExport.h"
+#include "IECore/Export.h"
 #include "IECore/ImageWriter.h"
 #include "IECore/VectorTypedData.h"
 #include "IECore/NumericParameter.h"
@@ -47,7 +47,7 @@ namespace IECore
 /// The YUVImageWriter class serializes images to raw 8-bit YUV (actually Y'CbCr) files. This format is supported by ffmpeg.
 /// Further YUV formats will be added in the future.
 /// \ingroup ioGroup
-class IECORE_EXPORT YUVImageWriter : public ImageWriter
+class IECORE_API YUVImageWriter : public ImageWriter
 {
 	public:
 

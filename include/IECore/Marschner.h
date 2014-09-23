@@ -35,7 +35,7 @@
 #ifndef IECORE_MARSCHNERBCSDF_H
 #define IECORE_MARSCHNERBCSDF_H
 
-#include "IECore/IECoreExport.h"
+#include "IECore/Export.h"
 #include "IECore/Exception.h"
 #include "IECore/EuclideanToSphericalTransform.h"
 #include "IECore/CompoundData.h"
@@ -53,7 +53,7 @@ namespace IECore
 /// The X component is the major axis for the cross section of the hair - it is important in case the hair is elliptical ( eccentricity != 1 ).
 /// The Y component completes the right-handed orthonormal basis.
 template < typename T >
-class IECORE_EXPORT MarschnerBCSDF
+class IECORE_API MarschnerBCSDF
 {
 	public:
 	

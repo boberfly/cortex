@@ -39,7 +39,7 @@
 
 #include "tbb/atomic.h"
 
-#include "IECore/IECoreExport.h"
+#include "IECore/Export.h"
 #include "boost/noncopyable.hpp"
 #include "boost/intrusive_ptr.hpp"
 
@@ -121,7 +121,7 @@ typedef boost::intrusive_ptr< const TYPENAME > Const ## TYPENAME ## Ptr; \
 /// \todo Disallow construction on the heap by having a private destructor - do we
 /// need to do this for all derived classes as well?
 /// \ingroup utilityGroup
-class IECORE_EXPORT RefCounted : private boost::noncopyable
+class IECORE_API RefCounted : private boost::noncopyable
 {
 	public:
 

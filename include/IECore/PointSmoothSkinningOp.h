@@ -40,7 +40,7 @@
 
 #include <vector>
 
-#include "IECore/IECoreExport.h"
+#include "IECore/Export.h"
 #include "IECore/ModifyOp.h"
 #include "IECore/NumericParameter.h"
 #include "IECore/SimpleTypedParameter.h"
@@ -59,7 +59,7 @@ namespace IECore
 /// SmoothSkinningData.
 /// \ingroup geometryProcessingGroup
 /// \ingroup skinningGroup
-class IECORE_EXPORT PointSmoothSkinningOp : public ModifyOp
+class IECORE_API PointSmoothSkinningOp : public ModifyOp
 {
 	public:
 

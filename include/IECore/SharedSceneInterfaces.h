@@ -35,13 +35,13 @@
 #ifndef IECORE_SHAREDSCENEINTERFACES_H
 #define IECORE_SHAREDSCENEINTERFACES_H
 
-#include "IECore/IECoreExport.h"
+#include "IECore/Export.h"
 #include "IECore/SceneInterface.h"
 
 namespace IECore
 {
 
-class IECORE_EXPORT SharedSceneInterfaces
+class IECORE_API SharedSceneInterfaces
 {
 	public :
 		

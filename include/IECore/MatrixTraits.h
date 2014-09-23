@@ -39,7 +39,7 @@
 
 #include "OpenEXR/ImathMatrix.h"
 
-#include "IECore/IECoreExport.h"
+#include "IECore/Export.h"
 
 namespace IECore
 {
@@ -50,7 +50,7 @@ namespace IECore
 /// MatrixTraits classes. To add support for a new matrix class simply specialise
 /// the struct appropriately for that type.
 template<typename T>
-struct IECORE_EXPORT MatrixTraits
+struct IECORE_API MatrixTraits
 {
 	typedef float BaseType; /* should be specialised */
 	static unsigned int dimensions() { /* must be specialised */ assert( 0 ); return 0; };
@@ -60,7 +60,7 @@ struct IECORE_EXPORT MatrixTraits
 
 /// Specialisations for Imath types
 template<>
-struct IECORE_EXPORT MatrixTraits<Imath::M33f>
+struct IECORE_API MatrixTraits<Imath::M33f>
 {
 	typedef float BaseType;
 	static unsigned int dimensions() { return 3; };
@@ -69,7 +69,7 @@ struct IECORE_EXPORT MatrixTraits<Imath::M33f>
 };
 
 template<>
-struct IECORE_EXPORT MatrixTraits<Imath::M44f>
+struct IECORE_API MatrixTraits<Imath::M44f>
 {
 	typedef float BaseType;
 	static unsigned int dimensions() { return 4; };
@@ -78,7 +78,7 @@ struct IECORE_EXPORT MatrixTraits<Imath::M44f>
 };
 
 template<>
-struct IECORE_EXPORT MatrixTraits<Imath::M33d>
+struct IECORE_API MatrixTraits<Imath::M33d>
 {
 	typedef double BaseType;
 	static unsigned int dimensions() { return 3; };
@@ -87,7 +87,7 @@ struct IECORE_EXPORT MatrixTraits<Imath::M33d>
 };
 
 template<>
-struct IECORE_EXPORT MatrixTraits<Imath::M44d>
+struct IECORE_API MatrixTraits<Imath::M44d>
 {
 	typedef double BaseType;
 	static unsigned int dimensions() { return 4; };
