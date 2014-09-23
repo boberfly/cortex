@@ -35,7 +35,7 @@
 #ifndef IE_CORE_EMPTYFRAMELIST_H
 #define IE_CORE_EMPTYFRAMELIST_H
 
-#include "IECore/IECoreExport.h"
+#include "IECore/Export.h"
 #include "IECore/FrameList.h"
 
 namespace IECore
@@ -44,7 +44,7 @@ namespace IECore
 /// This is the simplest FrameList derived type, and it has few uses as it simply
 /// returns an empty list.
 /// \ingroup fileSequenceGroup
-class IECORE_EXPORT EmptyFrameList : public FrameList
+class IECORE_API EmptyFrameList : public FrameList
 {
 	public:
 

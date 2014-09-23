@@ -35,7 +35,7 @@
 #ifndef IE_CORE_COMPOUNDPARAMETER_H
 #define IE_CORE_COMPOUNDPARAMETER_H
 
-#include "IECore/IECoreExport.h"
+#include "IECore/Export.h"
 #include "IECore/Parameter.h"
 #include "IECore/CompoundObject.h"
 
@@ -44,7 +44,7 @@ namespace IECore
 
 /// The CompoundParameter class implements a Parameter holding many
 /// other parameter values, a little like a struct.
-class IECORE_EXPORT CompoundParameter : public Parameter
+class IECORE_API CompoundParameter : public Parameter
 {
 	public :
 

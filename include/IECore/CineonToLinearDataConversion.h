@@ -40,7 +40,7 @@
 #include "boost/static_assert.hpp"
 #include "boost/type_traits/is_floating_point.hpp"
 
-#include "IECore/IECoreExport.h"
+#include "IECore/Export.h"
 #include "IECore/HalfTypeTraits.h"
 #include "IECore/DataConversion.h"
 
@@ -52,7 +52,7 @@ template< typename, typename > class LinearToCineonDataConversion;
 
 /// A class to perform data conversion from Cineon log values to linear
 template<typename F, typename T>
-class IECORE_EXPORT CineonToLinearDataConversion : public DataConversion< F, T >
+class IECORE_API CineonToLinearDataConversion : public DataConversion< F, T >
 {
 	public:
 

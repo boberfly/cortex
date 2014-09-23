@@ -36,7 +36,7 @@
 #ifndef IECORE_CAMERACONTROLLER_H
 #define IECORE_CAMERACONTROLLER_H
 
-#include "IECore/IECoreExport.h"
+#include "IECore/Export.h"
 #include "IECore/SimpleTypedData.h"
 
 #include "OpenEXR/ImathVec.h"
@@ -49,7 +49,7 @@ IE_CORE_FORWARDDECLARE( MatrixTransform )
 
 /// The CameraController class provides methods to aid in the use
 /// of the Camera class within the context of a GUI.
-class IECORE_EXPORT CameraController : public boost::noncopyable
+class IECORE_API CameraController : public boost::noncopyable
 {
 
 	public:

@@ -35,7 +35,7 @@
 #ifndef IECORE_ADDSMOOTHSKINNINGINFLUENCESOP_H
 #define IECORE_ADDSMOOTHSKINNINGINFLUENCESOP_H
 
-#include "IECore/IECoreExport.h"
+#include "IECore/Export.h"
 #include "IECore/ModifyOp.h"
 #include "IECore/NumericParameter.h"
 #include "IECore/VectorTypedParameter.h"
@@ -48,7 +48,7 @@ namespace IECore
 /// in the influence list. The new influences will be added one at a time and each index will
 /// refer to the influence list at the time that the associated influence is being added.
 /// \ingroup skinningGroup
-class IECORE_EXPORT AddSmoothSkinningInfluencesOp : public ModifyOp
+class IECORE_API AddSmoothSkinningInfluencesOp : public ModifyOp
 {
 	public :
 

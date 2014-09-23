@@ -40,7 +40,7 @@
 
 #include "boost/noncopyable.hpp"
 
-#include "IECore/IECoreExport.h"
+#include "IECore/Export.h"
 
 #include <vector>
 
@@ -59,7 +59,7 @@ namespace IECore
 ///	Johannes Kopf, Daniel Cohen-Or, Oliver Deussen, Dani Lischinski
 ///	In ACM Transactions on Graphics 25, 3 (Proc. SIGGRAPH 2006)
 /// \ingroup mathGroup
-class IECORE_EXPORT PointDistribution : public boost::noncopyable
+class IECORE_API PointDistribution : public boost::noncopyable
 {
 
 	public :

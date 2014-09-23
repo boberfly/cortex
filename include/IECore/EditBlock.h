@@ -37,7 +37,7 @@
 
 #include "boost/noncopyable.hpp"
 
-#include "IECore/IECoreExport.h"
+#include "IECore/Export.h"
 #include "IECore/CompoundData.h"
 
 namespace IECore
@@ -49,7 +49,7 @@ class Renderer;
 /// calls are matched by renderer->editEnd() calls, even in the face of exceptions and
 /// multiple return statements from a function.
 /// \ingroup renderingGroup
-class IECORE_EXPORT EditBlock : public boost::noncopyable
+class IECORE_API EditBlock : public boost::noncopyable
 {
 
 	public :

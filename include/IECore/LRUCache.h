@@ -41,7 +41,7 @@
 #include "boost/noncopyable.hpp"
 #include "boost/function.hpp"
 
-#include "IECore/IECoreExport.h"
+#include "IECore/Export.h"
 
 namespace IECore
 {
@@ -60,7 +60,7 @@ namespace IECore
 /// \threading It is safe to call the methods of LRUCache from concurrent threads.
 /// \ingroup utilityGroup
 template<typename Key, typename Value>
-class IECORE_EXPORT LRUCache : private boost::noncopyable
+class IECORE_API LRUCache : private boost::noncopyable
 {
 	public:
 	

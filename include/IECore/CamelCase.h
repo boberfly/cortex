@@ -38,12 +38,12 @@
 #include <string>
 #include <vector>
 
-#include "IECore/IECoreExport.h"
+#include "IECore/Export.h"
 
 namespace IECore
 {
 
-class IECORE_EXPORT CamelCase
+class IECORE_API CamelCase
 {
 	
 	public :

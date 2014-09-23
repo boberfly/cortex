@@ -35,7 +35,7 @@
 #ifndef IECORE_PARAMETERISEDPROCEDURAL_H
 #define IECORE_PARAMETERISEDPROCEDURAL_H
 
-#include "IECore/IECoreExport.h"
+#include "IECore/Export.h"
 #include "IECore/VisibleRenderable.h"
 #include "IECore/ParameterisedInterface.h"
 
@@ -57,7 +57,7 @@ IE_CORE_FORWARDDECLARE( CompoundObject )
 /// itself is declared.
 /// \ingroup renderingGroup
 /// \ingroup coreGroup
-class IECORE_EXPORT ParameterisedProcedural : public VisibleRenderable, public ParameterisedInterface
+class IECORE_API ParameterisedProcedural : public VisibleRenderable, public ParameterisedInterface
 {
 	public:
 

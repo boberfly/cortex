@@ -35,7 +35,7 @@
 #ifndef IE_CORE_REVERSEDFRAMELIST_H
 #define IE_CORE_REVERSEDFRAMELIST_H
 
-#include "IECore/IECoreExport.h"
+#include "IECore/Export.h"
 #include "IECore/ReorderedFrameList.h"
 
 namespace IECore
@@ -47,7 +47,7 @@ namespace IECore
 /// the whole sequence, providing earlier information about stuff going on
 /// in the middle and end of the sequence.
 /// \ingroup fileSequenceGroup
-class IECORE_EXPORT ReversedFrameList : public ReorderedFrameList
+class IECORE_API ReversedFrameList : public ReorderedFrameList
 {
 	public:
 

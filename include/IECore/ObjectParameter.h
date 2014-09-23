@@ -35,7 +35,7 @@
 #ifndef IE_CORE_OBJECTPARAMETER_H
 #define IE_CORE_OBJECTPARAMETER_H
 
-#include "IECore/IECoreExport.h"
+#include "IECore/Export.h"
 #include "IECore/Parameter.h"
 
 #include <set>
@@ -45,7 +45,7 @@ namespace IECore
 
 /// The ObjectParameter class implements a Parameter which validates
 /// based on a list of acceptable TypeIds.
-class IECORE_EXPORT ObjectParameter : public Parameter
+class IECORE_API ObjectParameter : public Parameter
 {
 	public :
 

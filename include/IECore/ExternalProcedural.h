@@ -35,7 +35,7 @@
 #ifndef IECORE_EXTERNALPROCEDURAL_H
 #define IECORE_EXTERNALPROCEDURAL_H
 
-#include "IECore/IECoreExport.h"
+#include "IECore/Export.h"
 #include "IECore/VisibleRenderable.h"
 
 namespace IECore
@@ -43,7 +43,7 @@ namespace IECore
 
 /// \ingroup renderingGroup
 /// \ingroup coreGroup
-class IECORE_EXPORT ExternalProcedural : public VisibleRenderable
+class IECORE_API ExternalProcedural : public VisibleRenderable
 {
 
 	public :

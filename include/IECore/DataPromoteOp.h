@@ -37,7 +37,7 @@
 
 #include "boost/static_assert.hpp"
 
-#include "IECore/IECoreExport.h"
+#include "IECore/Export.h"
 #include "IECore/Op.h"
 #include "IECore/ObjectParameter.h"
 #include "IECore/NumericParameter.h"
@@ -53,7 +53,7 @@ namespace IECore
 /// each float).
 /// \ingroup coreGroup
 /// \see DataCastOp, DataConvertOp
-class IECORE_EXPORT DataPromoteOp : public Op
+class IECORE_API DataPromoteOp : public Op
 {
 	public :
 

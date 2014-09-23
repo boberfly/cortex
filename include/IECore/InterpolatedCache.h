@@ -35,7 +35,7 @@
 #ifndef IECORE_INTERPOLATEDCACHE_H
 #define IECORE_INTERPOLATEDCACHE_H
 
-#include "IECore/IECoreExport.h"
+#include "IECore/Export.h"
 #include "IECore/AttributeCache.h"
 #include "IECore/OversamplesCalculator.h"
 
@@ -56,7 +56,7 @@ IE_CORE_FORWARDDECLARE( FileSequence );
 /// If we did this I think we should look at replacing the OversamplesCalculator class with some more sensible
 /// Time or TimeSampler class, and passing everything in one argument.
 /// \ingroup ioGroup
-class IECORE_EXPORT InterpolatedCache : public RefCounted
+class IECORE_API InterpolatedCache : public RefCounted
 {
 	public :
 		

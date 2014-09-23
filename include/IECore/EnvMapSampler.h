@@ -35,7 +35,7 @@
 #ifndef IECORE_ENVMAPSAMPLER_H
 #define IECORE_ENVMAPSAMPLER_H
 
-#include "IECore/IECoreExport.h"
+#include "IECore/Export.h"
 #include "IECore/Op.h"
 #include "IECore/TypedPrimitiveParameter.h"
 #include "IECore/NumericParameter.h"
@@ -49,7 +49,7 @@ namespace IECore
 /// \todo: use SphericalToEuclideanTransform that is based on right-hand coordinate system. Currently it is left-hand to match 3delight environment light mapping. But maya and nuke and the spherical harmonics implementation in IECore are right-handed.
 /// \ingroup renderingGroup
 /// \ingroup imageProcessingGroup
-class IECORE_EXPORT EnvMapSampler : public Op
+class IECORE_API EnvMapSampler : public Op
 {
 	public :
 

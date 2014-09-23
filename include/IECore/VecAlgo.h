@@ -41,7 +41,7 @@
 
 #include "OpenEXR/ImathVec.h"
 
-#include "IECore/IECoreExport.h"
+#include "IECore/Export.h"
 
 // Putting these operators in the Imath namespace so that the compiler can find them
 // using argument dependent lookup.
@@ -53,11 +53,11 @@ namespace Imath
 {
 
 /// Implementation of operator <, allowing vectors to be used as keys in maps and the like.
-template<typename T> IECORE_EXPORT
+template<typename T> IECORE_API
 bool operator < ( const Imath::Vec2<T> &left, const Imath::Vec2<T> &right );
 
 /// Implementation of operator <, allowing vectors to be used as keys in maps and the like.
-template<typename T> IECORE_EXPORT
+template<typename T> IECORE_API
 bool operator < ( const Imath::Vec3<T> &left, const Imath::Vec3<T> &right );
 
 } // namespace Imath

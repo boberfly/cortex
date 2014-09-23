@@ -38,7 +38,7 @@
 #include "OpenEXR/ImfInputFile.h"
 #include "OpenEXR/ImfChannelList.h"
 
-#include "IECore/IECoreExport.h"
+#include "IECore/Export.h"
 #include "IECore/ImageReader.h"
 
 namespace IECore
@@ -46,7 +46,7 @@ namespace IECore
 
 /// The EXRImageReader class reads OpenEXR files.
 /// \ingroup ioGroup
-class IECORE_EXPORT EXRImageReader : public ImageReader
+class IECORE_API EXRImageReader : public ImageReader
 {
 	public:
 

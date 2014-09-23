@@ -40,7 +40,7 @@
 #include "boost/function.hpp"
 #include <vector>
 
-#include "IECore/IECoreExport.h"
+#include "IECore/Export.h"
 
 namespace IECore
 {
@@ -49,7 +49,7 @@ namespace IECore
 /// Based mainly on "Spherical Harmonic Lighting: The Gritty Details" by Robin Green.
 /// \ingroup shGroup
 template < typename V >
-class IECORE_EXPORT RealSphericalHarmonicFunction
+class IECORE_API RealSphericalHarmonicFunction
 {
 	public :
 

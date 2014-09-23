@@ -38,37 +38,37 @@
 
 #include <string>
 
-#include "IECore/IECoreExport.h"
+#include "IECore/Export.h"
 
 /// This namespace contains all components of the core library.
 namespace IECore
 {
 
 /// Returns the major version for the IECore library
-IECORE_EXPORT int majorVersion();
+IECORE_API int majorVersion();
 /// Returns the minor version for the IECore library
-IECORE_EXPORT int minorVersion();
+IECORE_API int minorVersion();
 /// Returns the patch version for the IECore library
-IECORE_EXPORT int patchVersion();
+IECORE_API int patchVersion();
 /// Returns a string of the form "major.minor.patch"
-IECORE_EXPORT const std::string &versionString();
+IECORE_API const std::string &versionString();
 
 /// Returns true if IECore was built with boost::asio support
-IECORE_EXPORT bool withASIO();
+IECORE_API bool withASIO();
 /// Returns true if IECore was built with boost::signals support
-IECORE_EXPORT bool withSignals();
+IECORE_API bool withSignals();
 /// Returns true if IECore was built with boost::math::factorial support
-IECORE_EXPORT bool withBoostFactorial();
+IECORE_API bool withBoostFactorial();
 /// Returns true if IECore was built with TIFF support
-IECORE_EXPORT bool withTIFF();
+IECORE_API bool withTIFF();
 /// Returns true if IECore was built with JPEG support
-IECORE_EXPORT bool withJPEG();
+IECORE_API bool withJPEG();
 /// Returns true if IECore was built with FreeType suppport
-IECORE_EXPORT bool withFreeType();
+IECORE_API bool withFreeType();
 /// Returns true if IECore was built with PNG suppport
-IECORE_EXPORT bool withPNG();
+IECORE_API bool withPNG();
 /// Returns true if IECore was built with Deep EXR support
-IECORE_EXPORT bool withDeepEXR();
+IECORE_API bool withDeepEXR();
 
 }
 

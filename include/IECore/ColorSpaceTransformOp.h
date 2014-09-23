@@ -44,7 +44,7 @@
 #include "boost/tuple/tuple_comparison.hpp"
 #include "boost/function.hpp"
 
-#include "IECore/IECoreExport.h"
+#include "IECore/Export.h"
 #include "IECore/TypedPrimitiveOp.h"
 #include "IECore/SimpleTypedParameter.h"
 #include "IECore/VectorTypedParameter.h"
@@ -57,7 +57,7 @@ namespace IECore
 /// for a requested conversion then the shorted one is used. Static and dynamic registration mechanisms are provided to allow the
 /// addition of new transformations.
 /// \ingroup imageProcessingGroup
-class IECORE_EXPORT ColorSpaceTransformOp : public ImagePrimitiveOp
+class IECORE_API ColorSpaceTransformOp : public ImagePrimitiveOp
 {
 	public:
 

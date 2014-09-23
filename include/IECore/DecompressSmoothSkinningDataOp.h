@@ -35,7 +35,7 @@
 #ifndef IECORE_DECOMPRESSSMOOTHSKINNINGDATAOP_H
 #define IECORE_DECOMPRESSSMOOTHSKINNINGDATAOP_H
 
-#include "IECore/IECoreExport.h"
+#include "IECore/Export.h"
 #include "IECore/ModifyOp.h"
 
 namespace IECore
@@ -43,7 +43,7 @@ namespace IECore
 
 /// The DecompressSmoothSkinningDataOp decompresses SmoothSkinningData by adding 0 value weights for all missing influences
 /// \ingroup skinningGroup
-class IECORE_EXPORT DecompressSmoothSkinningDataOp : public ModifyOp
+class IECORE_API DecompressSmoothSkinningDataOp : public ModifyOp
 {
 	public :
 

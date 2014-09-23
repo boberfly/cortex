@@ -35,7 +35,7 @@
 #ifndef IE_CORE_EXRIMAGEWRITER_H
 #define IE_CORE_EXRIMAGEWRITER_H
 
-#include "IECore/IECoreExport.h"
+#include "IECore/Export.h"
 #include "IECore/ImageWriter.h"
 #include "IECore/NumericParameter.h"
 
@@ -54,7 +54,7 @@ namespace IECore
 /// N.B Both Shake and Nuke seem to assume channel names "R", "G", "B", and "A"
 /// - lowercase do not work as expected.
 /// \ingroup ioGroup
-class IECORE_EXPORT EXRImageWriter : public ImageWriter
+class IECORE_API EXRImageWriter : public ImageWriter
 {
 
 	public:

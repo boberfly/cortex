@@ -35,7 +35,7 @@
 #ifndef IECORE_PANALOGTOLINEAROP_H
 #define IECORE_PANALOGTOLINEAROP_H
 
-#include "IECore/IECoreExport.h"
+#include "IECore/Export.h"
 #include "IECore/ChannelOp.h"
 #include "IECore/ColorSpaceTransformOp.h"
 
@@ -44,7 +44,7 @@ namespace IECore
 
 /// Applies Panalog to linear conversion on ImagePrimitive channels.
 /// \ingroup imageProcessingGroup
-class IECORE_EXPORT PanalogToLinearOp : public ChannelOp
+class IECORE_API PanalogToLinearOp : public ChannelOp
 {
 	public:
 

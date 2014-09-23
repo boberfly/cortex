@@ -41,7 +41,7 @@
 #include "boost/format.hpp"
 #include "boost/regex.hpp"
 
-#include "IECore/IECoreExport.h"
+#include "IECore/Export.h"
 #include "IECore/RunTimeTyped.h"
 #include "IECore/FrameList.h"
 
@@ -53,7 +53,7 @@ IE_CORE_FORWARDDECLARE( FileSequence );
 /// The FrameList class defines an abstract base class for classes which are
 /// able to generate a list of frame numbers.
 /// \ingroup fileSequenceGroup
-class IECORE_EXPORT FileSequence : public RunTimeTyped
+class IECORE_API FileSequence : public RunTimeTyped
 {
 	public:
 

@@ -35,7 +35,7 @@
 #ifndef IE_CORE_HDRMERGEOP_H
 #define IE_CORE_HDRMERGEOP_H
 
-#include "IECore/IECoreExport.h"
+#include "IECore/Export.h"
 #include "IECore/Op.h"
 #include "IECore/SimpleTypedParameter.h"
 #include "IECore/NumericParameter.h"
@@ -48,7 +48,7 @@ IE_CORE_FORWARDDECLARE( ObjectParameter )
 /// The HdrMergeOp merges a set of images with different exposures into a single HDR image.
 /// \todo Take in consideration Alpha channel from input images.
 /// \ingroup imageProcessingGroup
-class IECORE_EXPORT HdrMergeOp : public Op
+class IECORE_API HdrMergeOp : public Op
 {
 	public :
 

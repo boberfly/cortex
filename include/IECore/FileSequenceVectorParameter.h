@@ -37,7 +37,7 @@
 
 #include <vector>
 
-#include "IECore/IECoreExport.h"
+#include "IECore/Export.h"
 #include "IECore/FrameList.h"
 #include "IECore/FileSequence.h"
 #include "IECore/PathVectorParameter.h"
@@ -52,7 +52,7 @@ namespace IECore
 /// \todo Have this support the specification of frame ranges as well (in a form like "fileName.#.ext 1-20")
 /// This should be pretty easy to achieve as the FrameList class already defines the serialisation and parsing
 /// for frame ranges.
-class IECORE_EXPORT FileSequenceVectorParameter : public PathVectorParameter
+class IECORE_API FileSequenceVectorParameter : public PathVectorParameter
 {
 	public:
 

@@ -38,7 +38,7 @@
 #ifndef IE_CORE_CLIENTDISPLAYDRIVER
 #define IE_CORE_CLIENTDISPLAYDRIVER
 
-#include "IECore/IECoreExport.h"
+#include "IECore/Export.h"
 #include "IECore/DisplayDriver.h"
 
 namespace IECore
@@ -50,7 +50,7 @@ namespace IECore
 /// It forwards all parameters to the server and also includes one called "clientPID" to help grouping AOVs from the same render.
 /// You must set the parameter 'remoteDisplayType' with a registered display driver to be instantiated in the server side.
 /// \ingroup renderingGroup
-class IECORE_EXPORT ClientDisplayDriver : public DisplayDriver
+class IECORE_API ClientDisplayDriver : public DisplayDriver
 {
 	public:
 

@@ -35,7 +35,7 @@
 #ifndef IE_CORE_PDCPARTICLEREADER_H
 #define IE_CORE_PDCPARTICLEREADER_H
 
-#include "IECore/IECoreExport.h"
+#include "IECore/Export.h"
 #include "IECore/ParticleReader.h"
 #include "IECore/VectorTypedData.h"
 
@@ -47,7 +47,7 @@ namespace IECore
 /// of loaded particles is seeded using the particleId attribute, so
 /// is not only repeatable but also consistent from frame to frame.
 /// \ingroup ioGroup
-class IECORE_EXPORT PDCParticleReader : public ParticleReader
+class IECORE_API PDCParticleReader : public ParticleReader
 {
 
 	public :

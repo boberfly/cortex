@@ -39,7 +39,7 @@
 #ifndef IECORE_BEZIERALGO_H
 #define IECORE_BEZIERALGO_H
 
-#include "IECore/IECoreExport.h"
+#include "IECore/Export.h"
 
 namespace IECore
 {
@@ -48,11 +48,11 @@ namespace IECore
 /// by v0 - v3, progressing from the point at t==0 to the point at t==1. Level of subdivision is controlled by the
 /// tolerance parameter, which defines approximately how far from the true curve a point is allowed to stray.
 template<typename Vec, typename F>
-IECORE_EXPORT void bezierSubdivide( const Vec &v0, const Vec &v1, const Vec &v2, const Vec &v3, typename Vec::BaseType tolerance, F &f );
+IECORE_API void bezierSubdivide( const Vec &v0, const Vec &v1, const Vec &v2, const Vec &v3, typename Vec::BaseType tolerance, F &f );
 
 /// As above but for quadratic curves.
 template<typename Vec, typename F>
-IECORE_EXPORT void bezierSubdivide( const Vec &v0, const Vec &v1, const Vec &v2, typename Vec::BaseType tolerance, F &f );
+IECORE_API void bezierSubdivide( const Vec &v0, const Vec &v1, const Vec &v2, typename Vec::BaseType tolerance, F &f );
 
 } // namespace IECore
 

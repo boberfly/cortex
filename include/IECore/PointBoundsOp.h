@@ -35,7 +35,7 @@
 #ifndef IE_CORE_POINTBOUNDSOP_H
 #define IE_CORE_POINTBOUNDSOP_H
 
-#include "IECore/IECoreExport.h"
+#include "IECore/Export.h"
 #include "IECore/Op.h"
 #include "IECore/NumericParameter.h"
 
@@ -46,7 +46,7 @@ IE_CORE_FORWARDDECLARE( ObjectParameter )
 
 /// The PointBoundsOp calculates a bound box for a set of points.
 /// \ingroup geometryProcessingGroup
-class IECORE_EXPORT PointBoundsOp : public Op
+class IECORE_API PointBoundsOp : public Op
 {
 	public :
 

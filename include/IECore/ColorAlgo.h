@@ -35,28 +35,28 @@
 #ifndef IECORE_COLORALGO_H
 #define IECORE_COLORALGO_H
 
-#include "IECore/IECoreExport.h"
+#include "IECore/Export.h"
 
 namespace IECore
 {
 
 /// Compute the luminance of a color using the given set of weights.
-template<typename T, typename S> IECORE_EXPORT
+template<typename T, typename S> IECORE_API
 typename T::BaseType luminance( const T &color, const S &weights );
 
 /// The weights used by this function are those defined by
 /// ITU-R Recommendation BT.709.
 /// See http://www.faqs.org/faqs/graphics/colorspace-faq/ section C-9
-template<typename T> IECORE_EXPORT
+template<typename T> IECORE_API
 typename T::BaseType luminance( const T &color );
 
-template<typename T> IECORE_EXPORT
+template<typename T> IECORE_API
 T adjustSaturation( const T &color, typename T::BaseType saturation );
 
-template<typename T> IECORE_EXPORT
+template<typename T> IECORE_API
 T linearToSRGB( const T &color );
 
-template<typename T> IECORE_EXPORT
+template<typename T> IECORE_API
 T sRGBToLinear( const T &color );
 
 } // namespace IECore

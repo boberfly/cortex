@@ -38,7 +38,7 @@
 #include <string>
 #include <vector>
 
-#include "IECore/IECoreExport.h"
+#include "IECore/Export.h"
 #include "IECore/RefCounted.h"
 
 namespace IECore
@@ -49,7 +49,7 @@ IE_CORE_FORWARDDECLARE( DeepPixel )
 /// A DeepPixel represents arbitrary channel data stored at varying depths in space.
 /// By convention, depth is measured as distance from the eye plane
 /// \ingroup deepCompositingGroup
-class IECORE_EXPORT DeepPixel : public RefCounted
+class IECORE_API DeepPixel : public RefCounted
 {
 
 	public :

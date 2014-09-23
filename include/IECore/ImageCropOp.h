@@ -35,7 +35,7 @@
 #ifndef IE_CORE_IMAGECROPOP_H
 #define IE_CORE_IMAGECROPOP_H
 
-#include "IECore/IECoreExport.h"
+#include "IECore/Export.h"
 #include "IECore/TypedPrimitiveOp.h"
 #include "IECore/SimpleTypedParameter.h"
 
@@ -46,7 +46,7 @@ namespace IECore
 /// The operation results on an ImagePrimitive with displayWindow equal to the given crop box.
 /// If matchDataWindow if On then the dataWindow will match displayWindow. Otherwise it will be intersected against the given crop box.
 /// \ingroup imageProcessingGroup
-class IECORE_EXPORT ImageCropOp : public ImagePrimitiveOp
+class IECORE_API ImageCropOp : public ImagePrimitiveOp
 {
 	public :
 

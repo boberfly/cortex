@@ -35,10 +35,11 @@
 #ifndef IECORE_TRANSFORMOP_H
 #define IECORE_TRANSFORMOP_H
 
-#include "IECore/IECoreExport.h"
+#include "IECore/Export.h"
 #include "IECore/PrimitiveOp.h"
 #include "IECore/ObjectParameter.h"
 #include "IECore/VectorTypedParameter.h"
+#include "IECore/MatrixMultiplyOp.h"
 
 namespace IECore
 {
@@ -50,7 +51,7 @@ IE_CORE_FORWARDDECLARE( MatrixMultiplyOp )
 /// to determine the approriate transformation method. Only the variables
 /// specified by the PrimVars parameter will be modified.
 /// \ingroup geometryProcessingGroup
-class IECORE_EXPORT TransformOp : public PrimitiveOp
+class IECORE_API TransformOp : public PrimitiveOp
 {
 	public :
 

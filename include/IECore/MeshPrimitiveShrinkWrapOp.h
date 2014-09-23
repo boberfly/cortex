@@ -37,7 +37,7 @@
 
 #include <vector>
 
-#include "IECore/IECoreExport.h"
+#include "IECore/Export.h"
 #include "IECore/TypedPrimitiveOp.h"
 #include "IECore/NumericParameter.h"
 #include "IECore/SimpleTypedParameter.h"
@@ -53,7 +53,7 @@ namespace IECore
 /// both directions ("inside" and "outside") with the closest intersection point being used as
 /// the projected point, or in either one of these directions only.
 /// \ingroup geometryProcessingGroup
-class IECORE_EXPORT MeshPrimitiveShrinkWrapOp : public TypedPrimitiveOp<MeshPrimitive>
+class IECORE_API MeshPrimitiveShrinkWrapOp : public TypedPrimitiveOp<MeshPrimitive>
 {
 	public:
 

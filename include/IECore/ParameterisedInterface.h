@@ -35,7 +35,7 @@
 #ifndef IE_CORE_PARAMETERISEDINTERFACE_H
 #define IE_CORE_PARAMETERISEDINTERFACE_H
 
-#include "IECore/IECoreExport.h"
+#include "IECore/Export.h"
 #include "IECore/RefCounted.h"
 
 namespace IECore
@@ -47,7 +47,7 @@ IE_CORE_FORWARDDECLARE( CompoundParameter );
 /// for any classes which support the idea of parameterisation -
 /// that is the use of Parameter classes to define the input
 /// to some process.
-class IECORE_EXPORT ParameterisedInterface
+class IECORE_API ParameterisedInterface
 {
 
 	public :

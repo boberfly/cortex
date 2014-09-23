@@ -35,7 +35,7 @@
 #ifndef IECORE_LINESEGMENT_H
 #define IECORE_LINESEGMENT_H
 
-#include "IECore/IECoreExport.h"
+#include "IECore/Export.h"
 #include "IECore/VectorTraits.h"
 
 #include "OpenEXR/ImathVec.h"
@@ -49,7 +49,7 @@ namespace IECore
 /// which represents a line with infinite extent.
 /// \ingroup mathGroup
 template<class T>
-class IECORE_EXPORT LineSegment
+class IECORE_API LineSegment
 {
 
 	public :

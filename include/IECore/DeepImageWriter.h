@@ -35,11 +35,12 @@
 #ifndef IECORE_DEEPIMAGEWRITER_H
 #define IECORE_DEEPIMAGEWRITER_H
 
-#include "IECore/IECoreExport.h"
+#include "IECore/Export.h"
 #include "IECore/DeepPixel.h"
 #include "IECore/Parameterised.h"
 #include "IECore/SimpleTypedParameter.h"
 #include "IECore/VectorTypedParameter.h"
+#include "IECore/FileNameParameter.h"
 
 namespace IECore
 {
@@ -54,7 +55,7 @@ IE_CORE_FORWARDDECLARE( FileNameParameter );
 /// not exist, and pixels are instead writen one at a time using writePixel().
 /// \ingroup deepCompositingGroup
 /// \ingroup ioGroup
-class IECORE_EXPORT DeepImageWriter : public Parameterised
+class IECORE_API DeepImageWriter : public Parameterised
 {
 
 	public :

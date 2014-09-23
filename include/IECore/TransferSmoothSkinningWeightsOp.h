@@ -35,14 +35,14 @@
 #ifndef IECORE_TRANSFERSMOOTHSKINNINGWEIGHTSOP_H
 #define IECORE_TRANSFERSMOOTHSKINNINGWEIGHTSOP_H
 
-#include "IECore/IECoreExport.h"
+#include "IECore/Export.h"
 #include "IECore/ModifyOp.h"
 #include "IECore/VectorTypedParameter.h"
 
 namespace IECore
 {
 
-class IECORE_EXPORT TransferSmoothSkinningWeightsOp : public ModifyOp
+class IECORE_API TransferSmoothSkinningWeightsOp : public ModifyOp
 {
 	public :
 

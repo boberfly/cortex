@@ -36,13 +36,13 @@
 #ifndef IECORE_MPLAYDISPLAYDRIVER_H
 #define IECORE_MPLAYDISPLAYDRIVER_H
 
-#include "IECore/IECoreExport.h"
+#include "IECore/Export.h"
 #include "IECore/DisplayDriver.h"
 
 namespace IECore
 {
 
-class IECORE_EXPORT MPlayDisplayDriver : public DisplayDriver
+class IECORE_API MPlayDisplayDriver : public DisplayDriver
 {
 	public :
 

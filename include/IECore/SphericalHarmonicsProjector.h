@@ -40,7 +40,7 @@
 
 #include <vector>
 #include "OpenEXR/ImathVec.h"
-#include "IECore/IECoreExport.h"
+#include "IECore/Export.h"
 #include "IECore/SphericalHarmonics.h"
 
 namespace IECore
@@ -52,7 +52,7 @@ namespace IECore
 /// Based mainly on "Spherical Harmonic Lighting: The Gritty Details" by Robin Green.
 /// \ingroup shGroup
 template < typename V >
-class IECORE_EXPORT SphericalHarmonicsProjector
+class IECORE_API SphericalHarmonicsProjector
 {
 	public:
 		BOOST_STATIC_ASSERT( boost::is_floating_point<V>::value );

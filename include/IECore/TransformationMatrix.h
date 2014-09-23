@@ -40,7 +40,7 @@
 #include "OpenEXR/ImathMatrix.h"
 #include "OpenEXR/ImathEuler.h"
 
-#include "IECore/IECoreExport.h"
+#include "IECore/Export.h"
 
 namespace IECore
 {
@@ -52,7 +52,7 @@ namespace IECore
 /// \todo add more utility methods.
 /// \ingroup mathGroup
 template< class T >
-class IECORE_EXPORT TransformationMatrix
+class IECORE_API TransformationMatrix
 {
 	public:
 
@@ -82,7 +82,7 @@ class IECORE_EXPORT TransformationMatrix
 
 };
 
-template<class T> IECORE_EXPORT
+template<class T> IECORE_API
 std::ostream &operator << ( std::ostream &os, const TransformationMatrix<T> &x );
 
 typedef TransformationMatrix<double> TransformationMatrixd;

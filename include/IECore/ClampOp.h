@@ -35,7 +35,7 @@
 #ifndef IECORE_CLAMPOP_H
 #define IECORE_CLAMPOP_H
 
-#include "IECore/IECoreExport.h"
+#include "IECore/Export.h"
 #include "IECore/ChannelOp.h"
 #include "IECore/NumericParameter.h"
 #include "IECore/TypedParameter.h"
@@ -43,7 +43,7 @@
 namespace IECore
 {
 
-class IECORE_EXPORT ClampOp : public ChannelOp
+class IECORE_API ClampOp : public ChannelOp
 {
 
 	public:

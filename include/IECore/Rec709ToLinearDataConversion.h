@@ -38,7 +38,7 @@
 #include "boost/static_assert.hpp"
 #include "boost/type_traits/is_floating_point.hpp"
 
-#include "IECore/IECoreExport.h"
+#include "IECore/Export.h"
 #include "IECore/HalfTypeTraits.h"
 #include "IECore/DataConversion.h"
 
@@ -50,7 +50,7 @@ template<typename, typename> class LinearToRec709DataConversion;
 
 /// A class to perform data conversion from Rec709 values to linear
 template<typename F, typename T>
-struct IECORE_EXPORT Rec709ToLinearDataConversion : public DataConversion< F, T >
+struct IECORE_API Rec709ToLinearDataConversion : public DataConversion< F, T >
 {
 	BOOST_STATIC_ASSERT( boost::is_floating_point< F >::value );
 	BOOST_STATIC_ASSERT( boost::is_floating_point< T >::value );

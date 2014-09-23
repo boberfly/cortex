@@ -35,7 +35,7 @@
 #ifndef IECORE_CURVETANGENTSOP_H
 #define IECORE_CURVETANGENTSOP_H
 
-#include "IECore/IECoreExport.h"
+#include "IECore/Export.h"
 #include "IECore/TypedPrimitiveOp.h"
 #include "IECore/SimpleTypedParameter.h"
 #include "IECore/CurvesPrimitive.h"
@@ -46,7 +46,7 @@ namespace IECore
 /// This CurvesPrimitiveOp calculates the vTangents at each vertex of the
 /// supplied CurvesPrimtive and stores them in the named primvar.
 /// \ingroup geometryProcessingGroup
-class IECORE_EXPORT CurveTangentsOp : public CurvesPrimitiveOp
+class IECORE_API CurveTangentsOp : public CurvesPrimitiveOp
 {
 	public:
 

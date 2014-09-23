@@ -35,7 +35,7 @@
 #ifndef IE_CORE_VECTORDATAFILTEROP_H
 #define IE_CORE_VECTORDATAFILTEROP_H
 
-#include "IECore/IECoreExport.h"
+#include "IECore/Export.h"
 #include "IECore/ModifyOp.h"
 #include "IECore/SimpleTypedParameter.h"
 
@@ -46,7 +46,7 @@ IE_CORE_FORWARDDECLARE( ObjectParameter )
 
 /// The VectorDataFilterOp removes elements from VectorTypedData
 /// classes based on the contents of a BoolVectorData object.
-class IECORE_EXPORT VectorDataFilterOp : public ModifyOp
+class IECORE_API VectorDataFilterOp : public ModifyOp
 {
 	public :
 

@@ -39,7 +39,7 @@
 
 #include "boost/static_assert.hpp"
 
-#include "IECore/IECoreExport.h"
+#include "IECore/Export.h"
 #include "IECore/RadixSort.h"
 
 namespace IECore
@@ -47,7 +47,7 @@ namespace IECore
 
 /// \ingroup mathGroup
 template<typename BoundIterator, template<typename> class CB>
-class IECORE_EXPORT SweepAndPrune
+class IECORE_API SweepAndPrune
 {
 	public:
 		typedef BoundIterator Iterator;

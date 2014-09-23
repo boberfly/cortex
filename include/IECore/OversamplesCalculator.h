@@ -35,7 +35,7 @@
 #ifndef IE_CORE_OVERSAMPLESCALCULATOR_H
 #define IE_CORE_OVERSAMPLESCALCULATOR_H
 
-#include "IECore/IECoreExport.h"
+#include "IECore/Export.h"
 
 namespace IECore
 {
@@ -44,7 +44,7 @@ namespace IECore
 /// the one Maya uses (there are 6000 Maya ticks per second). Also provides a utility for computing the
 /// interpolation factor between two successive ticks for a given frame under different oversampling conditions.
 /// \todo Rename to something more descriptive of its function
-class IECORE_EXPORT OversamplesCalculator
+class IECORE_API OversamplesCalculator
 {
 	public:
 		OversamplesCalculator(
