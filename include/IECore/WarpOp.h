@@ -35,7 +35,7 @@
 #ifndef IECORE_WARPOP_H
 #define IECORE_WARPOP_H
 
-#include "IECore/IECoreExport.h"
+#include "IECore/Export.h"
 #include "IECore/TypedPrimitiveOp.h"
 #include "IECore/NumericParameter.h"
 
@@ -48,7 +48,7 @@ namespace IECore
 /// The mapping is determined by the derived classes. The base class is responsible for resizing the
 /// data window and applying filter on the colors based on the floating point positions returned by warp method.
 /// \ingroup imageProcessingGroup
-class IECORE_EXPORT WarpOp : public ImagePrimitiveOp
+class IECORE_API WarpOp : public ImagePrimitiveOp
 {
 	public:
 

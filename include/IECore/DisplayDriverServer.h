@@ -40,7 +40,7 @@
 
 #include "boost/system/error_code.hpp"
 
-#include "IECore/IECoreExport.h"
+#include "IECore/Export.h"
 #include "IECore/RunTimeTyped.h"
 #include "IECore/VectorTypedData.h"
 #include "IECore/DisplayDriver.h"
@@ -54,7 +54,7 @@ namespace IECore
 /// 
 /// The server object creates a thread to control the socket connection. The thread dies when the object is destroyed.
 /// \ingroup renderingGroup
-class IECORE_EXPORT DisplayDriverServer : public RunTimeTyped
+class IECORE_API DisplayDriverServer : public RunTimeTyped
 {
 	public:
 

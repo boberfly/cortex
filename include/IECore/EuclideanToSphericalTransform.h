@@ -37,7 +37,7 @@
 
 #include "boost/static_assert.hpp"
 
-#include "IECore/IECoreExport.h"
+#include "IECore/Export.h"
 #include "IECore/SpaceTransform.h"
 #include "IECore/TypeTraits.h"
 
@@ -52,7 +52,7 @@ template< typename, typename > class SphericalToEuclideanTransform;
 /// Check documentation about SphericalToEuclideanTransform for more details on spherical coordinates.
 /// \ingroup mathGroup
 template<typename F, typename T>
-class IECORE_EXPORT EuclideanToSphericalTransform : public SpaceTransform< F, T >
+class IECORE_API EuclideanToSphericalTransform : public SpaceTransform< F, T >
 {
 	public:
 		BOOST_STATIC_ASSERT( ( TypeTraits::IsVec3<F>::value ) );

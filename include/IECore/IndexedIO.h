@@ -42,7 +42,7 @@
 
 #include "OpenEXR/half.h"
 
-#include "IECore/IECoreExport.h"
+#include "IECore/Export.h"
 #include "IECore/RunTimeTyped.h"
 #include "IECore/InternedString.h"
 
@@ -54,7 +54,7 @@ IE_CORE_FORWARDDECLARE( IndexedIO );
 /// Abstract interface to define operations on a random-access indexed input/output device. All methods throw an instance of IOException,
 /// or one of its subclasses, if an error is encountered.
 /// \ingroup ioGroup
-class IECORE_EXPORT IndexedIO : public RunTimeTyped
+class IECORE_API IndexedIO : public RunTimeTyped
 {
 	public:
 		

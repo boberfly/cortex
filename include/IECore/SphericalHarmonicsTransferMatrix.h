@@ -35,7 +35,7 @@
 #ifndef SPHERICALHARMONICSTRANSFERMATRIX_H
 #define SPHERICALHARMONICSTRANSFERMATRIX_H
 
-#include "IECore/IECoreExport.h"
+#include "IECore/Export.h"
 #include "IECore/SphericalHarmonics.h"
 #include "IECore/SphericalHarmonicsTensor.h"
 
@@ -47,7 +47,7 @@ namespace IECore
 /// \todo: should consider matrix sparsity.
 /// \ingroup shGroup
 template< class S >
-class IECORE_EXPORT SphericalHarmonicsTransferMatrix
+class IECORE_API SphericalHarmonicsTransferMatrix
 {
 	public:
 

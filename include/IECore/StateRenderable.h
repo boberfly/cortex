@@ -35,7 +35,7 @@
 #ifndef IE_CORE_STATERENDERABLE_H
 #define IE_CORE_STATERENDERABLE_H
 
-#include "IECore/IECoreExport.h"
+#include "IECore/Export.h"
 #include "IECore/Renderable.h"
 
 namespace IECore
@@ -45,7 +45,7 @@ namespace IECore
 /// which modify RendererState (current attributes, shaders, transforms etc)
 /// but do not cause any objects to be rendered.
 /// \ingroup renderingGroup
-class IECORE_EXPORT StateRenderable : public Renderable
+class IECORE_API StateRenderable : public Renderable
 {
 	public:
 

@@ -38,7 +38,7 @@
 
 #include "boost/static_assert.hpp"
 
-#include "IECore/IECoreExport.h"
+#include "IECore/Export.h"
 #include "IECore/TypeTraits.h"
 #include "IECore/VectorTypedData.h"
 
@@ -86,7 +86,7 @@ struct DefaultLevenbergMarquardtTraits;
 ///       outputs when just one parameter changes. Some space for considerable optimization there.
 /// \ingroup mathGroup
 template<typename T, typename ErrorFn, template<typename> class Traits = DefaultLevenbergMarquardtTraits >
-class IECORE_EXPORT LevenbergMarquardt : public boost::noncopyable
+class IECORE_API LevenbergMarquardt : public boost::noncopyable
 {
 		BOOST_STATIC_ASSERT( boost::is_floating_point<T>::value );
 

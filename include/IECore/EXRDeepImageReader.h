@@ -36,7 +36,7 @@
 
 #include "OpenEXR/ImfDeepScanLineInputFile.h"
 
-#include "IECore/IECoreExport.h"
+#include "IECore/Export.h"
 #include "IECore/DeepImageReader.h"
 #include "IECore/LRUCache.h"
 #include "IECore/TypeIds.h"
@@ -47,7 +47,7 @@ namespace IECore
 /// The EXRDeepImageReader class reads EXR 2.0 deep image files.
 /// \ingroup deepCompositingGroup
 /// \ingroup ioGroup
-class IECORE_EXPORT EXRDeepImageReader : public DeepImageReader
+class IECORE_API EXRDeepImageReader : public DeepImageReader
 {
 	public :
 

@@ -35,7 +35,7 @@
 #ifndef IECORE_FACEVARYINGPROMOTIONOP_H
 #define IECORE_FACEVARYINGPROMOTIONOP_H
 
-#include "IECore/IECoreExport.h"
+#include "IECore/Export.h"
 #include "IECore/TypedPrimitiveOp.h"
 #include "IECore/SimpleTypedParameter.h"
 #include "IECore/VectorTypedParameter.h"
@@ -45,7 +45,7 @@ namespace IECore
 
 /// A MeshPrimitiveOp to promote PrimitiveVariables to FaceVarying interpolation.
 /// \ingroup geometryProcessingGroup
-class IECORE_EXPORT FaceVaryingPromotionOp : public MeshPrimitiveOp
+class IECORE_API FaceVaryingPromotionOp : public MeshPrimitiveOp
 {
 	public :
 

@@ -35,7 +35,7 @@
 #ifndef IE_CORE_BLINDDATAHOLDER_H
 #define IE_CORE_BLINDDATAHOLDER_H
 
-#include "IECore/IECoreExport.h"
+#include "IECore/Export.h"
 #include "IECore/Object.h"
 #include "IECore/CompoundData.h"
 
@@ -43,7 +43,7 @@ namespace IECore
 {
 
 /// A class which represents an object with some blind data attached.
-class IECORE_EXPORT BlindDataHolder : public Object
+class IECORE_API BlindDataHolder : public Object
 {
 	public:
 

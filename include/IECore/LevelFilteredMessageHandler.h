@@ -35,7 +35,7 @@
 #ifndef IE_CORE_LEVELFILTEREDMESSAGEHANDLER_H
 #define IE_CORE_LEVELFILTEREDMESSAGEHANDLER_H
 
-#include "IECore/IECoreExport.h"
+#include "IECore/Export.h"
 #include "IECore/FilteredMessageHandler.h"
 
 namespace IECore
@@ -57,7 +57,7 @@ IE_CORE_DECLAREPTR( LevelFilteredMessageHandler );
 /// This class implements a FilteredMessageHandler that only passes
 /// messages which have a Level below a certain threshold.
 /// \ingroup utilityGroup
-class IECORE_EXPORT LevelFilteredMessageHandler : public FilteredMessageHandler
+class IECORE_API LevelFilteredMessageHandler : public FilteredMessageHandler
 {
 	public :
 

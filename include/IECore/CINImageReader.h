@@ -35,7 +35,7 @@
 #ifndef IE_CORE_CINIMAGEREADER_H
 #define IE_CORE_CINIMAGEREADER_H
 
-#include "IECore/IECoreExport.h"
+#include "IECore/Export.h"
 #include "IECore/ImageReader.h"
 #include "IECore/VectorTypedData.h"
 
@@ -46,7 +46,7 @@ namespace IECore
 /// Currently, only the overwhelmingly popular 10-bit log-encoded pixel-interlaced
 /// 32-bit word boundary format is loaded.
 /// \ingroup ioGroup
-class IECORE_EXPORT CINImageReader : public ImageReader
+class IECORE_API CINImageReader : public ImageReader
 {
 
 	public:

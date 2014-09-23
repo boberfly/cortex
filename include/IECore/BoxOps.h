@@ -44,7 +44,7 @@
 #ifndef IE_CORE_BOXOPS_H
 #define IE_CORE_BOXOPS_H
 
-#include "IECore/IECoreExport.h"
+#include "IECore/Export.h"
 #include "IECore/BoxTraits.h"
 #include "IECore/VectorTraits.h"
 
@@ -52,40 +52,40 @@ namespace IECore
 {
 
 /// Returns a vector representing the length of each side of the box
-template<typename T> IECORE_EXPORT
+template<typename T> IECORE_API
 inline typename BoxTraits<T>::BaseType boxSize( const T &box );
 
 /// Returns the center point of the box
-template<typename T> IECORE_EXPORT
+template<typename T> IECORE_API
 inline typename BoxTraits<T>::BaseType boxCenter( const T &box );
 
 /// Extends the box by the given point
-template<typename T> IECORE_EXPORT
+template<typename T> IECORE_API
 inline void boxExtend( T &box, const typename BoxTraits<T>::BaseType &p );
 
 /// Extends the box by the given box
-template<typename T> IECORE_EXPORT
+template<typename T> IECORE_API
 inline void boxExtend( T &box, const T &box2 );
 
 /// Returns the intersection between two boxes, or the empty box if there is no intersection.
-template <typename T> IECORE_EXPORT
+template <typename T> IECORE_API
 T boxIntersection( const T &box, const T &box2 );
 
 /// Returns true if the box intersects (contains) the given point
-template <typename T> IECORE_EXPORT
+template <typename T> IECORE_API
 bool boxIntersects( const T &box, const typename BoxTraits<T>::BaseType &p );
 
 /// Returns true if the box intersects the given box
-template <typename T> IECORE_EXPORT
+template <typename T> IECORE_API
 bool boxIntersects( const T &box, const T &box2 );
 
 /// Returns true if box contains containee.
-template <typename T> IECORE_EXPORT
+template <typename T> IECORE_API
 bool boxContains( const T &box, const T &containee );
 
 /// Intersects the box with the given ray. The direction vector must be normalissed. Returns true if there was an intersection, setting
 /// the "result" argument with the point of intersection accordingly.
-template<typename T> IECORE_EXPORT
+template<typename T> IECORE_API
 bool boxIntersects(
         const T &box,
         const typename BoxTraits<T>::BaseType &origin,
@@ -94,15 +94,15 @@ bool boxIntersects(
 );
 
 /// Splits the box into two across the specified axis.
-template<typename T> IECORE_EXPORT
+template<typename T> IECORE_API
 void boxSplit( const T &box, T &low, T &high, int axis );
 
 /// Splits the box into two across the major axis.
-template<typename T> IECORE_EXPORT
+template<typename T> IECORE_API
 void boxSplit( const T &box, T &low, T &high );
 
 /// Returns the longest axis of the box.
-template<typename T> IECORE_EXPORT
+template<typename T> IECORE_API
 int boxMajorAxis( const T &box );
 
 } // namespace IECore

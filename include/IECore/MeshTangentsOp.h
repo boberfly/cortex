@@ -35,7 +35,7 @@
 #ifndef IECORE_MESHTANGENTSOP_H
 #define IECORE_MESHTANGENTSOP_H
 
-#include "IECore/IECoreExport.h"
+#include "IECore/Export.h"
 #include "IECore/SimpleTypedParameter.h"
 #include "IECore/TypedPrimitiveOp.h"
 
@@ -44,7 +44,7 @@ namespace IECore
 
 /// A MeshPrimitiveOp to calculate vertex tangents.
 /// \ingroup geometryProcessingGroup
-class IECORE_EXPORT MeshTangentsOp : public MeshPrimitiveOp
+class IECORE_API MeshTangentsOp : public MeshPrimitiveOp
 {
 	public:
 

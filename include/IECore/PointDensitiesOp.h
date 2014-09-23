@@ -35,7 +35,7 @@
 #ifndef IE_CORE_POINTDENSITIESOP_H
 #define IE_CORE_POINTDENSITIESOP_H
 
-#include "IECore/IECoreExport.h"
+#include "IECore/Export.h"
 #include "IECore/Op.h"
 #include "IECore/NumericParameter.h"
 
@@ -46,7 +46,7 @@ IE_CORE_FORWARDDECLARE( ObjectParameter )
 
 /// The PointDensitiesOp calculates densities from a cloud of points.
 /// \ingroup geometryProcessingGroup
-class IECORE_EXPORT PointDensitiesOp : public Op
+class IECORE_API PointDensitiesOp : public Op
 {
 	public :
 

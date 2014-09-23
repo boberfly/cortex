@@ -39,7 +39,7 @@
 #include <vector>
 #include <string>
 
-#include "IECore/IECoreExport.h"
+#include "IECore/Export.h"
 #include "IECore/Object.h"
 
 namespace IECore
@@ -50,7 +50,7 @@ IE_CORE_FORWARDDECLARE( CompoundObject );
 /// The Parameter base class represents a means of describing data to be passed
 /// to some process.
 /// \ingroup coreGroup
-class IECORE_EXPORT Parameter : public RunTimeTyped
+class IECORE_API Parameter : public RunTimeTyped
 {
 	public :
 

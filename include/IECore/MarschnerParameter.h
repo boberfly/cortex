@@ -35,7 +35,7 @@
 #ifndef IECORE_MARSCHNERPARAMETER_H
 #define IECORE_MARSCHNERPARAMETER_H
 
-#include "IECore/IECoreExport.h"
+#include "IECore/Export.h"
 #include "IECore/CompoundParameter.h"
 #include "IECore/NumericParameter.h"
 #include "IECore/SimpleTypedParameter.h"
@@ -50,7 +50,7 @@ namespace IECore
 /// in the Marschner.h. This parameter is specialised to T = Color3f. It provides
 /// the option to present the Absorption parameter of the model as a color.
 /// Defaults are derived from the relevant papers.
-class IECORE_EXPORT MarschnerParameter : public CompoundParameter
+class IECORE_API MarschnerParameter : public CompoundParameter
 {
 
 	public :

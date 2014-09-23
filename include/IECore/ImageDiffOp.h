@@ -35,7 +35,7 @@
 #ifndef IE_CORE_IMAGEDIFFOP_H
 #define IE_CORE_IMAGEDIFFOP_H
 
-#include "IECore/IECoreExport.h"
+#include "IECore/Export.h"
 #include "IECore/Op.h"
 #include "IECore/FileNameParameter.h"
 #include "IECore/NumericParameter.h"
@@ -52,7 +52,7 @@ IE_CORE_FORWARDDECLARE( ObjectParameter )
 /// enabled, it will also return true if either image contains a channel which
 /// the other doesn't.
 /// \ingroup imageProcessingGroup
-class IECORE_EXPORT ImageDiffOp : public Op
+class IECORE_API ImageDiffOp : public Op
 {
 	public :
 

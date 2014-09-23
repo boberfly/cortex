@@ -38,7 +38,7 @@
 #include <vector>
 #include <string>
 
-#include "IECore/IECoreExport.h"
+#include "IECore/Export.h"
 #include "IECore/RunTimeTyped.h"
 
 namespace IECore
@@ -49,7 +49,7 @@ IE_CORE_FORWARDDECLARE( FrameList );
 /// The FrameList class defines an abstract base class for classes which are
 /// able to generate a list of frame numbers.
 /// \ingroup fileSequenceGroup
-class IECORE_EXPORT FrameList : public RunTimeTyped
+class IECORE_API FrameList : public RunTimeTyped
 {
 	public:
 

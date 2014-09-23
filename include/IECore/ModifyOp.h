@@ -35,7 +35,7 @@
 #ifndef IE_CORE_MODIFYOP_H
 #define IE_CORE_MODIFYOP_H
 
-#include "IECore/IECoreExport.h"
+#include "IECore/Export.h"
 #include "IECore/Op.h"
 #include "IECore/SimpleTypedParameter.h"
 
@@ -49,7 +49,7 @@ namespace IECore
 /// and a parameter to disable the operation completely. It's a little
 /// bit naughty to modify it in place but it'll probably be quite handy
 /// at times.
-class IECORE_EXPORT ModifyOp : public Op
+class IECORE_API ModifyOp : public Op
 {
 	public :
 

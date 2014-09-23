@@ -35,7 +35,7 @@
 #ifndef IE_CORE_MATRIXMULTIPLYOP_H
 #define IE_CORE_MATRIXMULTIPLYOP_H
 
-#include "IECore/IECoreExport.h"
+#include "IECore/Export.h"
 #include "IECore/ModifyOp.h"
 #include "IECore/ObjectParameter.h"
 #include "IECore/NumericParameter.h"
@@ -45,7 +45,7 @@ namespace IECore
 
 /// The MatrixMultiplyOp applies a matrix transformation to an array of vectors.
 /// It will transform the vectors according to their GeometricData::Interpretation.
-class IECORE_EXPORT MatrixMultiplyOp : public ModifyOp
+class IECORE_API MatrixMultiplyOp : public ModifyOp
 {
 	public :
 

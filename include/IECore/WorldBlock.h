@@ -37,7 +37,7 @@
 
 #include "boost/noncopyable.hpp"
 
-#include "IECore/IECoreExport.h"
+#include "IECore/Export.h"
 #include "IECore/Renderer.h"
 
 namespace IECore
@@ -47,7 +47,7 @@ namespace IECore
 /// calls are matched by renderer->worldEnd() calls, even in the face of exceptions and
 /// multiple return statements from a function.
 /// \ingroup renderingGroup
-class IECORE_EXPORT WorldBlock : public boost::noncopyable
+class IECORE_API WorldBlock : public boost::noncopyable
 {
 	public :
 

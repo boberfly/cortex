@@ -1,5 +1,5 @@
-#ifndef IECOREEXPORT_H
-#define IECOREEXPORT_H
+#ifndef IE_CORE_EXPORT_H
+#define IE_CORE_EXPORT_H
 
 //////////////////////////////////////////////////////////////////////////
 //
@@ -36,17 +36,22 @@
 //
 //////////////////////////////////////////////////////////////////////////
 
-#if defined(IECORE_DLL)
-    #if defined(IECORE_EXPORTS)
-    #define IECORE_EXPORT __declspec(dllexport)
-    #else
-    #define IECORE_EXPORT __declspec(dllimport)
-    #endif
-    #define IECORE_EXPORT_CONST
+// define platform-specific macros for importing/exporting symbols
+#ifdef _MSC_VER
+  #define IECORE_IMPORT __declspec(dllimport)
+  #define IECORE_EXPORT __declspec(dllexport)
 #else
-    #define IECORE_EXPORT
-    #define IECORE_EXPORT_CONST const
+  #define IECORE_IMPORT
+  #define IECORE_API
 #endif
 
-#endif // #ifndef IECOREEXPORT_H
+// define IECORE_API macro based on whether or not we are compiling IECore,
+// or including headers for linking to it. the IECORE_API macro is the one that is
+// used in the class definitions.
+#ifdef IECORE_EXPORTS
+  #define IECORE_API IECORE_EXPORT
+#else
+  #define IECORE_API IECORE_IMPORT
+#endif
 
+#endif // #ifndef IE_CORE_EXPORT_H

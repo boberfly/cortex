@@ -40,7 +40,7 @@
 #include <string>
 
 #include "boost/shared_ptr.hpp"
-#include "IECore/IECoreExport.h"
+#include "IECore/Export.h"
 #include "IECore/RunTimeTyped.h"
 #include "IECore/IndexedIO.h"
 
@@ -101,7 +101,7 @@ class MurmurHash;
 /// A base class defining copying and streaming.
 /// \ingroup coreGroup
 /// \todo rename virtual functions that match non-virtual functions so that pointers to derived classes still provide access the non-virtual ones: example hash(), memoryUsage(), save().
-class IECORE_EXPORT Object : public RunTimeTyped
+class IECORE_API Object : public RunTimeTyped
 {
 	public:
 

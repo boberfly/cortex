@@ -35,7 +35,7 @@
 #ifndef IECORE_NORMALIZESMOOTHSKINNINGWEIGHTSOP_H
 #define IECORE_NORMALIZESMOOTHSKINNINGWEIGHTSOP_H
 
-#include "IECore/IECoreExport.h"
+#include "IECore/Export.h"
 #include "IECore/ModifyOp.h"
 #include "IECore/NumericParameter.h"
 #include "IECore/VectorTypedParameter.h"
@@ -46,7 +46,7 @@ namespace IECore
 /// The NormalizeSmoothSkinningWeightsOp normalizes SmoothSkinningData weights between the existing influences for each point
 /// Locks can be applied to the influences and the unlocked weights will be normalized accordingly.
 /// \ingroup skinningGroup
-class IECORE_EXPORT NormalizeSmoothSkinningWeightsOp : public ModifyOp
+class IECORE_API NormalizeSmoothSkinningWeightsOp : public ModifyOp
 {
 	public :
 

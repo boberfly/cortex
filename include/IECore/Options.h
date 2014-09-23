@@ -35,7 +35,7 @@
 #ifndef IECORE_OPTIONS_H
 #define IECORE_OPTIONS_H
 
-#include "IECore/IECoreExport.h"
+#include "IECore/Export.h"
 #include "IECore/PreWorldRenderable.h"
 
 namespace IECore
@@ -43,7 +43,7 @@ namespace IECore
 
 /// A class to manipulate the options of a Renderer.
 /// \ingroup renderingGroup
-class IECORE_EXPORT Options : public PreWorldRenderable
+class IECORE_API Options : public PreWorldRenderable
 {
 	public:
 

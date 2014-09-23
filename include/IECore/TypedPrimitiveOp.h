@@ -35,7 +35,7 @@
 #ifndef IE_CORE_TYPEDPRIMITIVEOP_H
 #define IE_CORE_TYPEDPRIMITIVEOP_H
 
-#include "IECore/IECoreExport.h"
+#include "IECore/Export.h"
 #include "IECore/PrimitiveOp.h"
 #include "IECore/MeshPrimitive.h"
 #include "IECore/ImagePrimitive.h"
@@ -46,7 +46,7 @@ namespace IECore
 
 /// The TypedPrimitiveOp template defines a base class for Ops which modify primitives of a specific type.
 template<typename T>
-class IECORE_EXPORT TypedPrimitiveOp : public ModifyOp
+class IECORE_API TypedPrimitiveOp : public ModifyOp
 {
 	public :
 	

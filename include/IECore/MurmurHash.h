@@ -46,7 +46,7 @@
 #include "OpenEXR/ImathColor.h"
 #include "OpenEXR/ImathQuat.h"
 
-#include "IECore/IECoreExport.h"
+#include "IECore/Export.h"
 #include "IECore/InternedString.h"
 
 namespace IECore
@@ -61,7 +61,7 @@ namespace IECore
 /// author disclaims all copyright to their code."
 ///
 /// \todo Deal with endian-ness.
-class IECORE_EXPORT MurmurHash
+class IECORE_API MurmurHash
 {
 
 	public :

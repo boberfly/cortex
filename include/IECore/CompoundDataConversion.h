@@ -38,7 +38,7 @@
 #include "boost/static_assert.hpp"
 #include "boost/type_traits.hpp"
 
-#include "IECore/IECoreExport.h"
+#include "IECore/Export.h"
 #include "IECore/DataConversion.h"
 
 namespace IECore
@@ -47,7 +47,7 @@ namespace IECore
 /// Performs the conversion "to = C2(C1(from))". Note that the functions are applied in the same order as
 /// specified in the template argument list.
 template<typename C1, typename C2>
-class IECORE_EXPORT CompoundDataConversion : public DataConversion< typename C1::FromType, typename C2::ToType >
+class IECORE_API CompoundDataConversion : public DataConversion< typename C1::FromType, typename C2::ToType >
 {
 	public:
 		/// These two types must be the same, so that the function composition works

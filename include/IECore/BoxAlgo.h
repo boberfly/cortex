@@ -43,17 +43,17 @@
 
 #include "OpenEXR/ImathBox.h"
 
-#include "IECore/IECoreExport.h"
+#include "IECore/Export.h"
 
 namespace IECore
 {
 
 /// Streaming for Imath::Box types
-template<class T> IECORE_EXPORT
+template<class T> IECORE_API
 std::ostream &operator <<( std::ostream &os, const Imath::Box<T> &obj );
 
 /// Closest point in box for 2D box types
-template <class T> IECORE_EXPORT
+template <class T> IECORE_API
 Imath::Vec2<T> closestPointInBox(const Imath::Vec2<T>& p, const Imath::Box< Imath::Vec2<T> >& box );
 
 } // namespace IECore

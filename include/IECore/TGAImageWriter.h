@@ -35,7 +35,7 @@
 #ifndef IE_CORE_TGAIMAGEWRITER_H
 #define IE_CORE_TGAIMAGEWRITER_H
 
-#include "IECore/IECoreExport.h"
+#include "IECore/Export.h"
 #include "IECore/ImageWriter.h"
 #include "IECore/VectorTypedData.h"
 
@@ -44,7 +44,7 @@ namespace IECore
 
 /// The TGAImageWriter class serializes images to the Truevision Targa file format
 /// \ingroup ioGroup
-class IECORE_EXPORT TGAImageWriter : public ImageWriter
+class IECORE_API TGAImageWriter : public ImageWriter
 {
 
 	public:

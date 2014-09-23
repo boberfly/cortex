@@ -35,7 +35,7 @@
 #ifndef IE_CORE_COMPOUNDOBJECT_H
 #define IE_CORE_COMPOUNDOBJECT_H
 
-#include "IECore/IECoreExport.h"
+#include "IECore/Export.h"
 #include "IECore/Object.h"
 
 namespace IECore
@@ -43,7 +43,7 @@ namespace IECore
 
 /// A simple class representing compounds of named
 /// child Objects.
-class IECORE_EXPORT CompoundObject : public Object
+class IECORE_API CompoundObject : public Object
 {
 	public:
 
