@@ -59,9 +59,9 @@ template<class T>
 float determinant( const Imath::Matrix44<T> &m );
 
 // provide function for convertion between float to double matrix (not available in OpenEXR)
-template<> Imath::M44d convert(const Imath::M44f &in);
+template<> IECORE_API Imath::M44d convert(const Imath::M44f &in);
 // provide function for convertion between double to float matrix (not available in OpenEXR)
-template<> Imath::M44f convert(const Imath::M44d &in);
+template<> IECORE_API Imath::M44f convert(const Imath::M44d &in);
 
 } // namespace IECore
 
