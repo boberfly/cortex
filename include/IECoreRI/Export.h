@@ -1,6 +1,7 @@
 //////////////////////////////////////////////////////////////////////////
 //
-//  Copyright (c) 2011-2012, Image Engine Design Inc. All rights reserved.
+//  Copyright (c) 2012, John Haddon. All rights reserved.
+//  Copyright (c) 2013, Image Engine Design Inc. All rights reserved.
 //
 //  Redistribution and use in source and binary forms, with or without
 //  modification, are permitted provided that the following conditions are
@@ -32,58 +33,18 @@
 //
 //////////////////////////////////////////////////////////////////////////
 
-#ifndef IECORERI_DTEXDEEPIMAGEWRITER_H
-#define IECORERI_DTEXDEEPIMAGEWRITER_H
+#ifndef IECORERI_EXPORT_H
+#define IECORERI_EXPORT_H
 
-#include "RixDeepTexture.h"
+#include "IECore/Export.h"
 
-#include "IECore/DeepImageWriter.h"
+// define IECORERI_API macro based on whether or not we are compiling 
+// IECoreRI, or including headers for linking to it. the IECORERI_API
+// macro is the one that is used in the class definitions.
+#ifdef IECORERI_EXPORTS
+  #define IECORERI_API IECORE_EXPORT
+#else
+  #define IECORERI_API IECORE_IMPORT
+#endif
 
-#include "IECoreRI/Export.h"
-#include "IECoreRI/TypeIds.h"
-
-namespace IECoreRI
-{
-
-/// The DTEXDeepImageWriter class writes PRMan deep texture files.
-/// \ingroup deepCompositingGroup
-/// \ingroup ioGroup
-class IECORERI_API DTEXDeepImageWriter : public IECore::DeepImageWriter
-{
-	public :
-
-		IE_CORE_DECLARERUNTIMETYPEDEXTENSION( DTEXDeepImageWriter, DTEXDeepImageWriterTypeId, IECore::DeepImageWriter );
-
-		DTEXDeepImageWriter();
-		DTEXDeepImageWriter( const std::string &filename );
-
-		virtual ~DTEXDeepImageWriter();
-
-		static bool canWrite( const std::string &filename );
-
-	private :
-
-		static const DeepImageWriterDescription<DTEXDeepImageWriter> g_writerDescription;
-
-		virtual void doWritePixel( int x, int y, const IECore::DeepPixel *pixel );
-
-		/// Tries to open the file for writing, throwing on failure. On success,
-		/// all of the private members will be valid.
-		void open();
-		void cleanRixInterface();
-		
-		IECore::V2iParameterPtr m_tileSizeParameter;
-		
-		RixDeepTexture::DeepFile *m_outputFile;
-		RixDeepTexture::DeepCache *m_dtexCache;
-		RixDeepTexture::DeepImage *m_dtexImage;
-		RixDeepTexture::DeepPixel *m_dtexPixel;
-		std::string m_outputFileName;
-
-};
-
-IE_CORE_DECLAREPTR( DTEXDeepImageWriter );
-
-} // namespace IECoreRI
-
-#endif // IECORERI_DTEXDEEPIMAGEWRITER_H
+#endif // #ifndef IECORERI_EXPORT_H
