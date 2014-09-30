@@ -1,3 +1,9 @@
+ADD_DEFINITIONS( -DIECOREPYTHON_EXPORTS )
+# SimpleTypedDataBinding.cpp is large!
+IF( MSVC )
+  SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} /bigobj")
+ENDIF()
+
 FILE( GLOB H_FILES RELATIVE ${CMAKE_CURRENT_SOURCE_DIR} "../../include/IECorePython/*.h" "../../include/IECorePython/*.inl" )
 
 FILE( GLOB CXX_FILES RELATIVE ${CMAKE_CURRENT_SOURCE_DIR} "*.cpp" )
@@ -68,4 +74,4 @@ INSTALL( TARGETS IECorePython
          ARCHIVE DESTINATION lib/static )
 
 INSTALL( FILES ${H_FILES}
-         DESTINATION include/IECore )
+         DESTINATION include/IECorePython )
