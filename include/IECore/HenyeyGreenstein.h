@@ -35,20 +35,18 @@
 #ifndef IECORE_HENYEYGREENSTEIN_H
 #define IECORE_HENYEYGREENSTEIN_H
 
-#include "IECore/Export.h"
-
 namespace IECore
 {
 
 /// Vectors must be normalized already.
-template<typename Vec> IECORE_API
+template<typename Vec>
 inline typename Vec::BaseType henyeyGreenstein( typename Vec::BaseType g, const Vec &incident, const Vec &outgoing );
 
 /// Theta in radians.
-template<typename T> IECORE_API
+template<typename T>
 inline T henyeyGreenstein( T g, T theta );
 
-template<typename T> IECORE_API
+template<typename T>
 inline T henyeyGreensteinCT( T g, T cosTheta );
 
 

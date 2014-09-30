@@ -1,6 +1,7 @@
 //////////////////////////////////////////////////////////////////////////
 //
-//  Copyright (c) 2007-2010, Image Engine Design Inc. All rights reserved.
+//  Copyright (c) 2012, John Haddon. All rights reserved.
+//  Copyright (c) 2013, Image Engine Design Inc. All rights reserved.
 //
 //  Redistribution and use in source and binary forms, with or without
 //  modification, are permitted provided that the following conditions are
@@ -32,14 +33,18 @@
 //
 //////////////////////////////////////////////////////////////////////////
 
-#ifndef IECOREPYTHON_OPBINDING_H
-#define IECOREPYTHON_OPBINDING_H
+#ifndef IECOREPYTHON_EXPORT_H
+#define IECOREPYTHON_EXPORT_H
 
-#include "IECorePython/Export.h"
+#include "IECore/Export.h"
 
-namespace IECorePython
-{
-IECOREPYTHON_API void bindOp();
-}
+// define IECOREPYTHON_API macro based on whether or not we are compiling 
+// IECorePython, or including headers for linking to it. the IECOREPYTHON_API
+// macro is the one that is used in the class definitions.
+#ifdef IECOREPYTHON_EXPORTS
+  #define IECOREPYTHON_API IECORE_EXPORT
+#else
+  #define IECOREPYTHON_API IECORE_IMPORT
+#endif
 
-#endif // IECOREPYTHON_OPBINDING_H
+#endif // #ifndef IECOREPYTHON_EXPORT_H

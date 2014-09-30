@@ -54,7 +54,7 @@ class IECORE_API ImagePrimitiveEvaluator : public PrimitiveEvaluator
 
 		IE_CORE_DECLARERUNTIMETYPED( ImagePrimitiveEvaluator, PrimitiveEvaluator );
 
-		class Result : public PrimitiveEvaluator::Result
+		class IECORE_API Result : public PrimitiveEvaluator::Result
 		{
 			friend class ImagePrimitiveEvaluator;
 

@@ -49,9 +49,9 @@ namespace IECore
 /// \ingroup ioGroup
 class IECORE_API EXRDeepImageReader : public DeepImageReader
 {
-	public :
+public:
 
-		IE_CORE_DECLARERUNTIMETYPEDEXTENSION( EXRDeepImageReader, EXRDeepImageReaderTypeId, DeepImageReader );
+		IE_CORE_DECLARERUNTIMETYPED( EXRDeepImageReader, DeepImageReader );
 
 		EXRDeepImageReader();
 		EXRDeepImageReader( const std::string &filename );
@@ -80,7 +80,7 @@ class IECORE_API EXRDeepImageReader : public DeepImageReader
 		/// Exception is thrown rather than false being returned.
 		bool open( bool throwOnFailure = false );
 		
-		class Scanline : public RefCounted
+		class IECORE_API Scanline : public RefCounted
 		{
 			public :
 				

@@ -37,7 +37,6 @@
 
 #include <functional>
 
-#include "IECore/Export.h"
 #include "boost/static_assert.hpp"
 
 namespace IECore
@@ -45,7 +44,7 @@ namespace IECore
 
 /// Base class for data conversions
 template<typename F, typename T>
-struct IECORE_API DataConversion : public std::unary_function<F, T>
+struct DataConversion : public std::unary_function<F, T>
 {
 	typedef F FromType;
 	typedef T ToType;

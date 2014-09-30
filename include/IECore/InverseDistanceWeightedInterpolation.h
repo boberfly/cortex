@@ -37,7 +37,6 @@
 
 #include <map>
 
-#include "IECore/Export.h"
 #include "IECore/KDTree.h"
 
 namespace IECore
@@ -48,7 +47,7 @@ namespace IECore
 /// NB. The Value must be default constructible, and define sensible value=value+value, and value=value*scalar operators
 /// \ingroup mathGroup
 template< typename PointIterator, typename ValueIterator >
-class IECORE_API InverseDistanceWeightedInterpolation
+class InverseDistanceWeightedInterpolation
 {
 	public :
 

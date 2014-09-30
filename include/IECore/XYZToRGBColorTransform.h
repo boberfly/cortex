@@ -35,7 +35,6 @@
 #ifndef IE_CORE_XYZTORGBCOLORTRANSFORM_H
 #define IE_CORE_XYZTORGBCOLORTRANSFORM_H
 
-#include "IECore/Export.h"
 #include "IECore/ColorTransform.h"
 
 namespace IECore
@@ -46,7 +45,7 @@ template< typename, typename > class RGBToXYZColorTransform;
 
 /// A templated ColorTransform class to perform XYZ->RGB color transformations
 template<typename F, typename T>
-class IECORE_API XYZToRGBColorTransform : public ColorTransform< F, T >
+class XYZToRGBColorTransform : public ColorTransform< F, T >
 {
 	public:
 		typedef RGBToXYZColorTransform< T, F > InverseType;

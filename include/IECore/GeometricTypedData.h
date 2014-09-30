@@ -67,7 +67,7 @@ enum Interpretation
 /// or VectorTypedData.h, rather than include this header directly.
 /// \ingroup coreGroup
 template <class T>
-class IECORE_API GeometricTypedData : public TypedData<T>
+class GeometricTypedData : public TypedData<T>
 {
 	public :
 		
