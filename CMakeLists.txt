@@ -222,7 +222,7 @@ ELSE()
   MESSAGE(STATUS "WARNING: boost/math/special_functions/factorials.hpp not found, some functionality will be disabled.")
 ENDIF()
 
-IF( EXISTS "${OPENEXR_INCLUDE_PATH}/OpenEXR/ImfDeepFrameBuffer.h" )
+IF( EXISTS "${OPENEXR_INCLUDE_DIR}/OpenEXR/ImfDeepFrameBuffer.h" )
   ADD_DEFINITIONS( -DIECORE_WITH_DEEPEXR )
 ENDIF()
 
