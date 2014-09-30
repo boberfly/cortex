@@ -41,8 +41,6 @@
 
 #include "OpenEXR/ImathBox.h"
 
-#include "IECore/Export.h"
-
 namespace IECore
 {
 
@@ -51,11 +49,11 @@ namespace IECore
 /// righthanded (counter-clockwise) winding order, meaning that the normal will
 /// face towards an observer who sees the loop from first to last as being
 /// counter-clockwise.
-template<typename Iterator> IECORE_API
+template<typename Iterator>
 typename std::iterator_traits<Iterator>::value_type polygonNormal( Iterator first, Iterator last );
 
 /// As above, but only normalizes the normal if normalised==true.
-template<typename Iterator> IECORE_API
+template<typename Iterator>
 typename std::iterator_traits<Iterator>::value_type polygonNormal( Iterator first, Iterator last, bool normalized );
 
 /// An enum used to specify the winding order of
@@ -68,21 +66,21 @@ enum Winding
 
 /// Returns the winding order for the polygon specified by the 2D vertices in the
 /// given iterator range. Copes correctly with concave polygons.
-template<typename Iterator> IECORE_API
+template<typename Iterator>
 Winding polygonWinding( Iterator first, Iterator last );
 
 /// Returns the winding order for the polygon specified by the 3D vertices in the
 /// given iterator range, when viewed with the specified view vector.
 /// Copes correctly with concave polygons.
-template<typename Iterator> IECORE_API
+template<typename Iterator>
 Winding polygonWinding( Iterator first, Iterator last, const typename std::iterator_traits<Iterator>::value_type &viewVector );
 
 /// Returns the bounding box of the polygon specified by the vertices in the given iterator range.
-template<typename Iterator> IECORE_API
+template<typename Iterator>
 Imath::Box<typename std::iterator_traits<Iterator>::value_type> polygonBound( Iterator first, Iterator last );
 
 /// Returns the area of the polygon specified by the vertices in the given iterator range.
-template<typename Iterator> IECORE_API
+template<typename Iterator>
 typename std::iterator_traits<Iterator>::value_type::BaseType polygonArea( Iterator first, Iterator last );
 
 } // namespace IECore

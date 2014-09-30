@@ -58,7 +58,7 @@ class IECORE_API CurvesPrimitiveEvaluator : public PrimitiveEvaluator
 
 		IE_CORE_DECLARERUNTIMETYPED( CurvesPrimitiveEvaluator, PrimitiveEvaluator );
 
-		class Result : public PrimitiveEvaluator::Result
+		class IECORE_API Result : public PrimitiveEvaluator::Result
 		{
 			public :
 

@@ -36,13 +36,14 @@
 #define IECOREPYTHON_SIMPLETYPEDDATABINDING_H
 
 #include "boost/python.hpp"
+#include "IECorePython/Export.h"
 
 namespace IECorePython
 {
 
 /// An rvalue converter to get TypedData<T> from a python object convertible to T.
 template<typename T>
-struct TypedDataFromType
+struct IECOREPYTHON_API TypedDataFromType
 {
 	/// Constructing a instance of this class will register the converter.
 	TypedDataFromType();
@@ -52,7 +53,7 @@ struct TypedDataFromType
 	
 };
 
-extern void bindAllSimpleTypedData();
+IECOREPYTHON_API extern void bindAllSimpleTypedData();
 
 }
 

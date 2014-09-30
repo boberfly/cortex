@@ -1,6 +1,3 @@
-#ifndef IE_CORE_EXPORT_H
-#define IE_CORE_EXPORT_H
-
 //////////////////////////////////////////////////////////////////////////
 //
 //  Copyright (c) 2012, John Haddon. All rights reserved.
@@ -36,13 +33,16 @@
 //
 //////////////////////////////////////////////////////////////////////////
 
+#ifndef IE_CORE_EXPORT_H
+#define IE_CORE_EXPORT_H
+
 // define platform-specific macros for importing/exporting symbols
 #ifdef _MSC_VER
   #define IECORE_IMPORT __declspec(dllimport)
   #define IECORE_EXPORT __declspec(dllexport)
 #else
   #define IECORE_IMPORT
-  #define IECORE_API
+  #define IECORE_EXPORT
 #endif
 
 // define IECORE_API macro based on whether or not we are compiling IECore,

@@ -35,8 +35,8 @@
 #ifndef IECORE_TYPEDDATA_H
 #define IECORE_TYPEDDATA_H
 
-#include "IECore/Export.h"
 #include "IECore/Data.h"
+#include "IECore/Export.h"
 #include "IECore/TypedDataInternals.h"
 #include <limits>
 
@@ -149,7 +149,7 @@ class IECORE_API TypedData : public Data
 /// for small types.
 #define IECORE_DECLARE_TYPEDDATA( TYPENAME, T, BASETYPE, DATAHOLDER ) \
 	template <> \
-	class TypedDataTraits<T> \
+	class IECORE_API TypedDataTraits<T> \
 	{ \
 		public : \
 			typedef BASETYPE BaseType; \

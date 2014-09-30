@@ -36,7 +36,6 @@
 #ifndef IE_CORE_TESTTYPEDDATA_H
 #define IE_CORE_TESTTYPEDDATA_H
 
-#include "IECore/Export.h"
 #include "IECore/Data.h"
 
 namespace IECore
@@ -46,7 +45,7 @@ namespace IECore
 /// For example testTypedData< TypeTraits::IsVectorTypedData >( new DoubleVectorData() ) would return true,
 /// while testTypedData< TypeTraits::IsSimpleTypedData >( new DoubleVectorData() ) would return false.
 template<template<typename> class Predicate>
-IECORE_API bool testTypedData( const Data *data );
+bool testTypedData( const Data *data );
 
 } // namespace IECore
 

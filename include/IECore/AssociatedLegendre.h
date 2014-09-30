@@ -39,8 +39,6 @@
 #include "boost/type_traits.hpp"
 #include <vector>
 
-#include "IECore/Export.h"
-
 namespace IECore
 {
 
@@ -48,7 +46,7 @@ namespace IECore
 //. Based mainly on "Spherical Harmonic Lighting: The Gritty Details" by Robin Green.
 /// \ingroup mathGroup
 template < typename V >
-class IECORE_API AssociatedLegendre
+class AssociatedLegendre
 {
 	public :
 

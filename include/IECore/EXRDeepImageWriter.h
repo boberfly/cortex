@@ -54,7 +54,7 @@ class IECORE_API EXRDeepImageWriter : public DeepImageWriter
 {
 	public :
 
-		IE_CORE_DECLARERUNTIMETYPEDEXTENSION( EXRDeepImageWriter, EXRDeepImageWriterTypeId, DeepImageWriter );
+		IE_CORE_DECLARERUNTIMETYPED(EXRDeepImageWriter, DeepImageWriter);
 
 		EXRDeepImageWriter();
 		EXRDeepImageWriter( const std::string &filename );

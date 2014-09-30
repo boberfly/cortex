@@ -46,7 +46,7 @@ namespace IECore
 /// A template class for numeric parameters, with value validation
 /// on a min/max range. TypedData<T> is used to store the value.
 template<typename T>
-class IECORE_API NumericParameter : public Parameter
+class NumericParameter : public Parameter
 {
 	public :
 

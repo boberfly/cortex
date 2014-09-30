@@ -35,8 +35,6 @@
 #ifndef IECORE_CIRCULARITERATOR_H
 #define IECORE_CIRCULARITERATOR_H
 
-#include "IECore/Export.h"
-
 namespace IECore
 {
 
@@ -49,7 +47,7 @@ namespace IECore
 /// is of use when items will be removed from the container during iteration.
 /// \ingroup utilityGroup
 template<typename Iterator, typename Container=void>
-class IECORE_API CircularIterator
+class CircularIterator
 {
 
 	public :

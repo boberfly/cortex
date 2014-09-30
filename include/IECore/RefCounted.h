@@ -160,12 +160,12 @@ class IECORE_API RefCounted : private boost::noncopyable
 IE_CORE_DECLAREPTR( RefCounted )
 
 /// Functions required to allow use of RefCounted with boost::intrusive_ptr
-inline void intrusive_ptr_add_ref( const IECore::RefCounted *r )
+IECORE_API inline void intrusive_ptr_add_ref( const IECore::RefCounted *r )
 {
 	r->addRef();
 }
 
-inline void intrusive_ptr_release( const IECore::RefCounted *r )
+IECORE_API inline void intrusive_ptr_release(const IECore::RefCounted *r)
 {
 	r->removeRef();
 }

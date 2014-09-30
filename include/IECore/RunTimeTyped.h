@@ -132,40 +132,40 @@ namespace IECore
 #define IECORE_RUNTIMETYPED_DEFINETEMPLATESPECIALISATION( TYPENAME, TYPEID )		\
 																				\
 																				\
-	template<>																	\
+	template<> IECORE_API																	\
 	IECore::TypeId TYPENAME::typeId() const										\
 	{																			\
 		return IECore::TypeId( TYPEID );										\
 	}																			\
-	template<>																	\
+	template<> IECORE_API																	\
 	IECore::TypeId TYPENAME::staticTypeId()										\
 	{																			\
 		return IECore::TypeId( TYPEID );										\
 	}																			\
-	template<>																	\
+	template<> IECORE_API																	\
 	const char *TYPENAME::typeName() const										\
 	{																			\
 		return #TYPENAME;														\
 	}																			\
-	template<>																	\
+	template<> IECORE_API																	\
 	const char *TYPENAME::staticTypeName()										\
 	{																			\
 		return #TYPENAME;														\
 	}																			\
 																				\
-	template<> 																	\
+	template<> IECORE_API 																	\
 	IECore::TypeId TYPENAME::baseTypeId()										\
 	{																			\
 		return BaseClass::staticTypeId();									\
 	}																			\
 																				\
-	template<> 																	\
+	template<> IECORE_API 																	\
 	const char *TYPENAME::baseTypeName()										\
 	{																			\
 		return BaseClass::staticTypeName();									\
 	}																			\
 																				\
-	template<>																	\
+	template<> IECORE_API																	\
 	bool TYPENAME::isInstanceOf( IECore::TypeId typeId ) const					\
 	{																			\
 		if( typeId==staticTypeId() )											\
@@ -175,7 +175,7 @@ namespace IECore
 		return BaseClass::isInstanceOf( typeId );							\
 	}																			\
 																				\
-	template<>																	\
+	template<> IECORE_API																	\
 	bool TYPENAME::isInstanceOf( const char *typeName ) const					\
 	{																			\
 		if( !strcmp( typeName, staticTypeName() ) )								\
@@ -185,13 +185,13 @@ namespace IECore
 		return BaseClass::isInstanceOf( typeName );							\
 	}																			\
 																				\
-	template<>																	\
+	template<> IECORE_API																	\
 	bool TYPENAME::inheritsFrom( IECore::TypeId typeId )						\
 	{																			\
 		return BaseClass::staticTypeId()==typeId ? true : BaseClass::inheritsFrom( typeId );	\
 	}																			\
 																				\
-	template<>																	\
+	template<> IECORE_API																	\
 	bool TYPENAME::inheritsFrom( const char *typeName )							\
 	{																			\
 		return !strcmp( BaseClass::staticTypeName(), typeName ) ? true : BaseClass::inheritsFrom( typeName );	\
@@ -332,25 +332,25 @@ IE_CORE_DECLAREPTR( RunTimeTyped );
 /// Equivalent to boost::dynamic_pointer_cast but using the type identification
 /// system implemented in RunTimeTyped. This should be used in preference to
 /// boost::dynamic_pointer_cast wherever possible.
-template<typename T, typename S> IECORE_API
+template<typename T, typename S>
 boost::intrusive_ptr<T> runTimeCast( const boost::intrusive_ptr<S> &src );
 /// Equivalent to dynamic_cast but using the type identification system
 /// implemented in RunTimeTyped. This should be used in preference to
 /// dynamic_cast wherever possible.
-template<typename T, typename S> IECORE_API
+template<typename T, typename S>
 T *runTimeCast( S *src );
 
 /// Equivalent to boost::static_pointer_cast, but using the type identification
 /// system implemented in RunTimeTyped to fire an assert if the equivalent runTimeCast
 /// would not succeed. In a non-asserted build this will compile directly down to
 /// a single boost::static_pointer_cast.
-template<typename T, typename S> IECORE_API
+template<typename T, typename S>
 inline boost::intrusive_ptr<T> assertedStaticCast( const boost::intrusive_ptr<T> &src );
 
 /// Equivalent to static_cast, but using the type identifaction system implemented in
 /// RunTimeTyped to fire an assert if the equivalent runTimeCast would not succeed.
 /// In a non-asserted build this will compile directly down to a single static_cast.
-template<typename T, typename S> IECORE_API
+template<typename T, typename S>
 inline T* assertedStaticCast( S* src );
 
 } // namespace IECore

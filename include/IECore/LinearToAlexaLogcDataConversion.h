@@ -38,7 +38,6 @@
 #include "boost/static_assert.hpp"
 #include "boost/type_traits/is_floating_point.hpp"
 
-#include "IECore/Export.h"
 #include "IECore/HalfTypeTraits.h"
 #include "IECore/DataConversion.h"
 
@@ -52,7 +51,7 @@ template<typename, typename> class AlexaLogcToLinearDataConversion;
 /// The current version only implements SUP 3.x for EI 800.
 /// \todo Support SUP 2.x and all exposure indices
 template<typename F, typename T>
-struct IECORE_API LinearToAlexaLogcDataConversion : public DataConversion< F, T >
+struct LinearToAlexaLogcDataConversion : public DataConversion< F, T >
 {
 	BOOST_STATIC_ASSERT( boost::is_floating_point< F >::value );
 	BOOST_STATIC_ASSERT( boost::is_floating_point< T >::value );

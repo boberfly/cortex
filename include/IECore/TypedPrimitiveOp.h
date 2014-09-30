@@ -46,7 +46,7 @@ namespace IECore
 
 /// The TypedPrimitiveOp template defines a base class for Ops which modify primitives of a specific type.
 template<typename T>
-class IECORE_API TypedPrimitiveOp : public ModifyOp
+class TypedPrimitiveOp : public ModifyOp
 {
 	public :
 	

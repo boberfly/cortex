@@ -153,8 +153,8 @@ typedef MessageHandler Msg;
 
 /// Free functions which calls MessageHandler::output() with their arguments. These are provided
 /// for brevity.
-void msg( MessageHandler::Level level, const std::string &context, const std::string &message );
-void msg( MessageHandler::Level level, const std::string &context, const boost::format &message );
+IECORE_API void msg(MessageHandler::Level level, const std::string &context, const std::string &message);
+IECORE_API void msg(MessageHandler::Level level, const std::string &context, const boost::format &message);
 
 }; // namespace IECore
 

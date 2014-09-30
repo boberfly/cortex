@@ -37,8 +37,6 @@
 
 #include "OpenEXR/ImathRandom.h"
 
-#include "IECore/Export.h"
-
 namespace IECore
 {
 
@@ -46,7 +44,7 @@ namespace IECore
 /// into a model of STL RandomNumberGenerator function objects.
 /// \ingroup mathGroup
 template<typename T>
-class IECORE_API ImathRandAdapter
+class ImathRandAdapter
 {
 	T m_rand;
 

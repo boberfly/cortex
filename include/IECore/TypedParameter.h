@@ -35,7 +35,6 @@
 #ifndef IE_CORE_TYPEDPARAMETER_H
 #define IE_CORE_TYPEDPARAMETER_H
 
-#include "IECore/Export.h"
 #include "IECore/Parameter.h"
 #include "IECore/TypedData.h"
 #include "IECore/TypedParameterInternals.h"
@@ -46,7 +45,7 @@ namespace IECore
 /// A template class for simple typed parameters. TypedParameterTraits<T> is used to
 /// determine the appropriate ObjectType which is used to store the value.
 template<typename T>
-class IECORE_API TypedParameter : public Parameter
+class TypedParameter : public Parameter
 {
 	public :
 
