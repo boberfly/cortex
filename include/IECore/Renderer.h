@@ -332,7 +332,7 @@ class IECORE_API Renderer : public RunTimeTyped
 		/// The Procedural class defines an interface via which the Renderer can
 		/// ask for geometry to be generated in a deferred fashion, at a time
 		/// which is convenient to it.
-		class Procedural : public RefCounted
+		class IECORE_API Procedural : public RefCounted
 		{
 			public :
 
@@ -362,7 +362,7 @@ class IECORE_API Renderer : public RunTimeTyped
 
 		/// A placeholder for specifying a procedural which the Renderer
 		/// must load from a file on disk.
-		class ExternalProcedural : public Procedural
+		class IECORE_API ExternalProcedural : public Procedural
 		{
 			public :
 

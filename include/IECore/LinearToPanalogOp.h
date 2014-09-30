@@ -43,7 +43,7 @@ namespace IECore
 
 /// Applies linear to Panalog conversion on ImagePrimitive channels.
 /// \ingroup imageProcessingGroup
-class LinearToPanalogOp : public ChannelOp
+class IECORE_API LinearToPanalogOp : public ChannelOp
 {
 	public:
 
