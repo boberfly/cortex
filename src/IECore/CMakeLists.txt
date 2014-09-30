@@ -27,7 +27,7 @@ IF( NOT EXISTS "${Boost_INCLUDE_DIRS}/boost/math/special_functions/factorials.hp
         src/IECore/ImageConvolveOp.cpp )
 ENDIF()
 
-IF( NOT EXISTS "${CORTEX_OPENEXR_INCLUDE_PATH}/OpenEXR/ImfDeepFrameBuffer.h" )
+IF( NOT EXISTS "${OPENEXR_INCLUDE_DIR}/OpenEXR/ImfDeepFrameBuffer.h" )
   LIST( REMOVE_ITEM CXX_FILES
         EXRDeepImageReader.cpp
         EXRDeepImageWriter.cpp )
