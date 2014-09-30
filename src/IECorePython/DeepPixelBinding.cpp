@@ -40,6 +40,8 @@
 #include "IECore/DeepPixel.h"
 #include "IECorePython/RefCountedBinding.h"
 
+#include "IECorePython/DeepPixelBinding.h"
+
 using namespace boost::python;
 using namespace IECore;
 

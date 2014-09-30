@@ -39,7 +39,7 @@
 
 namespace IECorePython
 {
-IECOREPYTHON_API extern void bindAllVectorTypedData();
+extern IECOREPYTHON_API void bindAllVectorTypedData();
 }
 
 #endif // IECOREPYTHON_VECTORTYPEDDATABINDING_H

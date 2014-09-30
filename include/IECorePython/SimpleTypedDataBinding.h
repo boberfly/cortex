@@ -43,7 +43,7 @@ namespace IECorePython
 
 /// An rvalue converter to get TypedData<T> from a python object convertible to T.
 template<typename T>
-struct IECOREPYTHON_API TypedDataFromType
+struct TypedDataFromType
 {
 	/// Constructing a instance of this class will register the converter.
 	TypedDataFromType();
