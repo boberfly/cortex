@@ -489,7 +489,7 @@ class IECORE_API IndexedIO : public RunTimeTyped
 		virtual void read(const IndexedIO::EntryID &name, unsigned short &x) const  = 0;
 
 		/// A representation of a single file/directory
-		class Entry
+		class IECORE_API Entry
 		{
 			public:
 				Entry();

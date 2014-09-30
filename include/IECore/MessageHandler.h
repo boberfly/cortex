@@ -106,7 +106,7 @@ class IECORE_API MessageHandler : public RefCounted
 		/// destruction.
 		/// \threading The Scope class provides a threadsafe means of
 		/// installing and uninstalling MessageHandlers.
-		class Scope : boost::noncopyable
+		class IECORE_API Scope : boost::noncopyable
 		{
 		
 			public :
