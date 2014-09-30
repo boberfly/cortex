@@ -91,7 +91,7 @@ class IECORE_API InternedString
 
 };
 
-std::ostream &operator << ( std::ostream &o, const InternedString &str );
+IECORE_API std::ostream &operator << ( std::ostream &o, const InternedString &str );
 
 } // namespace IECore
 
