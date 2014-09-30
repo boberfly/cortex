@@ -37,6 +37,7 @@
 #include "IECore/Reader.h"
 #include "IECore/Object.h"
 #include "IECore/FileNameParameter.h"
+#include "IECorePython/ReaderBinding.h"
 #include "IECorePython/RunTimeTypedBinding.h"
 #include "IECorePython/Wrapper.h"
 #include "IECorePython/ScopedGILLock.h"

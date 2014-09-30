@@ -37,6 +37,6 @@
 
 #include "IECorePython/Export.h"
 
-IECOREPYTHON_API extern void bindIndexedIO();
+extern IECOREPYTHON_API void bindIndexedIO();
 
 #endif // IECOREPYTHON_INDEXEDIOBINDING_H
