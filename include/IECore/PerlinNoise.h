@@ -35,7 +35,6 @@
 #ifndef IE_CORE_PERLINNOISE_H
 #define IE_CORE_PERLINNOISE_H
 
-#include "IECore/Export.h"
 #include "IECore/VectorTraits.h"
 
 #include "OpenEXR/ImathVec.h"
@@ -53,7 +52,7 @@ namespace IECore
 /// If better continuity is required then the SmootherStepFalloff functor
 /// may be a good alternative.
 template<typename T>
-struct IECORE_API SmoothStepFalloff
+struct SmoothStepFalloff
 {
 	inline T operator()( T t ) const;
 };
@@ -63,7 +62,7 @@ struct IECORE_API SmoothStepFalloff
 /// order of continuity and is therefore less prone to displaying grid
 /// artifacts.
 template<typename T>
-struct IECORE_API SmootherStepFalloff
+struct SmootherStepFalloff
 {
 	inline T operator()( T t ) const;
 };
@@ -81,7 +80,7 @@ struct IECORE_API SmootherStepFalloff
 /// \ingroup mathGroup
 /// \ingroup renderingGroup
 template<typename P, typename V, typename F>
-class IECORE_API PerlinNoise
+class PerlinNoise
 {
 
 	public :

@@ -71,7 +71,7 @@ GeometricData::Interpretation GeometricTypedData<T>::getInterpretation() const
 }
 
 template<class T>
-void GeometricTypedData<T>::setInterpretation( GeometricData::Interpretation interpretation )
+void GeometricTypedData<T>::setInterpretation(GeometricData::Interpretation interpretation)
 {
 	m_interpretation = interpretation;
 }
@@ -87,7 +87,7 @@ typename GeometricTypedData<T>::Ptr GeometricTypedData<T>::copy() const
 }
 
 template <class T>
-void GeometricTypedData<T>::copyFrom( const Object *other, Object::CopyContext *context )
+void GeometricTypedData<T>::copyFrom(const Object *other, Object::CopyContext *context)
 {
 	TypedData<T>::copyFrom( other, context );
 	const GeometricTypedData<T> *tOther = static_cast<const GeometricTypedData<T> *>( other );
@@ -95,7 +95,7 @@ void GeometricTypedData<T>::copyFrom( const Object *other, Object::CopyContext *
 }
 
 template <class T>
-void GeometricTypedData<T>::save( Object::SaveContext *context ) const
+void GeometricTypedData<T>::save(Object::SaveContext *context) const
 {
 	static InternedString interpretationEntry("interpretation");
 	TypedData<T>::save( context );
@@ -104,7 +104,7 @@ void GeometricTypedData<T>::save( Object::SaveContext *context ) const
 }
 
 template <class T>
-void GeometricTypedData<T>::load( Object::LoadContextPtr context )
+void GeometricTypedData<T>::load(Object::LoadContextPtr context)
 {
 	static InternedString interpretationEntry("interpretation");
 	TypedData<T>::load( context );
@@ -119,7 +119,7 @@ void GeometricTypedData<T>::load( Object::LoadContextPtr context )
 }
 
 template <class T>
-bool GeometricTypedData<T>::isEqualTo( const Object *other ) const
+bool GeometricTypedData<T>::isEqualTo(const Object *other) const
 {
 	if( !TypedData<T>::isEqualTo( other ) )
 	{
@@ -130,14 +130,14 @@ bool GeometricTypedData<T>::isEqualTo( const Object *other ) const
 }
 
 template <class T>
-void GeometricTypedData<T>::hash( MurmurHash &h ) const
+void GeometricTypedData<T>::hash(MurmurHash &h) const
 {
 	TypedData<T>::hash( h );
 	h.append( m_interpretation );
 }
 
 template <class T>
-void GeometricTypedData<T>::memoryUsage( Object::MemoryAccumulator &accumulator ) const
+void GeometricTypedData<T>::memoryUsage(Object::MemoryAccumulator &accumulator) const
 {
 	TypedData<T>::memoryUsage( accumulator );
 	accumulator.accumulate( sizeof( m_interpretation ) );

@@ -39,7 +39,6 @@
 
 #include "OpenEXR/ImathBox.h"
 
-#include "IECore/Export.h"
 #include "IECore/BoxTraits.h"
 
 namespace IECore
@@ -48,7 +47,7 @@ namespace IECore
 /// Builds a KDTree of bounded volumes to permit fast intersection/overlap tests.
 /// \ingroup mathGroup
 template<class BoundIterator>
-class IECORE_API BoundedKDTree
+class BoundedKDTree
 {
 	public:
 

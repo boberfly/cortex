@@ -36,7 +36,6 @@
 #define IECORE_TRIANGULATOR_H
 
 #include <list>
-#include "IECore/Export.h"
 #include "IECore/VectorTypedData.h"
 #include "IECore/MeshPrimitiveBuilder.h"
 #include "IECore/VectorTraits.h"
@@ -50,7 +49,7 @@ namespace IECore
 /// uses a MeshBuilder class to build the triangulated mesh.
 /// \ingroup geometryProcessingGroup
 template<typename PointIterator, typename MeshBuilder = MeshPrimitiveBuilder >
-class IECORE_API Triangulator : public RefCounted
+class Triangulator : public RefCounted
 {
 	public :
 
@@ -64,7 +63,7 @@ class IECORE_API Triangulator : public RefCounted
 
 		IE_CORE_DECLAREMEMBERPTR( Triangulator );
 
-		Triangulator( typename MeshBuilder::Ptr builder );
+		Triangulator( typename MeshBuilder::Ptr builder = 0 );
 		virtual ~Triangulator();
 
 		/// Triangulates the polygon specified by the points in the

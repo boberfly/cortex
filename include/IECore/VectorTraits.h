@@ -35,8 +35,6 @@
 #ifndef IE_CORE_VECTORTRAITS_H
 #define IE_CORE_VECTORTRAITS_H
 
-#include "IECore/Export.h"
-
 namespace IECore
 {
 
@@ -47,7 +45,7 @@ namespace IECore
 /// the ImathVec types out of the box. For any other types you may need to
 /// specialise it.
 template<typename T>
-struct IECORE_API VectorTraits
+struct VectorTraits
 {
 	/// The type of the components of the vector.
 	typedef typename T::BaseType BaseType;
@@ -58,7 +56,7 @@ struct IECORE_API VectorTraits
 
 /// Specialisation for int type to allow its use as a 1d vector
 template<>
-struct IECORE_API VectorTraits<int>
+struct VectorTraits<int>
 {
 	typedef int BaseType;
 	static unsigned int dimensions() { return 1; };
@@ -68,7 +66,7 @@ struct IECORE_API VectorTraits<int>
 
 /// Specialisation for float type to allow its use as a 1d vector
 template<>
-struct IECORE_API VectorTraits<float>
+struct VectorTraits<float>
 {
 	typedef float BaseType;
 	static unsigned int dimensions() { return 1; };
@@ -78,7 +76,7 @@ struct IECORE_API VectorTraits<float>
 
 /// Specialisation for double type to allow its use as a 1d vector
 template<>
-struct IECORE_API VectorTraits<double>
+struct VectorTraits<double>
 {
 	typedef double BaseType;
 	static unsigned int dimensions() { return 1; };

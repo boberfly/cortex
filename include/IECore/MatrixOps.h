@@ -44,36 +44,35 @@
 #ifndef IE_CORE_MATRIXOPS_H
 #define IE_CORE_MATRIXOPS_H
 
-#include "IECore/Export.h"
 #include "IECore/MatrixTraits.h"
 
 namespace IECore
 {
 
 /// Sets the specified component of m to the value x.
-template<typename T> IECORE_API
+template<typename T>
 inline void matSet( T &m, unsigned int i, unsigned int j, typename MatrixTraits<T>::BaseType x );
 
 /// Sets all components of m to the value x.
-template<typename T> IECORE_API
+template<typename T>
 inline void matSetAll( T &m, typename MatrixTraits<T>::BaseType x );
 
 /// Returns the value of the specified component of v.
-template<typename T> IECORE_API
+template<typename T>
 inline typename MatrixTraits<T>::BaseType matGet( const T &m, unsigned int i, unsigned int j );
 
 /// Converts from one matrix type to another.
-template<typename T, typename S> IECORE_API
+template<typename T, typename S>
 inline S matConvert( const T &m );
 
 /// Converts from one matrix type to another.
-template<typename T, typename S> IECORE_API
+template<typename T, typename S>
 inline void matConvert( const T &m1, S &m2 );
 
 /// A functor suitable for use with stl algorithms such as transform(), allowing
 /// the copying of a container of matrices of type T into a container of matrices of type S.
 template<typename T, typename S>
-struct IECORE_API MatConvert
+struct MatConvert
 {
 	inline S operator()( const T &m ) const;
 };
