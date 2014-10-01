@@ -44,7 +44,7 @@ namespace IECorePython
 namespace Detail
 {
 
-const char *nameWithoutNamespace( const char *name );
+IECOREPYTHON_API const char *nameWithoutNamespace( const char *name );
 
 template<class T>
 static IECore::TypeId typeId( T &t )
