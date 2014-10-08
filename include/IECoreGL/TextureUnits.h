@@ -35,6 +35,7 @@
 #ifndef IECOREGL_TEXTUREUNITS_H
 #define IECOREGL_TEXTUREUNITS_H
 
+#include "IECoreGL/Export.h"
 #include "IECoreGL/GL.h"
 
 #include <vector>
@@ -47,7 +48,7 @@ namespace IECoreGL
 /// GL_MAX_COMBINED_TEXTURE_IMAGE_UNITS - 1. That way you can
 /// actually program texture code like a grown up,
 /// using like loops and stuff.
-const std::vector<GLenum> &textureUnits();
+IECOREGL_API const std::vector<GLenum> &textureUnits();
 
 } // namespace IECoreGL
 

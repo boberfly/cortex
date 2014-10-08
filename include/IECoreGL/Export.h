@@ -1,6 +1,7 @@
 //////////////////////////////////////////////////////////////////////////
 //
-//  Copyright (c) 2007, Image Engine Design Inc. All rights reserved.
+//  Copyright (c) 2012, John Haddon. All rights reserved.
+//  Copyright (c) 2013, Image Engine Design Inc. All rights reserved.
 //
 //  Redistribution and use in source and binary forms, with or without
 //  modification, are permitted provided that the following conditions are
@@ -32,34 +33,18 @@
 //
 //////////////////////////////////////////////////////////////////////////
 
-#ifndef IECOREGL_DEPTHTEXTURE_H
-#define IECOREGL_DEPTHTEXTURE_H
+#ifndef IECOREGL_EXPORT_H
+#define IECOREGL_EXPORT_H
 
-#include "IECoreGL/Export.h"
-#include "IECoreGL/Texture.h"
+#include "IECore/Export.h"
 
-namespace IECoreGL
-{
+// define IECOREGL_API macro based on whether or not we are compiling 
+// IECoreGL, or including headers for linking to it. the IECOREGL_API
+// macro is the one that is used in the class definitions.
+#ifdef IECOREGL_EXPORTS
+  #define IECOREGL_API IECORE_EXPORT
+#else
+  #define IECOREGL_API IECORE_IMPORT
+#endif
 
-/// The DepthTexture class represents a texture with a single
-/// z channel. It is suitable for use as the depth attachment for
-/// a FrameBuffer.
-class IECOREGL_API DepthTexture : public Texture
-{
-	public :
-
-		IE_CORE_DECLARERUNTIMETYPEDEXTENSION( IECoreGL::DepthTexture, DepthTextureTypeId, Texture );
-
-		DepthTexture( unsigned int width, unsigned height, const IECore::Data *z = 0 );
-
-		virtual ~DepthTexture();
-
-		virtual IECore::ImagePrimitivePtr imagePrimitive() const;
-
-};
-
-IE_CORE_DECLAREPTR( DepthTexture );
-
-} // namespace IECoreGL
-
-#endif // IECOREGL_DEPTHTEXTURE_H
+#endif // #ifndef IECOREGL_EXPORT_H
