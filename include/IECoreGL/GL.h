@@ -46,17 +46,19 @@
 #include "OpenEXR/ImathVec.h"
 #include "OpenEXR/ImathColor.h"
 
+#include "IECoreGL/Export.h"
+
 namespace IECoreGL
 {
 
-inline void glColor( const Imath::V3f &c );
-inline void glColor( const Imath::Color4f &c );
-inline void glVertex( const Imath::V3f &v );
-inline void glNormal( const Imath::V3f &n );
-inline void glTranslate( const Imath::V2f &t );
-inline void glTranslate( const Imath::V3f &t );
+IECOREGL_API inline void glColor( const Imath::V3f &c );
+IECOREGL_API inline void glColor( const Imath::Color4f &c );
+IECOREGL_API inline void glVertex( const Imath::V3f &v );
+IECOREGL_API inline void glNormal( const Imath::V3f &n );
+IECOREGL_API inline void glTranslate( const Imath::V2f &t );
+IECOREGL_API inline void glTranslate( const Imath::V3f &t );
 
-class PushAttrib
+class IECOREGL_API PushAttrib
 {
 	public :
 	

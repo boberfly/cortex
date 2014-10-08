@@ -39,6 +39,7 @@
 
 #include "IECore/Data.h"
 
+#include "IECoreGL/Export.h"
 #include "IECoreGL/GL.h"
 
 namespace IECoreGL
