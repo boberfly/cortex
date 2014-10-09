@@ -427,7 +427,7 @@ ELSE()
     # Display driver
     ADD_DEPENDENCIES( arnoldOutputDriver IECore IECoreArnold )
     # Procedural
-    ADD_DEPENDENCIES( arnoldProcedural IECore IECoreArnold )
+    ADD_DEPENDENCIES( arnoldProcedural IECore IECorePython IECoreArnold )
   ELSE()
     MESSAGE(FATAL_ERROR "For some reason, CORTEX_ARNOLD_FOUND is False?")
   ENDIF()
