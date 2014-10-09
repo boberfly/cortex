@@ -70,8 +70,7 @@ ENDIF()
 TARGET_LINK_LIBRARIES( IECorePython ${THIS_LIBS} )
 
 INSTALL( TARGETS IECorePython
-         LIBRARY DESTINATION lib
-         ARCHIVE DESTINATION lib/static )
+         DESTINATION lib )
 
 INSTALL( FILES ${H_FILES}
          DESTINATION include/IECorePython )
