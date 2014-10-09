@@ -3,6 +3,9 @@ FILE( GLOB CXX_FILES RELATIVE ${CMAKE_CURRENT_SOURCE_DIR} "*.cpp" )
 SET( SOURCE_FILES ${CXX_FILES} )
 
 SET( THIS_LIBS
+     IECore
+     IECorePython
+     IECoreArnold
      ${CORTEX_ARNOLD_LIBS}
      ${Boost_LIBRARIES} )
 
