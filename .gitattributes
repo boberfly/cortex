@@ -21,3 +21,8 @@
 *.tiff binary
 *.tga binary
 *.dat binary
+*.cob binary
+*.jpg binary
+*.pdc binary
+*.exr binary
+*.shw binary
