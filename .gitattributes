@@ -26,3 +26,6 @@
 *.pdc binary
 *.exr binary
 *.shw binary
+*.abc binary
+*.svg binary
+*.mchp binary
