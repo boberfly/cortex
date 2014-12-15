@@ -1,6 +1,6 @@
 //////////////////////////////////////////////////////////////////////////
 //
-//  Copyright (c) 2007, Image Engine Design Inc. All rights reserved.
+//  Copyright (c) 2014, Esteban Tovagliari. All rights reserved.
 //
 //  Redistribution and use in source and binary forms, with or without
 //  modification, are permitted provided that the following conditions are
@@ -32,24 +32,39 @@
 //
 //////////////////////////////////////////////////////////////////////////
 
-#ifndef IECOREGL_TEXTUREUNITS_H
-#define IECOREGL_TEXTUREUNITS_H
+#ifndef IECOREAPPLESEED_TOAPPLESEEDSHAPECONVERTER_H
+#define IECOREAPPLESEED_TOAPPLESEEDSHAPECONVERTER_H
 
-#include "IECoreGL/Export.h"
-#include "IECoreGL/GL.h"
+#include "IECore/VectorTypedData.h"
 
-#include <vector>
+#include "IECoreAppleseed/ToAppleseedConverter.h"
 
-namespace IECoreGL
+namespace IECore
+{
+IE_CORE_FORWARDDECLARE( Primitive )
+struct PrimitiveVariable;
+} // namespace IECore
+
+namespace IECoreAppleseed
 {
 
-/// Returns a vector containing GL_TEXTURE0, GL_TEXTURE1, ...
-/// GL_TEXTUREN for all texture unit enums up to
-/// GL_MAX_COMBINED_TEXTURE_IMAGE_UNITS - 1. That way you can
-/// actually program texture code like a grown up,
-/// using like loops and stuff.
-IECOREGL_API const std::vector<GLenum> &textureUnits();
+class ToAppleseedShapeConverter : public ToAppleseedConverter
+{
 
-} // namespace IECoreGL
+	public :
 
-#endif // IECOREGL_TEXTUREUNITS_H
+		IE_CORE_DECLARERUNTIMETYPEDEXTENSION( ToAppleseedShapeConverter, ToAppleseedShapeConverterTypeId, ToAppleseedConverter );
+
+		virtual ~ToAppleseedShapeConverter();
+
+	protected :
+
+		ToAppleseedShapeConverter( const std::string &description, IECore::TypeId supportedType );
+
+};
+
+IE_CORE_DECLAREPTR( ToAppleseedShapeConverter );
+
+} // namespace IECoreAppleseed
+
+#endif // IECOREAPPLESEED_TOAPPLESEEDSHAPECONVERTER_H

@@ -143,6 +143,8 @@ class IECORE_API TIFFImageReader : public ImageReader
 		int m_sampleFormat;
 		int m_orientation;
 		int m_planarConfig;
+		std::string m_software;
+		std::string m_imageDescription;
 		std::vector<int> m_extraSamples;
 
 		template<typename T>
