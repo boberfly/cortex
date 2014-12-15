@@ -1,8 +1,8 @@
-FILE( GLOB H_FILES RELATIVE ${CMAKE_CURRENT_SOURCE_DIR}/../../../include/IECoreMaya/bindings "../../../include/IECoreMaya/bindings/*.h" )
+FILE( GLOB H_FILES RELATIVE ${CMAKE_CURRENT_SOURCE_DIR} "../../../include/IECoreMaya/bindings/*.h" )
 
 FILE( GLOB CXX_FILES RELATIVE ${CMAKE_CURRENT_SOURCE_DIR} "*.cpp" )
 
-FILE( GLOB PY_FILES RELATIVE ${CMAKE_CURRENT_SOURCE_DIR}/../../../python/IECoreMaya/ "../../../python/IECoreMaya/*.py" )
+FILE( GLOB PY_FILES RELATIVE ${CMAKE_CURRENT_SOURCE_DIR} "../../../python/IECoreMaya/*.py" )
 
 SET( SOURCE_FILES ${CXX_FILES} ${H_FILES} )
 
@@ -31,5 +31,4 @@ INSTALL( TARGETS _IECoreMaya
          LIBRARY DESTINATION python/IECoreMaya )
 
 INSTALL( FILES ${PY_FILES}
-         DESTINATION python/IECoreMaya
-         PERMISSIONS OWNER_READ GROUP_READ WORLD_READ )
+         DESTINATION python/IECoreMaya )
