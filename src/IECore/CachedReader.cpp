@@ -207,7 +207,7 @@ bool CachedReader::cached( const std::string &file ) const
 		}
 	}
 
-	return m_data->m_cache.get( PARAM(file), MemberData::Cache::NullIfMissing );
+	return (bool)m_data->m_cache.get( PARAM(file), MemberData::Cache::NullIfMissing );
 }
 
 void CachedReader::clear()
