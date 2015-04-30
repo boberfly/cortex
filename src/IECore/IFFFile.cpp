@@ -34,6 +34,8 @@
 
 #include <fstream>
 
+#include "boost/scoped_array.hpp"
+
 #include "IECore/Exception.h"
 #include "IECore/IFFFile.h"
 #include "IECore/TestTypedData.h"
@@ -196,11 +198,11 @@ void IFFFile::Chunk::read( std::string &data )
 {
 	m_file->m_iStream->seekg( m_filePosition, std::ios_base::beg );
 	
-	char buffer[m_dataSize];
+	boost::scoped_array<char> buffer( new char[m_dataSize] );
 	m_file->m_iStream->read( buffer, m_dataSize );
 	
 	data.clear();
-	data = buffer;
+	data = buffer.get();
 }
 
 int IFFFile::Chunk::alignmentQuota()

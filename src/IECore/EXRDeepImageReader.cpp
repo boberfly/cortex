@@ -34,6 +34,7 @@
 #include "boost/algorithm/string.hpp"
 #include "boost/filesystem/convenience.hpp"
 #include "boost/format.hpp"
+#include "boost/scoped_array.hpp"
 
 #include "OpenEXR/ImathMatrix.h"
 #include "OpenEXR/ImfArray.h"
@@ -195,7 +196,7 @@ DeepPixelPtr EXRDeepImageReader::doReadPixel( int x, int y )
 	DeepPixelPtr pixel = new DeepPixel( m_channelNames, numSamples );
 	
 	int numChannels = pixel->numChannels();
-	float channelData[numChannels];
+	boost::scoped_array<float> channelData( new float[numChannels] );
 	
 	unsigned cIndex = 0;
 	float depth = 0;
@@ -229,7 +230,7 @@ DeepPixelPtr EXRDeepImageReader::doReadPixel( int x, int y )
 			offset += channelSize * numSamples;
 		}
 		
-		pixel->addSample( depth, channelData );
+		pixel->addSample( depth, channelData.get() );
 	}
 	
 	return pixel;
