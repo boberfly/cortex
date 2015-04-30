@@ -118,7 +118,7 @@ const BoolParameter * ImageWriter::rawChannelsParameter() const
 
 bool ImageWriter::canWrite( ConstObjectPtr image, const string &fileName )
 {
-	return (bool)runTimeCast<const ImagePrimitive>( image );
+	return runTimeCast<const ImagePrimitive>( image );
 }
 
 /// get the user-requested channel names
