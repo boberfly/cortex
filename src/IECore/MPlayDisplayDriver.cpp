@@ -39,6 +39,12 @@
 #include "IECore/Exception.h"
 #include "IECore/SimpleTypedData.h"
 
+#ifdef _MSC_VER
+#include <conio.h>
+#define popen _popen
+#define pclose _pclose
+#endif
+
 using namespace std;
 using namespace IECore;
 using namespace Imath;
