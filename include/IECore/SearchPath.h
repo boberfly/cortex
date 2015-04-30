@@ -41,6 +41,11 @@
 
 #include "IECore/Export.h"
 
+// MSVC uses a conflicting SearchPath implementation without this
+#ifdef SearchPath
+#undef SearchPath
+#endif
+
 namespace IECore
 {
 
