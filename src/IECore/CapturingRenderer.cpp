@@ -33,7 +33,6 @@
 //////////////////////////////////////////////////////////////////////////
 
 #include <stack>
-#include <fnmatch.h>
 
 #include "boost/regex.hpp"
 #include "boost/tokenizer.hpp"
@@ -500,7 +499,9 @@ class CapturingRenderer::Implementation
 			
 			for( ; filterIter != filterPath.end(); ++filterIter, ++nameIter )
 			{
-				if( fnmatch( filterIter->c_str(), nameIter->c_str(), 0 ) )
+				boost::regex re( filterIter->c_str(), boost::regex::normal | boost::regex::no_except );
+				
+				if( !boost::regex_match( nameIter->c_str(), re ) )
 				{
 					// this means the tokens don't match: lets quit.
 					return false;
@@ -550,7 +551,9 @@ class CapturingRenderer::Implementation
 			
 			for( ; nameIter != namePath.end(); ++filterIter, ++nameIter )
 			{
-				if( fnmatch( filterIter->c_str(), nameIter->c_str(), 0 ) )
+				boost::regex re( filterIter->c_str(), boost::regex::normal | boost::regex::no_except );
+
+				if( !boost::regex_match( nameIter->c_str(), re ) )
 				{
 					// this means the tokens don't match: lets quit.
 					return false;
