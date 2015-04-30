@@ -33,6 +33,7 @@
 //////////////////////////////////////////////////////////////////////////
 
 #include "boost/format.hpp"
+#include "boost/scoped_array.hpp"
 
 #include "IECore/DeepPixel.h"
 #include "IECore/Exception.h"
@@ -347,8 +348,8 @@ DeepPixelPtr DeepPixel::average( std::vector<const DeepPixel *> &pixels, std::ve
 	
 	DeepPixelPtr result = new DeepPixel( *pixels[0]->channelNames(), numSamples );
 	
-	float averageData[numChannels];
-	float currentData[numChannels];
+	boost::scoped_array<float> averageData( new float[numChannels] );
+	boost::scoped_array<float> currentData( new float[numChannels] );
 	
 	for ( unsigned i=0; i < numSamples; ++i )
 	{
@@ -361,14 +362,14 @@ DeepPixelPtr DeepPixel::average( std::vector<const DeepPixel *> &pixels, std::ve
 		
 		for ( unsigned p=0; p < numPixels; ++p )
 		{
-			pixels[p]->interpolatedChannelData( depth, currentData );
+			pixels[p]->interpolatedChannelData( depth, currentData.get() );
 			for ( unsigned c=0; c < numChannels; ++c )
 			{
 				averageData[c] += weights[p] * currentData[c];
 			}
 		}
 		
-		result->addSample( depth, averageData );
+		result->addSample( depth, averageData.get() );
 	}
 	
 	return result;

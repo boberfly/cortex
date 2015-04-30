@@ -32,6 +32,8 @@
 //
 //////////////////////////////////////////////////////////////////////////
 
+#include "boost/scoped_array.hpp"
+
 #include "IECore/DeepImageReader.h"
 #include "IECore/FileNameParameter.h"
 #include "IECore/ImagePrimitive.h"
@@ -76,7 +78,7 @@ ObjectPtr DeepImageReader::doOperation( const CompoundObject *operands )
 	}
 
 	DeepPixelPtr pixel = 0;
-	float channelData[channels.size()];
+	boost::scoped_array<float> channelData( new float[channels.size()] );
 	
 	unsigned p = 0;
 	for ( int y=dataWind.min.y; y < dataWind.max.y + 1; ++y )
@@ -90,7 +92,7 @@ ObjectPtr DeepImageReader::doOperation( const CompoundObject *operands )
 				continue;
 			}
 			
-			pixel->composite( channelData );
+			pixel->composite( channelData.get() );
 			
 			for ( unsigned c=0; c < numChannels; ++c )
 			{
