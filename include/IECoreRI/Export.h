@@ -41,7 +41,7 @@
 // define IECORERI_API macro based on whether or not we are compiling
 // IECoreRI, or including headers for linking to it. the IECORERI_API
 // macro is the one that is used in the class definitions.
-#ifdef IECORERI_EXPORTS
+#ifdef IECoreRI_EXPORTS
   #define IECORERI_API IECORE_EXPORT
 #else
   #define IECORERI_API IECORE_IMPORT
