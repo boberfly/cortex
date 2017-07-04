@@ -1,6 +1,7 @@
 //////////////////////////////////////////////////////////////////////////
 //
-//  Copyright (c) 2015, Esteban Tovagliari. All rights reserved.
+//  Copyright (c) 2012, John Haddon. All rights reserved.
+//  Copyright (c) 2013, Image Engine Design Inc. All rights reserved.
 //
 //  Redistribution and use in source and binary forms, with or without
 //  modification, are permitted provided that the following conditions are
@@ -32,28 +33,18 @@
 //
 //////////////////////////////////////////////////////////////////////////
 
-#ifndef IECOREAPPLESEED_LOGTARGET_H
-#define IECOREAPPLESEED_LOGTARGET_H
+#ifndef IECOREAPPLESEED_EXPORT_H
+#define IECOREAPPLESEED_EXPORT_H
 
-#include "IECoreAppleseed/Export.h"
+#include "IECore/Export.h"
 
-#include "renderer/api/log.h"
+// define IECOREAPPLESEED_API macro based on whether or not we are compiling
+// IECoreAppleseed, or including headers for linking to it. the
+// IECOREPPLESEED_API macro is the one that is used in the class definitions.
+#ifdef IECoreAppleseed_EXPORTS
+  #define IECOREAPPLESEED_API IECORE_EXPORT
+#else
+  #define IECOREAPPLESEED_API IECORE_IMPORT
+#endif
 
-namespace IECoreAppleseed
-{
-
-/// An appleseed log target that uses IECore's MessageHandler
-/// to log appleseed messages.
-class IECOREAPPLESEED_API IECoreLogTarget : public foundation::ILogTarget
-{
-	public:
-
-		virtual void release();
-
-		virtual void write( const foundation::LogMessage::Category category, const char* file, const size_t line, const char* header, const char* message );
-
-};
-
-} // namespace IECoreAppleseed
-
-#endif // IECOREAPPLESEED_LOGTARGET_H
+#endif // #ifndef IECOREAPPLESEED_EXPORT_H
