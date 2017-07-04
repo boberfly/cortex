@@ -199,7 +199,7 @@ void IFFFile::Chunk::read( std::string &data )
 	m_file->m_iStream->seekg( m_filePosition, std::ios_base::beg );
 	
 	boost::scoped_array<char> buffer( new char[m_dataSize] );
-	m_file->m_iStream->read( buffer, m_dataSize );
+	m_file->m_iStream->read( &buffer[0], m_dataSize );
 	
 	data.clear();
 	data = buffer.get();

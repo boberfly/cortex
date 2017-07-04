@@ -35,6 +35,7 @@
 #ifndef IECORE_GEOMETRICTYPEDDATA_H
 #define IECORE_GEOMETRICTYPEDDATA_H
 
+#include "IECore/Export.h"
 #include "IECore/TypedData.h"
 
 namespace IECore
