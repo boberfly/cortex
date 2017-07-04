@@ -39,6 +39,8 @@
 
 #include "IECore/Object.h"
 
+#include "IECoreArnold/Export.h"
+
 namespace IECoreArnold
 {
 
@@ -48,12 +50,12 @@ namespace NodeAlgo
 /// Converts the specified IECore::Object into an equivalent
 /// Arnold object, returning NULL if no conversion is
 /// available.
-AtNode *convert( const IECore::Object *object );
+IECOREARNOLD_API AtNode *convert( const IECore::Object *object );
 /// Converts the specified IECore::Object samples into an
 /// equivalent moving Arnold object. If no motion converter
 /// is available, then returns a standard conversion of the
 /// first sample.
-AtNode *convert( const std::vector<const IECore::Object *> &samples, const std::vector<float> &sampleTimes );
+IECOREARNOLD_API AtNode *convert( const std::vector<const IECore::Object *> &samples, const std::vector<float> &sampleTimes );
 
 /// Signature of a function which can convert an IECore::Object
 /// into an Arnold object.
@@ -65,12 +67,12 @@ typedef AtNode * (*MotionConverter)( const std::vector<const IECore::Object *> &
 /// Registers a converter for a specific type.
 /// Use the ConverterDescription utility class in preference to
 /// this, since it provides additional type safety.
-void registerConverter( IECore::TypeId fromType, Converter converter, MotionConverter motionConverter = NULL );
+IECOREARNOLD_API void registerConverter( IECore::TypeId fromType, Converter converter, MotionConverter motionConverter = NULL );
 
 /// Class which registers a converter for type T automatically
 /// when instantiated.
 template<typename T>
-class ConverterDescription
+class IECOREARNOLD_API ConverterDescription
 {
 
 	public :

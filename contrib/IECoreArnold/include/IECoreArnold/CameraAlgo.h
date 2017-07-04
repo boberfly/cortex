@@ -39,13 +39,15 @@
 
 #include "IECore/Camera.h"
 
+#include "IECoreArnold/Export.h"
+
 namespace IECoreArnold
 {
 
 namespace CameraAlgo
 {
 
-AtNode *convert( const IECore::Camera *camera );
+IECOREARNOLD_API AtNode *convert( const IECore::Camera *camera );
 
 } // namespace CameraAlgo
 

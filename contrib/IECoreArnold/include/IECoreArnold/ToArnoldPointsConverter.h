@@ -1,6 +1,6 @@
 //////////////////////////////////////////////////////////////////////////
 //
-//  Copyright (c) 2016, Image Engine Design Inc. All rights reserved.
+//  Copyright (c) 2012, Image Engine Design Inc. All rights reserved.
 //
 //  Redistribution and use in source and binary forms, with or without
 //  modification, are permitted provided that the following conditions are
@@ -32,34 +32,44 @@
 //
 //////////////////////////////////////////////////////////////////////////
 
-#ifndef IECOREARNOLD_SHAPEALGO_H
-#define IECOREARNOLD_SHAPEALGO_H
-
-#include "ai.h"
-
-#include "IECore/Primitive.h"
+#ifndef IECOREARNOLD_TOARNOLDPOINTSCONVERTER_H
+#define IECOREARNOLD_TOARNOLDPOINTSCONVERTER_H
 
 #include "IECoreArnold/Export.h"
+#include "IECoreArnold/ToArnoldShapeConverter.h"
+
+namespace IECore
+{
+IE_CORE_FORWARDDECLARE( PointsPrimitive );
+} // namespace IECore
 
 namespace IECoreArnold
 {
 
-namespace ShapeAlgo
+class IECOREARNOLD_API ToArnoldPointsConverter : public ToArnoldShapeConverter
 {
 
-IECOREARNOLD_API void convertP( const IECore::Primitive *primitive, AtNode *shape, const char *name );
-IECOREARNOLD_API void convertP( const std::vector<const IECore::Primitive *> &samples, AtNode *shape, const char *name );
+	public :
 
-IECOREARNOLD_API void convertRadius( const IECore::Primitive *primitive, AtNode *shape );
-IECOREARNOLD_API void convertRadius( const std::vector<const IECore::Primitive *> &samples, AtNode *shape );
+		typedef IECore::PointsPrimitive InputType;
 
-IECOREARNOLD_API void convertPrimitiveVariable( const IECore::Primitive *primitive, const IECore::PrimitiveVariable &primitiveVariable, AtNode *shape, const char *name );
-/// Converts primitive variables from primitive into user parameters on shape, ignoring any variables
-/// whose names are present in the ignore array.
-IECOREARNOLD_API void convertPrimitiveVariables( const IECore::Primitive *primitive, AtNode *shape, const char **namesToIgnore=NULL );
+		IE_CORE_DECLARERUNTIMETYPEDEXTENSION( ToArnoldPointsConverter, ToArnoldPointsConverterTypeId, ToArnoldShapeConverter );
 
-} // namespace ShapeAlgo
+		ToArnoldPointsConverter( IECore::PointsPrimitivePtr toConvert );
+		virtual ~ToArnoldPointsConverter();
+
+	protected :
+
+		virtual AtNode *doConversion( IECore::ConstObjectPtr from, IECore::ConstCompoundObjectPtr operands ) const;
+
+	private :
+
+		static ConverterDescription<ToArnoldPointsConverter> g_description;
+
+};
+
+IE_CORE_DECLAREPTR( ToArnoldPointsConverter );
 
 } // namespace IECoreArnold
 
-#endif // IECOREARNOLD_SHAPEALGO_H
+#endif // IECOREARNOLD_TOARNOLDPOINTSCONVERTER_H

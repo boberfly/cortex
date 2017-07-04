@@ -39,14 +39,16 @@
 
 #include "IECore/PointsPrimitive.h"
 
+#include "IECoreArnold/Export.h"
+
 namespace IECoreArnold
 {
 
 namespace PointsAlgo
 {
 
-AtNode *convert( const IECore::PointsPrimitive *points );
-AtNode *convert( const std::vector<const IECore::PointsPrimitive *> &samples, const std::vector<float> &sampleTimes );
+IECOREARNOLD_API AtNode *convert( const IECore::PointsPrimitive *points );
+IECOREARNOLD_API AtNode *convert( const std::vector<const IECore::PointsPrimitive *> &samples, const std::vector<float> &sampleTimes );
 
 } // namespace PointsAlgo
 

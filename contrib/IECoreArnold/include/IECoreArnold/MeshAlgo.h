@@ -39,14 +39,16 @@
 
 #include "IECore/MeshPrimitive.h"
 
+#include "IECoreArnold/Export.h"
+
 namespace IECoreArnold
 {
 
 namespace MeshAlgo
 {
 
-AtNode *convert( const IECore::MeshPrimitive *mesh );
-AtNode *convert( const std::vector<const IECore::MeshPrimitive *> &samples, const std::vector<float> &sampleTimes );
+IECOREARNOLD_API AtNode *convert( const IECore::MeshPrimitive *mesh );
+IECOREARNOLD_API AtNode *convert( const std::vector<const IECore::MeshPrimitive *> &samples, const std::vector<float> &sampleTimes );
 
 } // namespace MeshAlgo
 
