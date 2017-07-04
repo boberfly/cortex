@@ -1,6 +1,6 @@
 //////////////////////////////////////////////////////////////////////////
 //
-//  Copyright (c) 2016, Image Engine Design Inc. All rights reserved.
+//  Copyright (c) 2012, Image Engine Design Inc. All rights reserved.
 //
 //  Redistribution and use in source and binary forms, with or without
 //  modification, are permitted provided that the following conditions are
@@ -32,34 +32,27 @@
 //
 //////////////////////////////////////////////////////////////////////////
 
-#ifndef IECOREARNOLD_SHAPEALGO_H
-#define IECOREARNOLD_SHAPEALGO_H
+#ifndef IECOREARNOLD_TOARNOLDCONVERTERBINDING_H
+#define IECOREARNOLD_TOARNOLDCONVERTERBINDING_H
 
+// For some reason GCC is complaining about this when pyconfig.h is included
+// through boost python.
+#ifdef _POSIX_C_SOURCE
+#undef _POSIX_C_SOURCE
+#endif
+#ifdef _XOPEN_SOURCE
+#undef _XOPEN_SOURCE
+#endif
+
+#include "boost/python.hpp"
 #include "ai.h"
-
-#include "IECore/Primitive.h"
-
-#include "IECoreArnold/Export.h"
 
 namespace IECoreArnold
 {
 
-namespace ShapeAlgo
-{
-
-IECOREARNOLD_API void convertP( const IECore::Primitive *primitive, AtNode *shape, const char *name );
-IECOREARNOLD_API void convertP( const std::vector<const IECore::Primitive *> &samples, AtNode *shape, const char *name );
-
-IECOREARNOLD_API void convertRadius( const IECore::Primitive *primitive, AtNode *shape );
-IECOREARNOLD_API void convertRadius( const std::vector<const IECore::Primitive *> &samples, AtNode *shape );
-
-IECOREARNOLD_API void convertPrimitiveVariable( const IECore::Primitive *primitive, const IECore::PrimitiveVariable &primitiveVariable, AtNode *shape, const char *name );
-/// Converts primitive variables from primitive into user parameters on shape, ignoring any variables
-/// whose names are present in the ignore array.
-IECOREARNOLD_API void convertPrimitiveVariables( const IECore::Primitive *primitive, AtNode *shape, const char **namesToIgnore=NULL );
-
-} // namespace ShapeAlgo
+boost::python::object atNodeToPythonObject( AtNode *node );
+void bindToArnoldConverter();
 
 } // namespace IECoreArnold
 
-#endif // IECOREARNOLD_SHAPEALGO_H
+#endif //  IECOREARNOLD_TOARNOLDCONVERTERBINDING_H

@@ -39,14 +39,16 @@
 
 #include "IECore/SpherePrimitive.h"
 
+#include "IECoreArnold/Export.h"
+
 namespace IECoreArnold
 {
 
 namespace SphereAlgo
 {
 
-AtNode *convert( const IECore::SpherePrimitive *sphere );
-AtNode *convert( const std::vector<const IECore::SpherePrimitive *> &samples, const std::vector<float> &sampleTimes );
+IECOREARNOLD_API AtNode *convert( const IECore::SpherePrimitive *sphere );
+IECOREARNOLD_API AtNode *convert( const std::vector<const IECore::SpherePrimitive *> &samples, const std::vector<float> &sampleTimes );
 
 } // namespace SphereAlgo
 

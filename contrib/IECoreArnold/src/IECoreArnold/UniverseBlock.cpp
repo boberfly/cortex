@@ -63,7 +63,7 @@ void loadMetadata( const std::string &pluginPaths )
 			{
 				if( dIt->path().extension() == ".mtd" )
 				{
-					if( !AiMetaDataLoadFile( dIt->path().c_str() ) )
+					if( !AiMetaDataLoadFile( (char *)dIt->path().c_str() ) )
 					{
 						throw IECore::Exception( boost::str( boost::format( "Failed to load \"%s\"" ) % dIt->path().string() ) );
 					}
