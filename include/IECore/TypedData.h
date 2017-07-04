@@ -61,7 +61,7 @@ namespace IECore
 /// TypedData class - see comments in those files for further details.
 /// \ingroup coreGroup
 template <class T>
-class IECORE_API TypedData : public Data
+class IECORE_EXPORT TypedData : public Data
 {
 	public:
 	
@@ -114,7 +114,7 @@ class IECORE_API TypedData : public Data
 
 		/// Return the size of the internal data structure in terms of base type elements.
 		/// Throws an Exception if this type has no single base type.
-		size_t baseSize() const;
+		std::size_t baseSize() const;
 
 	protected:
 
@@ -148,7 +148,7 @@ class IECORE_API TypedData : public Data
 /// for small types.
 #define IECORE_DECLARE_TYPEDDATA( TYPENAME, T, BASETYPE, DATAHOLDER ) \
 	template <> \
-	class IECORE_API TypedDataTraits<T> \
+	class IECORE_EXPORT TypedDataTraits<T> \
 	{ \
 		public : \
 			typedef BASETYPE BaseType; \
