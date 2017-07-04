@@ -34,10 +34,13 @@
 
 #include "boost/python.hpp" // this include /must/ come first!
 
+#include "boost/scoped_array.hpp"
 #include "boost/format.hpp"
 #include "boost/python/suite/indexing/container_utils.hpp"
 
 #include "IECore/DeepPixel.h"
+
+#include "IECorePython/DeepPixelBinding.h"
 #include "IECorePython/RefCountedBinding.h"
 
 using namespace boost::python;
@@ -167,8 +170,9 @@ struct DeepPixelHelper
 		
 		unsigned numChannels = pixel->numChannels();
 
-		float data[numChannels];
-		pixel->interpolatedChannelData( depth, data );
+		//float data[numChannels];
+		boost::scoped_array<float> data( new float[numChannels] );
+		pixel->interpolatedChannelData( depth, &data[0] );
 		for ( unsigned c=0; c < numChannels; ++c )
 		{
 			result.append( data[c] );
@@ -194,9 +198,9 @@ struct DeepPixelHelper
 	{
 		unsigned numChannels = pixel->numChannels();
 		
-		float data[numChannels];
+		boost::scoped_array<float> data( new float[numChannels] );
 		
-		pixel->composite( data );
+		pixel->composite( &data[0] );
 		
 		list result;
 		for ( unsigned c=0; c < numChannels; ++c )
