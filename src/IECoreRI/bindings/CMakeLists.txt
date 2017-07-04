@@ -1,0 +1,60 @@
+FILE( GLOB H_FILES RELATIVE ${CMAKE_CURRENT_SOURCE_DIR}/../../../include/IECoreRI/bindings/ "*.h" )
+
+FILE( GLOB CXX_FILES RELATIVE ${CMAKE_CURRENT_SOURCE_DIR} "*.cpp" )
+
+FILE( GLOB PY_FILES RELATIVE ${CMAKE_CURRENT_SOURCE_DIR} "../../../python/IECoreRI/*.py" )
+
+IF( NOT ${IECORERI_WITH_PTC} )
+  LIST( REMOVE_ITEM CXX_FILES
+        PTCParticleReaderBinding.cpp
+        PTCParticleWriterBinding.cpp )
+ENDIF()
+
+IF( NOT ${IECORERI_WITH_SX} )
+  LIST( REMOVE_ITEM CXX_FILES
+        SXRendererBinding.cpp )
+ENDIF()
+
+IF( NOT ${IECORERI_WITH_GX} )
+  LIST( REMOVE_ITEM CXX_FILES
+        GXEvaluatorBinding.cpp )
+ENDIF()
+
+IF( NOT ${IECORERI_WITH_RIXDEEP} )
+  LIST( REMOVE_ITEM CXX_FILES
+        DTEXDeepImageReaderBinding.cpp
+        DTEXDeepImageWriterBinding.cpp )
+ENDIF()
+
+IF( NOT ${IECORERI_WITH_DEEPSHW} )
+  LIST( REMOVE_ITEM CXX_FILES
+        SHWDeepImageReaderBinding.cpp
+        SHWDeepImageWriterBinding.cpp )
+ENDIF()
+
+SET( SOURCE_FILES ${CXX_FILES} ${H_FILES} )
+
+SET( THIS_LIBS
+     IECore
+     IECorePython
+     IECoreRI
+     ${CORTEX_RMAN_LIBRMAN}
+     ${Boost_LIBRARIES}
+     ${ILMBASE_LIBRARIES}
+     ${OPENEXR_LIBRARIES}
+     ${TBB_LIBRARIES}
+     ${ZLIB_LIBRARIES} )
+
+ADD_LIBRARY( _IECoreRI MODULE ${SOURCE_FILES} )
+
+IF ( WINDOWS )
+    SET_TARGET_PROPERTIES( _IECoreRI PROPERTIES SUFFIX ".pyd" )
+ENDIF ()
+
+TARGET_LINK_LIBRARIES( _IECoreRI ${THIS_LIBS} )
+
+INSTALL( TARGETS _IECoreRI
+         LIBRARY DESTINATION python/IECoreRI )
+
+INSTALL( FILES ${PY_FILES}
+         DESTINATION python/IECoreRI )

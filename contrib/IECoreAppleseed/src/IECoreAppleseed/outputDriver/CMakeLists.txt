@@ -1,0 +1,16 @@
+FILE( GLOB CXX_FILES RELATIVE ${CMAKE_CURRENT_SOURCE_DIR} "*.cpp" )
+
+SET( SOURCE_FILES ${CXX_FILES} )
+
+SET( THIS_LIBS
+     IECoreAppleseed )
+
+ADD_LIBRARY( appleseedOutputDriver MODULE ${SOURCE_FILES} )
+
+#SET_TARGET_PROPERTIES( appleseedOutputDriver PROPERTIES OUTPUT_NAME ieOutputDriver )
+SET_TARGET_PROPERTIES( appleseedOutputDriver PROPERTIES PREFIX "" )
+
+TARGET_LINK_LIBRARIES( appleseedOutputDriver ${THIS_LIBS} )
+
+INSTALL( TARGETS appleseedOutputDriver
+         LIBRARY DESTINATION arnold/outputDrivers )

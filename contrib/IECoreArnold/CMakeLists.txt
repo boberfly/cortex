@@ -1,0 +1,7 @@
+INCLUDE_DIRECTORIES( ${CORTEX_ARNOLD_INCLUDE_PATH} )
+INCLUDE_DIRECTORIES( ${CMAKE_CURRENT_SOURCE_DIR}/include )
+ADD_SUBDIRECTORY( src/IECoreArnold )
+IF( WITH_TESTS )
+  MESSAGE( STATUS "CMake build scripts for IECoreArnold tests are currently not implemented!" )
+  #ADD_SUBDIRECTORY( test/IECoreArnold )
+ENDIF()
