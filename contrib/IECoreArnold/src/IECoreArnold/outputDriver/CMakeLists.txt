@@ -1,0 +1,16 @@
+FILE( GLOB CXX_FILES RELATIVE ${CMAKE_CURRENT_SOURCE_DIR} "*.cpp" )
+
+SET( SOURCE_FILES ${CXX_FILES} )
+
+SET( THIS_LIBS
+     IECoreArnold )
+
+ADD_LIBRARY( arnoldOutputDriver MODULE ${SOURCE_FILES} )
+
+SET_TARGET_PROPERTIES( arnoldOutputDriver PROPERTIES OUTPUT_NAME ieOutputDriver )
+SET_TARGET_PROPERTIES( arnoldOutputDriver PROPERTIES PREFIX "" )
+
+TARGET_LINK_LIBRARIES( arnoldOutputDriver ${THIS_LIBS} )
+
+INSTALL( TARGETS arnoldOutputDriver
+         LIBRARY DESTINATION arnold/outputDrivers )

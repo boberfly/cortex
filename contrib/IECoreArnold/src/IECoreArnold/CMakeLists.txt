@@ -1,0 +1,35 @@
+ADD_SUBDIRECTORY( bindings )
+ADD_SUBDIRECTORY( outputDriver )
+ADD_SUBDIRECTORY( procedural )
+
+FILE( GLOB H_FILES_PRIVATE RELATIVE ${CMAKE_CURRENT_SOURCE_DIR} "../../include/IECoreArnold/private/*.h" "../../include/IECoreArnold/private/*.inl" )
+
+FILE( GLOB H_FILES RELATIVE ${CMAKE_CURRENT_SOURCE_DIR} "../../include/IECoreArnold/*.h" "../../include/IECoreArnold/*.inl" )
+
+FILE( GLOB CXX_FILES RELATIVE ${CMAKE_CURRENT_SOURCE_DIR} "*.cpp" )
+
+SET( SOURCE_FILES ${CXX_FILES} ${H_FILES} ${H_FILES_PRIVATE} )
+
+SET( THIS_LIBS
+     IECore
+     ${CORTEX_ARNOLD_LIBARNOLD}
+     ${Boost_LIBRARIES}
+     ${CORTEX_ILMBASE_LIBS}
+     ${CORTEX_OPENEXR_LIBS}
+     ${CORTEX_TBB_LIBS}
+     ${ZLIB_LIBRARIES} )
+
+IF( BUILD_STATIC_LIBS )
+  ADD_LIBRARY( IECoreArnold STATIC ${SOURCE_FILES} )
+ELSE()
+  ADD_LIBRARY( IECoreArnold SHARED ${SOURCE_FILES} )
+ENDIF()
+
+TARGET_LINK_LIBRARIES( IECoreArnold ${THIS_LIBS} )
+
+INSTALL( TARGETS IECoreArnold
+         DESTINATION lib
+         ARCHIVE DESTINATION lib )
+
+INSTALL( FILES ${H_FILES}
+         DESTINATION include/IECoreArnold )

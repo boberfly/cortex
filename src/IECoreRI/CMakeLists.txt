@@ -1,0 +1,141 @@
+INCLUDE( CheckSymbolExists )
+
+INCLUDE_DIRECTORIES( ${CORTEX_RMAN_INCLUDE_PATH} )
+
+FILE( GLOB H_FILES_PRIVATE RELATIVE ${CMAKE_CURRENT_SOURCE_DIR} "../../include/IECoreRI/private/*.h" )
+
+FILE( GLOB H_FILES RELATIVE ${CMAKE_CURRENT_SOURCE_DIR} "../../include/IECoreRI/*.h" )
+
+FILE( GLOB CXX_FILES RELATIVE ${CMAKE_CURRENT_SOURCE_DIR} "*.cpp" )
+
+IF( EXISTS "${CORTEX_RMAN_INCLUDE_PATH}/pointcloud.h" )
+  ADD_DEFINITIONS( -DIECORERI_WITH_PTC )
+  SET( IECORERI_WITH_PTC 1 )
+ELSE()
+  LIST( REMOVE_ITEM CXX_FILES
+        PTCParticleReader.cpp
+        PTCParticleWriter.cpp )
+  SET( IECORERI_WITH_PTC 0 )
+ENDIF()
+
+MESSAGE( STATUS "FIXME: Can't make CMake find RiObjectBeginV in ri.h, so it is hard-coded to expect it." )
+
+#SET( IECORERI_WITH_OBJECTBEGINV 0 )
+#SET( RIOBJECTBEGINV 0 )
+#CHECK_SYMBOL_EXISTS( RiObjectBeginV "${CORTEX_RMAN_INCLUDE_PATH}/ri.h" RIOBJECTBEGINV )
+#IF( ${RIOBJECTBEGINV} )
+  ADD_DEFINITIONS( -DIECORERI_WITH_OBJECTBEGINV )
+  SET( IECORERI_WITH_OBJECTBEGINV 1 )
+#ENDIF()
+#UNSET( RIOBJECTBEGINV )
+
+
+MESSAGE( STATUS "FIXME: Can't make CMake find RiProceduralV in ri.h, so it is hard-coded to expect it." )
+
+#SET( IECORERI_WITH_RIPROCEDURALV 0 )
+#SET( RIPROCEDURALV 0 )
+#CHECK_SYMBOL_EXISTS( RiProceduralV "${CORTEX_RMAN_INCLUDE_PATH}/ri.h" RIPROCEDURALV )
+#IF( ${RIPROCEDURALV} )
+  ADD_DEFINITIONS( -DIECORERI_WITH_PROCEDURALV )
+  SET( IECORERI_WITH_PROCEDURALV 1 )
+#ENDIF()
+#UNSET( RIPROCEDURALV )
+
+MESSAGE( STATUS "FIXME: Can't make CMake find SxGetParameter in sx.h, so it is hard-coded to expect it." )
+
+SET( IECORERI_WITH_SX 0 )
+IF( EXISTS "${CORTEX_RMAN_INCLUDE_PATH}/sx.h" )
+  SET( SXGETPARAMETER 0 )
+#  CHECK_SYMBOL_EXISTS( SxGetParameter "${CORTEX_RMAN_INCLUDE_PATH}/sx.h" SXGETPARAMETER )
+#  IF( ${CORTEX_DELIGHT} AND ${SXGETPARAMETER} )
+  IF( ${CORTEX_DELIGHT} ) # Comment out when fixed
+    ADD_DEFINITIONS( -DIECORERI_WITH_SX )
+    SET( IECORERI_WITH_SX 1 )
+  ELSE()
+    LIST( REMOVE_ITEM CXX_FILES
+          SXRenderer.cpp
+          SXRendererImplementation.cpp
+          SXExecutor.cpp )
+    IF( ${CORTEX_DELIGHT} )
+      MESSAGE( STATUS "WARNING : Supported Sx API version not found - not building SXRenderer. Use 3delight 9.0.36 or later." )
+    ENDIF()
+  ENDIF()
+  UNSET( SXGETPARAMETER )
+ENDIF()
+
+MESSAGE( STATUS "FIXME: Can't make CMake find GxGetGeometry in gx.h, so it is hard-coded to expect it." )
+
+SET( IECORERI_WITH_GX 0 )
+IF( EXISTS "${CORTEX_RMAN_INCLUDE_PATH}/gx.h" )
+  SET( GXGETGEOMETRY 0 )
+#  CHECK_SYMBOL_EXISTS( GxGetGeometry "${CORTEX_RMAN_INCLUDE_PATH}/gx.h" GXGETGEOMETRY )
+#  IF( ${CORTEX_DELIGHT} AND ${GXGETGEOMETRY} )
+  IF( ${CORTEX_DELIGHT} ) # Comment out when fixed
+    ADD_DEFINITIONS( -DIECORERI_WITH_GX )
+    SET( IECORERI_WITH_GX 1 )
+  ELSE()
+    LIST( REMOVE_ITEM CXX_FILES
+          GXEvaluator.cpp )
+    IF( ${CORTEX_DELIGHT} )
+      MESSAGE( STATUS "WARNING : Gx API not found - not building GXEvaluator. Use 3delight 9.0.39 or later." )
+    ENDIF()
+  ENDIF()
+  UNSET( GXGETGEOMETRY )
+ENDIF()
+
+SET( IECORERI_WITH_RIXDEEP 0 )
+IF( EXISTS "${CORTEX_RMAN_INCLUDE_PATH}/RixDeepTexture.h" )
+  ADD_DEFINITIONS( -DIECORERI_WITH_RIXDEEP )
+  SET( IECORERI_WITH_RIXDEEP 1 )
+ELSE()
+  LIST( REMOVE_ITEM CXX_FILES
+        DTEXDeepImageReader.cpp
+        DTEXDeepImageWriter.cpp )
+  IF( NOT ${CORTEX_DELIGHT} )
+    MESSAGE( STATUS "WARNING : RixDeepTexture API not found - not building IECoreRI::DTEXDeepTexture functionality. Use PRMan 16.1 or later." )
+  ENDIF()
+ENDIF()
+
+SET( IECORERI_WITH_DEEPSHW 0 )
+IF( ${CORTEX_DELIGHT} AND EXISTS "${CORTEX_RMAN_INCLUDE_PATH}/dtex.h" )
+  ADD_DEFINITIONS( -DIECORERI_WITH_DEEPSHW )
+  SET( IECORERI_WITH_DEEPSHW 1 )
+ELSE()
+  LIST( REMOVE_ITEM CXX_FILES
+        SHWDeepImageReader.cpp
+        SHWDeepImageWriter.cpp )
+ENDIF()
+
+SET( SOURCE_FILES ${CXX_FILES} ${H_FILES} ${H_FILES_PRIVATE} )
+
+SET( THIS_LIBS
+     IECore
+     ${CORTEX_RMAN_LIBRMAN}
+     ${Boost_LIBRARIES}
+     ${ILMBASE_LIBRARIES}
+     ${OPENEXR_LIBRARIES}
+     ${TBB_LIBRARIES}
+     ${ZLIB_LIBRARIES} )
+
+IF( BUILD_STATIC_LIBS )
+  ADD_LIBRARY( IECoreRI STATIC ${SOURCE_FILES} )
+ELSE()
+  ADD_LIBRARY( IECoreRI SHARED ${SOURCE_FILES} )
+ENDIF()
+
+TARGET_LINK_LIBRARIES( IECoreRI ${THIS_LIBS} )
+
+INSTALL( TARGETS IECoreRI
+         DESTINATION lib
+         ARCHIVE DESTINATION lib )
+
+INSTALL( FILES ${H_FILES}
+         DESTINATION include/IECoreRI )
+
+# Adding subdirectory at the bottom so we inherit all those checks when building the python bindings,
+# so we need to unset a few things also.
+UNSET( CXX_FILES )
+UNSET( H_FILES )
+UNSET( SOURCE_FILES )
+UNSET( THIS_LIBS )
+ADD_SUBDIRECTORY( bindings )

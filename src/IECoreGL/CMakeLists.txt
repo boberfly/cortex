@@ -1,0 +1,57 @@
+ADD_SUBDIRECTORY( bindings )
+
+INCLUDE_DIRECTORIES( ${GLEW_INCLUDE_DIR} )
+INCLUDE_DIRECTORIES( ${GLEW_INCLUDE_DIR}/GL )
+
+FILE( GLOB H_FILES_PRIVATE RELATIVE ${CMAKE_CURRENT_SOURCE_DIR} "../../include/IECoreGL/private/*.h" "../../include/IECoreGL/private/*.inl" )
+
+FILE( GLOB H_FILES RELATIVE ${CMAKE_CURRENT_SOURCE_DIR} "../../include/IECoreGL/*.h" "../../include/IECoreGL/*.inl" )
+
+FILE( GLOB CXX_FILES RELATIVE ${CMAKE_CURRENT_SOURCE_DIR} "*.cpp" )
+
+FILE( GLOB GLSL_FILES RELATIVE ${CMAKE_CURRENT_SOURCE_DIR} "../../glsl/*.glsl" "../../glsl/*.frag" "../../glsl/*.vert" )
+
+FILE( GLOB GLSL_H_FILES RELATIVE ${CMAKE_CURRENT_SOURCE_DIR} "../../glsl/IECoreGL/*.h" )
+
+IF(NOT FREETYPE_FOUND )
+    LIST( REMOVE_ITEM CXX_FILES
+        Font.cpp
+        FontLoader.cpp
+        TextPrimitive.cpp )
+ENDIF()
+
+SET( SOURCE_FILES ${CXX_FILES} ${H_FILES} ${H_FILES_PRIVATE} )
+
+SET( THIS_LIBS
+     IECore
+     ${CORTEX_GL_LIBS}
+     ${Boost_LIBRARIES}
+     ${Ilmbase_HALF_LIBRARY}
+     ${Ilmbase_IEX_LIBRARY}
+     ${Ilmbase_IEXMATH_LIBRARY}
+     ${Ilmbase_ILMTHREAD_LIBRARY}
+     ${Ilmbase_IMATH_LIBRARY}
+     ${Openexr_ILMIMF_LIBRARY}
+     ${TBB_LIBRARIES}
+     ${ZLIB_LIBRARIES} )
+
+IF( BUILD_STATIC_LIBS )
+  ADD_LIBRARY( IECoreGL STATIC ${SOURCE_FILES} )
+ELSE()
+  ADD_LIBRARY( IECoreGL SHARED ${SOURCE_FILES} )
+ENDIF()
+
+TARGET_LINK_LIBRARIES( IECoreGL ${THIS_LIBS} )
+
+INSTALL( TARGETS IECoreGL
+         DESTINATION lib
+         ARCHIVE DESTINATION lib )
+
+INSTALL( FILES ${H_FILES}
+         DESTINATION include/IECoreGL )
+
+INSTALL( FILES ${GLSL_FILES}
+         DESTINATION glsl/ )
+
+INSTALL( FILES ${GLSL_H_FILES}
+         DESTINATION glsl/IECoreGL )
