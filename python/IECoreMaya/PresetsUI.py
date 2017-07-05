@@ -391,7 +391,7 @@ class LoadUI( UIElement ) :
 			return
 			
 		paths = os.environ[self.__envVar]
-		sp = IECore.SearchPath( os.path.expandvars( paths ), ":" )
+		sp = IECore.SearchPath( os.path.expandvars( paths ), os.pathsep )
 		self.__classLoader = IECore.ClassLoader( sp )
 		
 		presets = self.__getPresets( parameterised[0], self.__rootParameter )
@@ -571,7 +571,7 @@ class SearchPathMenu() :
 
 		self.__menu = maya.cmds.optionMenuGrp( *args, **kwargs )
 
-		for p in searchPaths.split( ":" ) :
+		for p in searchPaths.split( os.pathsep ) :
 			maya.cmds.menuItem( label = p ) 
 
 		maya.cmds.setParent( oldParent )

@@ -33,6 +33,7 @@
 #
 ##########################################################################
 
+import os
 import unittest
 import IECore
 import shlex
@@ -41,7 +42,7 @@ class testParameterParser( unittest.TestCase ) :
 
 	def testMultiply( self ) :
 
-		l = IECore.ClassLoader( IECore.SearchPath( "test/IECore/ops", ":" ) )
+		l = IECore.ClassLoader( IECore.SearchPath( "test/IECore/ops", os.pathsep ) )
 		a = l.load( "maths/multiply" )()
 
 		p = a.parameters()
@@ -51,7 +52,7 @@ class testParameterParser( unittest.TestCase ) :
 
 	def testParameterTypes( self ) :
 
-		a = IECore.ClassLoader( IECore.SearchPath( "test/IECore/ops", ":" ) ).load( "parameterTypes" )()
+		a = IECore.ClassLoader( IECore.SearchPath( "test/IECore/ops", os.pathsep ) ).load( "parameterTypes" )()
 
 		IECore.ParameterParser().parse( [
 			"-a", "10",
@@ -85,7 +86,7 @@ class testParameterParser( unittest.TestCase ) :
 
 	def testPresetParsing( self ) :
 
-		a = IECore.ClassLoader( IECore.SearchPath( "test/IECore/ops", ":" ) ).load( "presetParsing" )()
+		a = IECore.ClassLoader( IECore.SearchPath( "test/IECore/ops", os.pathsep ) ).load( "presetParsing" )()
 
 		IECore.ParameterParser().parse( [
 			"-h", "x",
@@ -96,7 +97,7 @@ class testParameterParser( unittest.TestCase ) :
 
 	def testReadParsing( self ) :
 
-		l = IECore.ClassLoader( IECore.SearchPath( "test/IECore/ops", ":" ) )
+		l = IECore.ClassLoader( IECore.SearchPath( "test/IECore/ops", os.pathsep ) )
 		a = l.load( "maths/multiply" )()
 
 		p = a.parameters()
@@ -106,7 +107,7 @@ class testParameterParser( unittest.TestCase ) :
 
 	def testSerialising( self ) :
 
-		a = IECore.ClassLoader( IECore.SearchPath( "test/IECore/ops", ":" ) ).load( "parameterTypes" )()
+		a = IECore.ClassLoader( IECore.SearchPath( "test/IECore/ops", os.pathsep ) ).load( "parameterTypes" )()
 
 		IECore.ParameterParser().parse( [
 			"-a", "10",
@@ -142,7 +143,7 @@ class testParameterParser( unittest.TestCase ) :
 			a.parameters().removeParameter( name )
 
 		s = IECore.ParameterParser().serialise( a.parameters() )
-		a = IECore.ClassLoader( IECore.SearchPath( "test/IECore/ops", ":" ) ).load( "parameterTypes" )()
+		a = IECore.ClassLoader( IECore.SearchPath( "test/IECore/ops", os.pathsep ) ).load( "parameterTypes" )()
 		IECore.ParameterParser().parse( s, a.parameters() )
 
 		a()
@@ -176,7 +177,7 @@ class testParameterParser( unittest.TestCase ) :
 	
 	def testStringParsing( self ) :
 
-		a = IECore.ClassLoader( IECore.SearchPath( "test/IECore/ops", ":" ) ).load( "stringParsing" )()
+		a = IECore.ClassLoader( IECore.SearchPath( "test/IECore/ops", os.pathsep ) ).load( "stringParsing" )()
 
 		IECore.ParameterParser().parse( [
 			"-emptyString", "",
@@ -187,7 +188,7 @@ class testParameterParser( unittest.TestCase ) :
 
 		a()
 
-		a = IECore.ClassLoader( IECore.SearchPath( "test/IECore/ops", ":" ) ).load( "stringParsing" )()
+		a = IECore.ClassLoader( IECore.SearchPath( "test/IECore/ops", os.pathsep ) ).load( "stringParsing" )()
 
 		IECore.ParameterParser().parse( shlex.split("-emptyString '' -normalString 'hello' -stringWithSpace 'hello there' -stringWithManySpaces 'hello there old chap'"), a.parameters() )
 
@@ -308,7 +309,7 @@ class testParameterParser( unittest.TestCase ) :
 
 	def testEvalParsing( self ) :
 
-		l = IECore.ClassLoader( IECore.SearchPath( "test/IECore/ops", ":" ) )
+		l = IECore.ClassLoader( IECore.SearchPath( "test/IECore/ops", os.pathsep ) )
 		a = l.load( "maths/multiply" )()
 
 		p = a.parameters()

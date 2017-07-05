@@ -113,7 +113,7 @@ class ThreadingTest( unittest.TestCase ) :
 			( "test/IECore/data/tiff/toTraceThinned.tif", ),
 		]
 	
-		sp = IECore.SearchPath( "./", ":" )
+		sp = IECore.SearchPath( "./", os.pathsep )
 		calls = [ lambda f : IECore.CachedReader( sp, IECore.ObjectPool(1024 * 1024 * 10) ).read( f ) ] * len( args )
 		
 		self.callSomeThings( calls, args, threaded=True )
@@ -203,7 +203,7 @@ class ThreadingTest( unittest.TestCase ) :
 			( "test/IECore/data/cobFiles/pSphereShape1.cob", ),
 		] 
 	
-		cachedReader = IECore.CachedReader( IECore.SearchPath( "./", ":" ) )
+		cachedReader = IECore.CachedReader( IECore.SearchPath( "./", os.pathsep ) )
 		
 		calls = [ lambda f : cachedReader.read( f ) ] * len( args )
 
@@ -221,7 +221,7 @@ class ThreadingTest( unittest.TestCase ) :
 			( "test/IECore/data/dpx/ramp.dpx", ),
 		] * 4
 	
-		cachedReader = IECore.CachedReader( IECore.SearchPath( "./", ":" ) )
+		cachedReader = IECore.CachedReader( IECore.SearchPath( "./", os.pathsep ) )
 		
 		calls = [ lambda f : cachedReader.read( f ) ] * len( args )
 

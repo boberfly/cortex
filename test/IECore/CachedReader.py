@@ -43,18 +43,18 @@ class CachedReaderTest( unittest.TestCase ) :
 	def testConstructors( self ) :
 
 		# test default pool
-		r = CachedReader( SearchPath( "./", ":") )
+		r = CachedReader( SearchPath( "./", os.pathsep) )
 		self.assertTrue( r.objectPool().isSame( ObjectPool.defaultObjectPool() ) )
 
 		# test custom pool
 		pool = ObjectPool( 100 * 1024 * 1024 )
-		r = CachedReader( SearchPath( "./", ":" ), pool )
+		r = CachedReader( SearchPath( "./", os.pathsep ), pool )
 		self.assertTrue( r.objectPool().isSame( pool ) )
 
 	def test( self ) :
 
 		pool = ObjectPool( 100 * 1024 * 1024 )
-		r = CachedReader( SearchPath( "./", ":" ), pool )
+		r = CachedReader( SearchPath( "./", os.pathsep ), pool )
 
 		o = r.read( "test/IECore/data/cobFiles/compoundData.cob" )
 		self.assertEqual( o.typeName(), "CompoundData" )
@@ -124,7 +124,7 @@ class CachedReaderTest( unittest.TestCase ) :
 	
 		def check( fileName ) :
 		
-			r = CachedReader( SearchPath( "./", ":" ), ObjectPool(100 * 1024 * 1024) )
+			r = CachedReader( SearchPath( "./", os.pathsep ), ObjectPool(100 * 1024 * 1024) )
 			firstException = None
 			try :
 				r.read( fileName )		
@@ -152,7 +152,7 @@ class CachedReaderTest( unittest.TestCase ) :
 	def testChangeSearchPaths( self ) :
 	
 		# read a file from one path
-		r = CachedReader( SearchPath( "./test/IECore/data/cachedReaderPath1", ":" ), ObjectPool(100 * 1024 * 1024) )
+		r = CachedReader( SearchPath( "./test/IECore/data/cachedReaderPath1", os.pathsep ), ObjectPool(100 * 1024 * 1024) )
 		
 		o1 = r.read( "file.cob" )
 		
@@ -160,7 +160,7 @@ class CachedReaderTest( unittest.TestCase ) :
 		self.failUnless( r.cached( "file.cob" ) )
 		
 		# read a file of the same name from a different path
-		r.searchPath = SearchPath( "./test/IECore/data/cachedReaderPath2", ":" )
+		r.searchPath = SearchPath( "./test/IECore/data/cachedReaderPath2", os.pathsep )
 		self.failIf( r.cached( "file.cob" ) )
 		
 		o2 = r.read( "file.cob" )
@@ -169,7 +169,7 @@ class CachedReaderTest( unittest.TestCase ) :
 		self.failUnless( r.cached( "file.cob" ) )
 		
 		# set the paths to the same as before and check we didn't obliterate the cache unecessarily
-		r.searchPath = SearchPath( "./test/IECore/data/cachedReaderPath2", ":" )
+		r.searchPath = SearchPath( "./test/IECore/data/cachedReaderPath2", os.pathsep )
 		self.failUnless( r.cached( "file.cob" ) )		
 
 	def testDefault( self ) :
@@ -180,15 +180,15 @@ class CachedReaderTest( unittest.TestCase ) :
 		r2 = CachedReader.defaultCachedReader()
 		self.assert_( r.isSame( r2 ) )
 		self.assertTrue( r.objectPool().isSame( ObjectPool.defaultObjectPool() ) )
-		self.assertEqual( r.searchPath, SearchPath( "a:test:path", ":" ) )
+		self.assertEqual( r.searchPath, SearchPath( "a:test:path", os.pathsep ) )
 		
 	def testPostProcessing( self ) :
 	
-		r = CachedReader( SearchPath( "./test/IECore/data/cobFiles", ":" ), ObjectPool(100 * 1024 * 1024) )
+		r = CachedReader( SearchPath( "./test/IECore/data/cobFiles", os.pathsep ), ObjectPool(100 * 1024 * 1024) )
 		m = r.read( "polySphereQuads.cob" )
 		self.failUnless( 4 in m.verticesPerFace )
 
-		r = CachedReader( SearchPath( "./test/IECore/data/cobFiles", ":" ), TriangulateOp(), ObjectPool(100 * 1024 * 1024) )
+		r = CachedReader( SearchPath( "./test/IECore/data/cobFiles", os.pathsep ), TriangulateOp(), ObjectPool(100 * 1024 * 1024) )
 		m = r.read( "polySphereQuads.cob" )
 		for v in m.verticesPerFace :
 			self.assertEqual( v, 3 )
@@ -205,7 +205,7 @@ class CachedReaderTest( unittest.TestCase ) :
 			
 				raise Exception( "I am a very naughty op" )
 				
-		r = CachedReader( SearchPath( "./test/IECore/data/cobFiles", ":" ), PostProcessor(), ObjectPool(100 * 1024 * 1024) )
+		r = CachedReader( SearchPath( "./test/IECore/data/cobFiles", os.pathsep ), PostProcessor(), ObjectPool(100 * 1024 * 1024) )
 		
 		firstException = None
 		try :
@@ -249,7 +249,7 @@ class CachedReaderTest( unittest.TestCase ) :
 			"test/IECore/data/cachedReaderPath2/file.cob",
 		]
 		
-		r = CachedReader( SearchPath( "./", ":" ), ObjectPool(100 * 1024 * 1024) )
+		r = CachedReader( SearchPath( "./", os.pathsep ), ObjectPool(100 * 1024 * 1024) )
 		
 		t1 = threading.Thread( target=func1, args = [ r, files ] )
 		t2 = threading.Thread( target=func1, args = [ r, files ] )

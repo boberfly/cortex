@@ -32,6 +32,7 @@
 #
 ##########################################################################
 
+import os
 import unittest
 
 import IECore
@@ -40,7 +41,7 @@ class TestFormattedParameterHelp( unittest.TestCase ) :
 
 	def test( self ) :
 
-		a = IECore.ClassLoader( IECore.SearchPath( "test/IECore/ops", ":" ) ).load( "parameterTypes" )()
+		a = IECore.ClassLoader( IECore.SearchPath( "test/IECore/ops", os.pathsep ) ).load( "parameterTypes" )()
 		formatter = IECore.WrappedTextFormatter( open( "/dev/null", "w" ) )
 		IECore.formatParameterHelp( a.parameters(), formatter )
 

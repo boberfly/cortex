@@ -46,13 +46,13 @@ class TextureLoaderTest( unittest.TestCase ) :
 
 	def testLoadRGB( self ) :
 	
-		l = IECoreGL.TextureLoader( IECore.SearchPath( "./", ":" ) )
+		l = IECoreGL.TextureLoader( IECore.SearchPath( "./", os.pathsep ) )
 		t = l.load( "test/IECore/data/exrFiles/carPark.exr" )
 		self.failUnless( isinstance( t, IECoreGL.ColorTexture ) )
 
 	def testLoadGreyscale( self ) :
 	
-		l = IECoreGL.TextureLoader( IECore.SearchPath( "./", ":" ) )
+		l = IECoreGL.TextureLoader( IECore.SearchPath( "./", os.pathsep ) )
 		t = l.load( "test/IECore/data/jpg/greyscaleCheckerBoard.jpg" )
 		self.failUnless( isinstance( t, IECoreGL.LuminanceTexture ) )
 	

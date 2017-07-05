@@ -198,7 +198,7 @@ class TestBasicPreset( unittest.TestCase ) :
 		messageHandler = IECore.CapturingMessageHandler()
 		with messageHandler :
 		
-			loader = IECore.ClassLoader( IECore.SearchPath( savePath, ":" ) )
+			loader = IECore.ClassLoader( IECore.SearchPath( savePath, os.pathsep ) )
 			p = loader.load( "basicPresetTestClassLoader" )()
 		
 		self.assertEqual( len( messageHandler.messages ), 0 )

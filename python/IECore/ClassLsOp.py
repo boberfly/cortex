@@ -104,9 +104,9 @@ class ClassLsOp( Op ) :
 				raise RuntimeError( "Must specify either searchPath or searchPathEnvVar." )
 
 			if operands["searchPath"].value :
-				sp = SearchPath( operands["searchPath"].value, ":" )
+				sp = SearchPath( operands["searchPath"].value, os.pathsep )
 			else :
-				sp = SearchPath( os.path.expandvars( os.environ[operands["searchPathEnvVar"].value] ), ":" )
+				sp = SearchPath( os.path.expandvars( os.environ[operands["searchPathEnvVar"].value] ), os.pathsep )
 
 			loader = ClassLoader( sp )
 
