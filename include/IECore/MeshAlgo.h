@@ -38,6 +38,7 @@
 #include <vector>
 #include <utility>
 
+#include "IECore/Export.h"
 #include "IECore/PrimitiveVariable.h"
 #include "IECore/MeshPrimitive.h"
 
@@ -54,10 +55,10 @@ IECORE_API std::pair<PrimitiveVariable, PrimitiveVariable> calculateTangents( co
 	const std::string &position = "P"
 );
 
-void resamplePrimitiveVariable( const MeshPrimitive *mesh, PrimitiveVariable& primitiveVariable, PrimitiveVariable::Interpolation interpolation );
+IECORE_API void resamplePrimitiveVariable( const MeshPrimitive *mesh, PrimitiveVariable& primitiveVariable, PrimitiveVariable::Interpolation interpolation );
 
 /// create a new MeshPrimitive deleting faces from the input MeshPrimitive based on the facesToDelete uniform (int|float|bool) PrimitiveVariable
-MeshPrimitivePtr deleteFaces( const MeshPrimitive *meshPrimitive, const PrimitiveVariable &facesToDelete );
+IECORE_API MeshPrimitivePtr deleteFaces( const MeshPrimitive *meshPrimitive, const PrimitiveVariable &facesToDelete );
 
 } // namespace MeshAlgo
 } // namespace IECore

@@ -38,6 +38,7 @@
 #include <vector>
 #include <utility>
 
+#include "IECore/Export.h"
 #include "IECore/PrimitiveVariable.h"
 #include "IECore/CurvesPrimitive.h"
 
@@ -47,10 +48,10 @@ namespace IECore
 namespace CurvesAlgo
 {
 
-void resamplePrimitiveVariable( const CurvesPrimitive *curvesPrimitive, PrimitiveVariable &primitiveVariable, PrimitiveVariable::Interpolation interpolation );
+IECORE_API void resamplePrimitiveVariable( const CurvesPrimitive *curvesPrimitive, PrimitiveVariable &primitiveVariable, PrimitiveVariable::Interpolation interpolation );
 
 /// create a new curves primitive deleting curves from the input curves primitive based on the curvesToDelete uniform (int|float|bool) PrimitiveVariable
-CurvesPrimitivePtr deleteCurves( const CurvesPrimitive *curvesPrimitive, const PrimitiveVariable &curvesToDelete );
+IECORE_API CurvesPrimitivePtr deleteCurves( const CurvesPrimitive *curvesPrimitive, const PrimitiveVariable &curvesToDelete );
 
 } // namespace CurveAlgo
 } // namespace IECore
