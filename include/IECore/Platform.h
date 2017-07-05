@@ -1,6 +1,6 @@
 //////////////////////////////////////////////////////////////////////////
 //
-//  Copyright (c) 2011, John Haddon. All rights reserved.
+//  Copyright (c) 2017, John Haddon. All rights reserved.
 //
 //  Redistribution and use in source and binary forms, with or without
 //  modification, are permitted provided that the following conditions are
@@ -32,66 +32,13 @@
 //
 //////////////////////////////////////////////////////////////////////////
 
-#include "IECoreGL/FontLoader.h"
-#include "IECoreGL/Font.h"
-
-#include "IECore/Platform.h"
-#include "IECore/MessageHandler.h"
-#include "IECore/Font.h"
-
-using namespace IECoreGL;
-
-FontLoader::FontLoader( const IECore::SearchPath &searchPaths )
-	:	m_searchPaths( searchPaths )
-{
-}
-
-FontPtr FontLoader::load( const std::string &name )
-{
-	FontMap::const_iterator it = m_fonts.find( name );
-	if( it!=m_fonts.end() )
-	{
-		return it->second;
-	}
-
-	boost::filesystem::path path = m_searchPaths.find( name );
-	if( path.empty() )
-	{
-		IECore::msg( IECore::Msg::Error, "IECoreGL::FontLoader::load", boost::format( "Couldn't find \"%s\"." ) % name );
-		m_fonts[name] = 0; // to save us trying over and over again
-		return 0;
-	}
-
-	IECore::FontPtr coreFont = 0;
-	try
-	{
-		coreFont = new IECore::Font( path.string() );
-	}
-	catch( const std::exception &e )
-	{
-		IECore::msg( IECore::Msg::Error, "IECoreGL::Font::load", boost::format( "Failed to load \"%s\" ( %s )." ) % path.string() % e.what() );
-		m_fonts[name] = 0; // to save us trying over and over again
-		return 0;
-	}
-	
-	FontPtr result = new Font( coreFont );
-	m_fonts[name] = result;
-	
-	return result;
-}
-
-void FontLoader::clear()
-{
-	m_fonts.clear();
-}
-
-FontLoader *FontLoader::defaultFontLoader()
-{
-	static FontLoaderPtr l = 0;
-	if( !l )
-	{
-		const char *e = getenv( "IECORE_FONT_PATHS" );
-		l = new FontLoader( IECore::SearchPath( e ? e : "", IECORE_ENVSEP ) );
-	}
-	return l.get();
-}
+#ifdef _WIN32
+	// Windows defines SearchPath
+	#ifdef SearchPath
+		#undef SearchPath
+	#endif
+	// Windows has a different environment separator
+	#define IECORE_ENVSEP ";"
+#else
+	#define IECORE_ENVSEP ":"
+#endif

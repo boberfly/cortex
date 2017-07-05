@@ -40,11 +40,7 @@
 #include "boost/filesystem/path.hpp"
 
 #include "IECore/Export.h"
-
-// MSVC uses a conflicting SearchPath implementation without this
-#ifdef SearchPath
-#undef SearchPath
-#endif
+#include "IECore/Platform.h"
 
 namespace IECore
 {

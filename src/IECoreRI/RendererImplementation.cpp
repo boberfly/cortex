@@ -38,6 +38,7 @@
 #include "IECoreRI/Convert.h"
 #include "IECoreRI/ScopedContext.h"
 
+#include "IECore/Platform.h"
 #include "IECore/MessageHandler.h"
 #include "IECore/Shader.h"
 #include "IECore/SimpleTypedData.h"
@@ -185,7 +186,7 @@ void IECoreRI::RendererImplementation::constructCommon()
 	const char *fontPath = getenv( "IECORE_FONT_PATHS" );
 	if( fontPath )
 	{
-		m_fontSearchPath.setPaths( fontPath, ":" );
+		m_fontSearchPath.setPaths( fontPath, IECORE_ENVSEP );
 	}
 
 	m_shaderCache = defaultShaderCache();
@@ -343,7 +344,7 @@ void IECoreRI::RendererImplementation::setShaderSearchPathOption( const std::str
 {
 	if( ConstStringDataPtr s = runTimeCast<const StringData>( d ) )
 	{
-		m_shaderCache = new CachedReader( SearchPath( s->readable(), ":" ) );
+		m_shaderCache = new CachedReader( SearchPath( s->readable(), IECORE_ENVSEP ) );
 		// no need to call RiOption as that'll be done in worldBegin().
 	}
 	else
@@ -368,7 +369,7 @@ void IECoreRI::RendererImplementation::setFontSearchPathOption( const std::strin
 {
 	if( ConstStringDataPtr s = runTimeCast<const StringData>( d ) )
 	{
-		m_fontSearchPath.setPaths( s->readable(), ":" );
+		m_fontSearchPath.setPaths( s->readable(), IECORE_ENVSEP );
 	}
 	else
 	{
@@ -378,7 +379,7 @@ void IECoreRI::RendererImplementation::setFontSearchPathOption( const std::strin
 
 IECore::ConstDataPtr IECoreRI::RendererImplementation::getFontSearchPathOption( const std::string &name ) const
 {
-	return new StringData( m_fontSearchPath.getPaths( ":" ) );
+	return new StringData( m_fontSearchPath.getPaths( IECORE_ENVSEP ) );
 }
 
 IECore::ConstDataPtr IECoreRI::RendererImplementation::getShutterOption( const std::string &name ) const
@@ -1287,7 +1288,7 @@ void IECoreRI::RendererImplementation::outputPreWorldTransform( bool forCamera )
 IECore::CachedReaderPtr IECoreRI::RendererImplementation::defaultShaderCache()
 {
 	static IECore::CachedReaderPtr g_defaultShaderCache = new CachedReader(
-		SearchPath( getenv( "DL_SHADERS_PATH" ) ? getenv( "DL_SHADERS_PATH" ) : "", ":" )
+		SearchPath( getenv( "DL_SHADERS_PATH" ) ? getenv( "DL_SHADERS_PATH" ) : "", IECORE_ENVSEP )
 	);
 	return g_defaultShaderCache;
 }

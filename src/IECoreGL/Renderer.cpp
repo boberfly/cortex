@@ -39,6 +39,7 @@
 
 #include "OpenEXR/ImathBoxAlgo.h"
 
+#include "IECore/Platform.h"
 #include "IECore/MessageHandler.h"
 #include "IECore/SimpleTypedData.h"
 #include "IECore/BoxOps.h"
@@ -585,8 +586,8 @@ void IECoreGL::Renderer::worldBegin()
 	}
 	else
 	{
-		IECore::SearchPath includePaths( m_data->options.shaderIncludePath, ":" );
-		m_data->shaderLoader = new ShaderLoader( IECore::SearchPath( m_data->options.shaderSearchPath, ":" ), &includePaths );
+		IECore::SearchPath includePaths( m_data->options.shaderIncludePath, IECORE_ENVSEP );
+		m_data->shaderLoader = new ShaderLoader( IECore::SearchPath( m_data->options.shaderSearchPath, IECORE_ENVSEP ), &includePaths );
 	}
 
 	if( m_data->options.textureSearchPath==m_data->options.textureSearchPathDefault )
@@ -596,7 +597,7 @@ void IECoreGL::Renderer::worldBegin()
 	}
 	else
 	{
-		m_data->textureLoader = new TextureLoader( IECore::SearchPath( m_data->options.textureSearchPath, ":" ) );
+		m_data->textureLoader = new TextureLoader( IECore::SearchPath( m_data->options.textureSearchPath, IECORE_ENVSEP ) );
 	}
 	
 #ifdef IECORE_WITH_FREETYPE
@@ -607,7 +608,7 @@ void IECoreGL::Renderer::worldBegin()
 	}
 	else
 	{
-		m_data->fontLoader = new FontLoader( IECore::SearchPath( m_data->options.fontSearchPath, ":" ) );
+		m_data->fontLoader = new FontLoader( IECore::SearchPath( m_data->options.fontSearchPath, IECORE_ENVSEP ) );
 	}
 #endif // IECORE_WITH_FREETYPE
 

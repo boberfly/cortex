@@ -40,6 +40,7 @@
 #include "boost/wave/cpplexer/cpp_lex_iterator.hpp"
 #include "boost/format.hpp"
 
+#include "IECore/Platform.h"
 #include "IECore/MessageHandler.h"
 
 #include "IECoreGL/ShaderLoader.h"
@@ -340,8 +341,8 @@ ShaderLoader *ShaderLoader::defaultShaderLoader()
 	{
 		const char *e = getenv( "IECOREGL_SHADER_PATHS" );
 		const char *p = getenv( "IECOREGL_SHADER_INCLUDE_PATHS" );
-		IECore::SearchPath pp( p ? p : "", ":" );
-		t = new ShaderLoader( IECore::SearchPath( e ? e : "", ":" ), p ? &pp : 0 );
+		IECore::SearchPath pp( p ? p : "", IECORE_ENVSEP );
+		t = new ShaderLoader( IECore::SearchPath( e ? e : "", IECORE_ENVSEP ), p ? &pp : 0 );
 	}
 	return t.get();
 }
