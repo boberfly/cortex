@@ -369,7 +369,7 @@ boost::python::tuple extractSHRT33( const Matrix33<T> &m )
 }
 
 #define DEFINEMATRIXSTRSPECIALISATION( TYPE, D )\
-template<>\
+template<> IECOREPYTHON_API \
 string repr<TYPE>( TYPE &x )\
 {\
 	stringstream s;\
@@ -389,7 +389,7 @@ string repr<TYPE>( TYPE &x )\
 	return s.str();\
 }\
 \
-template<>\
+template<> IECOREPYTHON_API \
 string str<TYPE>( TYPE &x )\
 {\
 	stringstream s;\

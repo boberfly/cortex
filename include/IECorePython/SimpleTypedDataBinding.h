@@ -53,7 +53,7 @@ struct TypedDataFromType
 	
 };
 
-IECOREPYTHON_API extern void bindAllSimpleTypedData();
+extern IECOREPYTHON_API void bindAllSimpleTypedData();
 
 }
 

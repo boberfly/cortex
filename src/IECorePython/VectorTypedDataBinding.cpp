@@ -81,7 +81,7 @@ IECOREPYTHON_DEFINEVECTORDATASTRSPECIALISATION( InternedString )
 
 // we have to specialise the repr() and str() separately here, because of
 // the whole vector<bool> is not a container thing.
-template<>
+template<> IECOREPYTHON_API
 std::string repr<BoolVectorData>( BoolVectorData &x )
 {
 	std::stringstream s;
@@ -101,7 +101,7 @@ std::string repr<BoolVectorData>( BoolVectorData &x )
 }
 
 
-template<>
+template<> IECOREPYTHON_API
 std::string str<BoolVectorData>( BoolVectorData &x )
 {
 	std::stringstream s;
