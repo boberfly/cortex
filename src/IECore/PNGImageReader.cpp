@@ -159,10 +159,12 @@ bool PNGImageReader::canRead( const string &fileName )
 	in.read((char*)header, 8);
 
 	// check the header
+	#ifndef _WIN32
 	if (png_sig_cmp(header, 0, 8))
 	{
 		return false;
 	}
+	#endif
 
 	return true;
 }
