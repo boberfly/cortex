@@ -35,6 +35,7 @@
 #ifndef IECOREGL_TEXTURELOADER_H
 #define IECOREGL_TEXTURELOADER_H
 
+#include "IECore/Platform.h"
 #include "IECore/RefCounted.h"
 #include "IECore/SearchPath.h"
 
