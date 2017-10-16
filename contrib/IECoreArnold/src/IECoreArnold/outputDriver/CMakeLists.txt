@@ -13,4 +13,4 @@ SET_TARGET_PROPERTIES( arnoldOutputDriver PROPERTIES PREFIX "" )
 TARGET_LINK_LIBRARIES( arnoldOutputDriver ${THIS_LIBS} )
 
 INSTALL( TARGETS arnoldOutputDriver
-         LIBRARY DESTINATION arnold/outputDrivers )
+         LIBRARY DESTINATION arnold/plugins )

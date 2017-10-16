@@ -7,10 +7,10 @@ SET( THIS_LIBS
 
 ADD_LIBRARY( appleseedOutputDriver MODULE ${SOURCE_FILES} )
 
-#SET_TARGET_PROPERTIES( appleseedOutputDriver PROPERTIES OUTPUT_NAME ieOutputDriver )
-SET_TARGET_PROPERTIES( appleseedOutputDriver PROPERTIES PREFIX "" )
+SET_TARGET_PROPERTIES( appleseedOutputDriver PROPERTIES OUTPUT_NAME ieDisplay )
+SET_TARGET_PROPERTIES( arnoldOutputDriver PROPERTIES PREFIX "" )
 
 TARGET_LINK_LIBRARIES( appleseedOutputDriver ${THIS_LIBS} )
 
 INSTALL( TARGETS appleseedOutputDriver
-         LIBRARY DESTINATION arnold/outputDrivers )
+         LIBRARY DESTINATION appleseedDisplays )

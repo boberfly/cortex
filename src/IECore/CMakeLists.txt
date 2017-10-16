@@ -32,7 +32,15 @@ FILE( GLOB CXX_FILES RELATIVE ${CMAKE_CURRENT_SOURCE_DIR} "*.cpp" )
 #ENDIF()
 
 SET( THIS_LIBS
-     ${Boost_LIBRARIES}
+     ${Boost_SIGNALS_LIBRARY}
+     ${Boost_IOSTREAMS_LIBRARY}
+     ${Boost_FILESYSTEM_LIBRARY}
+     ${Boost_DATE_TIME_LIBRARY}
+     ${Boost_THREAD_LIBRARY}
+     ${Boost_WAVE_LIBRARY}
+     ${Boost_REGEX_LIBRARY}
+     ${Boost_SYSTEM_LIBRARY}
+     ${Boost_CHRONO_LIBRARY}
      ${TBB_LIBRARIES}
      ${Ilmbase_HALF_LIBRARY}
      ${Ilmbase_IEX_LIBRARY}
