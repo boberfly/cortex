@@ -1492,7 +1492,8 @@ if env["PLATFORM"] != "win32" :
 
 	pythonEnv.Append( SHLINKFLAGS = pythonEnv["PYTHON_LINK_FLAGS"].split() )
 else :
-	pythonEnv["PYTHON_INCLUDE_FLAGS"] = ""
+	pythonEnv["PYTHON_INCLUDE_FLAGS"] = [ systemIncludeArgument, "$PYTHON_INCLUDE_PATH" ]
+	pythonEnv.Append( CXXFLAGS = "$PYTHON_INCLUDE_FLAGS" )
 
 pythonEnv.Append( CPPFLAGS = "-DBOOST_PYTHON_MAX_ARITY=20" )
 
