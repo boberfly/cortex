@@ -5,6 +5,18 @@ Features
 --------
 
 - IECoreUSD::ShaderAlgo : Round-trip ColorSpace data that is stored on USD Attributes by storing an additional parameter with the `_colorspace` suffix.
+- NanoBindConverter : Added new class providing interoperability between Boost Python bindings and NanoBind bindings.
+
+Improvements
+------------
+
+- IEcoreVDB : Support for the renamed python module `openvdb` in more recent versions of OpenVDB.
+
+Build
+-----
+
+- SConstruct :
+  - Added `NANOBIND_INCLUDE_PATH` option.
 
 10.5.14.1 (relative to 10.5.14.0)
 =========
