@@ -498,6 +498,15 @@ o.Add(
 	)
 )
 
+o.Add(
+	BoolVariable(
+		"WITH_USD_PXRBOOST",
+		"Determines if we build with the built-in pxrboost or use the regular boost "
+		"python binding (note that usd versions 25.05 and over always use pxrboost).",
+		 False
+	)
+)
+
 # Alembic options
 
 o.Add(
@@ -3065,6 +3074,7 @@ usdEnvAppends = {
 	"CXXFLAGS" : [
 		"-Wno-deprecated" if env["PLATFORM"] != "win32" else "",
 		"/Zc:inline-" if env["PLATFORM"] == "win32" else "",
+		"-DWITH_USD_PXRBOOST" if usdEnv["WITH_USD_PXRBOOST"] == True else "",
 		"-DIECoreUSD_EXPORTS",
 		systemIncludeArgument, "$USD_INCLUDE_PATH",
 		systemIncludeArgument, "$PYTHON_INCLUDE_PATH",

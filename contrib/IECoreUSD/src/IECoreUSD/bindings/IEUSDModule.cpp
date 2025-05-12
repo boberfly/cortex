@@ -39,7 +39,7 @@
 
 #include "IECore/IndexedIO.h"
 
-#if PXR_VERSION >= 2505
+#if defined(WITH_USD_PXRBOOST) || (PXR_VERSION >= 2505)
 #include "pxr/external/boost/python.hpp"
 #endif
 
@@ -90,7 +90,7 @@ static list fromInternalPath( list l )
 	return vectorToList( path );
 }
 
-#if PXR_VERSION >= 2505
+#if defined(WITH_USD_PXRBOOST) || (PXR_VERSION >= 2505)
 
 // Registers `boost::python` converters for types
 // wrapped using `pxr_boost::python`.
@@ -119,13 +119,13 @@ struct PxrBoostConverter
 
 };
 
-#endif // PXR_VERSION >= 2505
+#endif // defined(WITH_USD_PXRBOOST) || (PXR_VERSION >= 2505)
 
 } // namespace
 
 BOOST_PYTHON_MODULE( _IECoreUSD )
 {
-#if PXR_VERSION >= 2505
+#if defined(WITH_USD_PXRBOOST) || (PXR_VERSION >= 2505)
 	PxrBoostConverter<pxr::TfToken>::registerConverters();
 	PxrBoostConverter<pxr::VtValue>::registerConverters();
 	PxrBoostConverter<pxr::SdfValueTypeName>::registerConverters();
