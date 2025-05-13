@@ -3099,6 +3099,9 @@ else :
 		"work"
 	]
 
+if usdEnv["WITH_USD_PXRBOOST"] :
+	usdLibs.append( "python" )
+
 if usdEnv["USD_LIB_PREFIX"] :
 	usdLibs = [ usdEnv["USD_LIB_PREFIX"] + x for x in usdLibs ]
 
