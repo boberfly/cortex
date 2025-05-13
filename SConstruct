@@ -211,6 +211,13 @@ o.Add(
 	"",
 )
 
+o.Add(
+	"IMATH_LIB_SUFFIX",
+	"The suffix appended to the names of the Imath library. You can modify this "
+	"to link against libraries installed with non-default names",
+	"$OPENEXR_LIB_SUFFIX",
+)
+
 # Freetype options
 
 o.Add(
@@ -1420,7 +1427,7 @@ env.Append( LIBS = [
 		"tbb" + env["TBB_LIB_SUFFIX"],
 		"blosc" + env["BLOSC_LIB_SUFFIX"],
 		"Iex" + env["OPENEXR_LIB_SUFFIX"],
-		"Imath" + env["OPENEXR_LIB_SUFFIX"],
+		"Imath" + env["IMATH_LIB_SUFFIX"],
 		"IlmThread" + env["OPENEXR_LIB_SUFFIX"],
 		# Link Windows zlib against static library to avoid potential conflicts
 		# with system provided version.
