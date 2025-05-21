@@ -74,7 +74,7 @@ IndexedIOPtr IndexedIO::create( const std::string &path, const IndexedIO::EntryI
 {
 	IndexedIOPtr result = nullptr;
 
-	std::string extension = fs::path(path).extension().string();
+	std::string extension = boost::filesystem::path(path).extension().string();
 	boost::to_lower( extension );
 
 	const CreatorMap &createFns = creators();
