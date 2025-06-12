@@ -45,6 +45,12 @@
 					"cortex_autoAdapter": {
 						"type": "bool",
 						"appliesTo": "prims"
+					},
+					# Material hash to match common ShaderNetwork combinations
+					# that make up a Material for sharing.
+					"cortex_materialHash": {
+						"type": "string",
+						"appliesTo": "prims"
 					}
 				}
 			},
