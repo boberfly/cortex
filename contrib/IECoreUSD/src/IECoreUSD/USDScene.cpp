@@ -210,6 +210,7 @@ T *reportedCast( const IECore::RunTimeTyped *v, const char *context, const char 
 
 static pxr::TfToken g_tagsPrimName( "cortexTags" );
 static pxr::TfToken g_metadataAutoMaterials( "cortex_autoMaterials" );
+static pxr::TfToken g_metadataMaterialHash( "cortex_materialHash" );
 
 bool isSceneChild( const pxr::UsdPrim &prim )
 {
@@ -877,6 +878,84 @@ USDScene::~USDScene()
 				topAncestor = topAncestor.GetParentPath();
 			}
 
+			// Already converted global materials
+			if( topAncestor == pxr::SdfPath( "/materials" ) )
+			{
+				return;
+			}
+
+			if( m_materialBinds.size() )
+			{
+				bool isUnique = false;
+
+				for( const auto &[purpose, material] : m_materials )
+				{
+					if( isUnique )
+					{
+						break;
+					}
+					// Use a hash to identify the combination of shaders in this material.
+					IECore::MurmurHash materialHash;
+					for( const auto &[output, shaderNetwork] : material )
+					{
+						materialHash.append( output );
+						materialHash.append( shaderNetwork->Object::hash() );
+					}
+
+					if( m_materialBinds.contains( purpose ) )
+					{
+						pxr::UsdShadeMaterial mat = pxr::UsdShadeMaterial::Get( m_root->getStage(), m_materialBinds[purpose] );
+						if( !mat )
+						{
+							IECore::msg(
+								IECore::Msg::Warning, "USDScene::~USDScene",
+								boost::format( "Unable to find material \"%1%\" to bind to \"%2%\"" ) % m_materialBinds[purpose].GetString() % m_location->prim.GetPath().GetString()
+							);
+							isUnique = true;
+							break;
+						}
+						std::string metadataMaterialHash;
+						mat.GetPrim().GetMetadata( g_metadataMaterialHash, &metadataMaterialHash );
+						if( materialHash != IECore::MurmurHash( metadataMaterialHash ) )
+						{
+							IECore::msg(
+								IECore::Msg::Warning, "USDScene::~USDScene",
+								boost::format( "Unable to bind material \"%1%\" to \"%2%\" as they do not match." ) % m_materialBinds[purpose].GetString() % m_location->prim.GetPath().GetString()
+							);
+							isUnique = true;
+							break;
+						}
+
+						// Bind the material to this location
+						pxr::UsdShadeMaterialBindingAPI::Apply( m_location->prim ).Bind(
+							mat, pxr::UsdShadeTokens->fallbackStrength, purpose
+						);
+					}
+					else
+					{
+						IECore::msg(
+							IECore::Msg::Warning, "USDScene::~USDScene",
+							boost::format( "Unable to find the correct purpose \"%1%\" on material \"%2%\" to bind to \"%3%\"." ) % purpose.GetString() % m_materialBinds[purpose].GetString() % m_location->prim.GetPath().GetString()
+						);
+						isUnique = true;
+						break;
+					}
+				}
+
+				// Return early if the shaders can be bound to the global materials.
+				if( !isUnique )
+				{
+					return;
+				}
+				else
+				{
+					IECore::msg(
+						IECore::Msg::Warning, "USDScene::~USDScene",
+						boost::format( "Generating unique materials for \"%1%\" (see warnings above)." ) % m_location->prim.GetPath().GetString()
+					);
+				}
+			}
+
 			pxr::UsdGeomScope materialContainer = pxr::UsdGeomScope::Get( m_root->getStage(), topAncestor.AppendChild( pxr::TfToken( "materials" ) ) );
 			if( !materialContainer )
 			{
@@ -1310,20 +1389,58 @@ void USDScene::writeAttribute( const SceneInterface::Name &name, const Object *a
 	}
 	else if( const IECoreScene::ShaderNetwork *shaderNetwork = runTimeCast<const ShaderNetwork>( attribute ) )
 	{
-#if PXR_VERSION >= 2111
-		if( name == g_lightAttributeName )
-		{
-			ShaderAlgo::writeLight( shaderNetwork, m_location->prim );
-		}
-		else
+		if( m_location->prim.GetPath().GetParentPath() == pxr::SdfPath( "/materials" ) )
 		{
 			const auto &[output, purpose] = materialOutputAndPurpose( name.string() );
 			m_materials[purpose][output] = shaderNetwork;
+
+			pxr::SdfPath matPath = m_location->prim.GetPath();
+			pxr::UsdGeomScope materialContainer = pxr::UsdGeomScope::Get( m_root->getStage(), matPath );
+			if( !materialContainer )
+			{
+				// Create the /materials/material here
+				materialContainer = pxr::UsdGeomScope::Define( m_root->getStage(), matPath );
+			}
+
+			// Re-calculate each time we come across a new ShaderNetwork
+			for( const auto &[purpose, material] : m_materials )
+			{
+				pxr::UsdShadeMaterial mat = pxr::UsdShadeMaterial::Get( materialContainer.GetPrim().GetStage(), matPath );
+				if( !mat )
+				{
+					mat = pxr::UsdShadeMaterial::Define( materialContainer.GetPrim().GetStage(), matPath );
+				}
+				populateMaterial( mat, material );
+
+				// Use a hash to identify the combination of shaders in this material.
+				IECore::MurmurHash materialHash;
+				for( const auto &[output, shaderNetwork] : material )
+				{
+					materialHash.append( output );
+					materialHash.append( shaderNetwork->Object::hash() );
+				}
+				// Apply some metadata of the material hash to compare with other shaders
+				// eg. allow referencing if they match.
+				mat.GetPrim().SetMetadata( g_metadataMaterialHash, materialHash.toString() );
+			}
 		}
+		else
+		{
+#if PXR_VERSION >= 2111
+			if( name == g_lightAttributeName )
+			{
+				ShaderAlgo::writeLight( shaderNetwork, m_location->prim );
+			}
+			else
+			{
+				const auto &[output, purpose] = materialOutputAndPurpose( name.string() );
+				m_materials[purpose][output] = shaderNetwork;
+			}
 #else
-		const auto &[output, purpose] = materialOutputAndPurpose( name.string() );
-		m_materials[purpose][output] = shaderNetwork;
+			const auto &[output, purpose] = materialOutputAndPurpose( name.string() );
+			m_materials[purpose][output] = shaderNetwork;
 #endif
+		}
 	}
 	else if( name.string() == "gaffer:globals" )
 	{
@@ -1366,6 +1483,14 @@ void USDScene::writeAttribute( const SceneInterface::Name &name, const Object *a
 				);
 				newAttribute.Set( DataAlgo::toUSD( data ), m_root->timeCode( time ) );
 			}
+		}
+	}
+	else if( boost::starts_with( name.string(), "__materialBind" ) )
+	{
+		if( const IECore::StringData *stringData = runTimeCast<const StringData>( attribute ) )
+		{
+			const auto &[output, purpose] = materialOutputAndPurpose( name.string() );
+			m_materialBinds[purpose] = pxr::SdfPath( stringData->readable() );
 		}
 	}
 }
