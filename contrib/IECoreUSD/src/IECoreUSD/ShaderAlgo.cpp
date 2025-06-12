@@ -329,6 +329,10 @@ pxr::UsdShadeConnectableAPI createShaderPrim( const IECoreScene::Shader *shader,
 		{
 			typePrefix = "arnold:";
 		}
+		else if( typePrefix == "mtlx:" )
+		{
+			typePrefix = "";
+		}
 	}
 	usdShader.SetShaderId( pxr::TfToken( typePrefix + shader->getName() ) );
 
