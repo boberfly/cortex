@@ -1463,6 +1463,14 @@ void USDScene::writeAttribute( const SceneInterface::Name &name, const Object *a
 			}
 		}
 	}
+	else if( boost::starts_with( name.string(), "__materialBind" ) )
+	{
+		if( const IECore::StringData *stringData = runTimeCast<const StringData>( attribute ) )
+		{
+			const auto &[output, purpose] = materialOutputAndPurpose( name.string() );
+			m_materialBinds[purpose] = pxr::SdfPath( stringData->readable() );
+		}
+	}
 	else if( name.string().find( ':' ) != std::string::npos )
 	{
 		if( const Data *data = runTimeCast<const Data>( attribute ) )
@@ -1483,14 +1491,6 @@ void USDScene::writeAttribute( const SceneInterface::Name &name, const Object *a
 				);
 				newAttribute.Set( DataAlgo::toUSD( data ), m_root->timeCode( time ) );
 			}
-		}
-	}
-	else if( boost::starts_with( name.string(), "__materialBind" ) )
-	{
-		if( const IECore::StringData *stringData = runTimeCast<const StringData>( attribute ) )
-		{
-			const auto &[output, purpose] = materialOutputAndPurpose( name.string() );
-			m_materialBinds[purpose] = pxr::SdfPath( stringData->readable() );
 		}
 	}
 }
