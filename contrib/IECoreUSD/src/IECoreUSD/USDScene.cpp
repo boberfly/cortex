@@ -86,6 +86,7 @@ IECORE_POP_DEFAULT_VISIBILITY
 #include "boost/functional/hash.hpp"
 
 #include "tbb/concurrent_hash_map.h"
+#include "tbb/concurrent_unordered_map.h"
 
 #include <filesystem>
 #include <iostream>
@@ -233,8 +234,9 @@ bool isSceneChild( const pxr::UsdPrim &prim )
 
 	return (!autoMaterials) && (
 		prim.GetTypeName().IsEmpty() ||
-		pxr::UsdGeomImageable( prim )
-	);
+		pxr::UsdGeomImageable( prim ) ||
+		prim.IsA<pxr::UsdShadeMaterial>() ) &&
+		!prim.GetParent().IsA<pxr::UsdShadeMaterial>();
 }
 
 void writeSetInternal( const pxr::UsdPrim &prim, const pxr::TfToken &name, const IECore::PathMatcher &set )
@@ -282,7 +284,8 @@ boost::container::flat_map<pxr::TfToken, PrimPredicate> g_schemaTypeSetPredicate
 #if PXR_VERSION >= 2111
 	{  pxr::TfToken( "__lights" ), &pxr::UsdPrim::HasAPI<pxr::UsdLuxLightAPI> },
 #endif
-	{ pxr::TfToken( "usd:pointInstancers" ), &pxr::UsdPrim::IsA<pxr::UsdGeomPointInstancer> }
+	{ pxr::TfToken( "usd:pointInstancers" ), &pxr::UsdPrim::IsA<pxr::UsdGeomPointInstancer> },
+	{ pxr::TfToken( "__materials"), &pxr::UsdPrim::IsA<pxr::UsdShadeMaterial> },
 };
 
 bool collectionIsSet( const pxr::UsdCollectionAPI &collection )
@@ -689,6 +692,94 @@ class USDScene::IO : public RefCounted
 				{
 					writeSetInternal( root(), pxr::TfToken( tagSet.first.string() ), tagSet.second );
 				}
+				if( m_materialBinds.size() )
+				{
+					try
+					{
+						for( const auto &[pathStr, materials] : m_materialBinds )
+						{
+							// Apply any usd:material:binding materials
+							pxr::SdfPath path( pathStr );
+							pxr::UsdPrim prim = m_stage->GetPrimAtPath( path );
+
+							if( !prim )
+							{
+								IECore::msg(
+									IECore::Msg::Warning, "USDScene::IO::~USDScene::IO",
+									boost::format( "Unable to find prim \"%1%\" to bind a material to." ) % pathStr
+								);
+								continue;
+							}
+
+							bool removeMaterialContainer = true;
+
+							for( const auto &[purpose, matPath] : materials )
+							{
+								pxr::UsdShadeMaterial mat = pxr::UsdShadeMaterial::Get( m_stage, matPath );
+
+								if( !mat )
+								{
+									IECore::msg(
+										IECore::Msg::Warning, "USDScene::IO::~USDScene::IO",
+										boost::format( "Unable to find material \"%1%\" to bind to \"%2%\"" ) % matPath.GetString() % pathStr
+									);
+									continue;
+								}
+
+								bool bindMaterial = true;
+
+								// Check to see if the prim has a material already
+								pxr::UsdShadeMaterial objectMaterial = computeBoundMaterial( prim, purpose );
+								if( objectMaterial )
+								{
+									// Now check their hashes to determine if they're exact
+									std::string metadataObjectMaterialHash;
+									objectMaterial.GetPrim().GetMetadata( g_metadataMaterialHash, &metadataObjectMaterialHash );
+
+									std::string metadataMaterialHash;
+									mat.GetPrim().GetMetadata( g_metadataMaterialHash, &metadataMaterialHash );
+
+									bindMaterial = ( IECore::MurmurHash( metadataObjectMaterialHash ) == IECore::MurmurHash( metadataMaterialHash ) );
+
+									if( !bindMaterial )
+									{
+										IECore::msg(
+											IECore::Msg::Warning, "USDScene::IO::~USDScene::IO",
+											boost::format( "Unable to bind material \"%1%\" to \"%2%\" as the existing material \"%3%\" does not match." )
+											% matPath.GetString() % pathStr % path.AppendChild( pxr::TfToken( "materials" ) ).GetString()
+										);
+										removeMaterialContainer = false;
+									}
+									else
+									{
+										// We don't need this material anymore
+										m_stage->RemovePrim( objectMaterial.GetPrim().GetPath() );
+									}
+								}
+
+								if( bindMaterial )
+								{
+									pxr::UsdShadeMaterialBindingAPI::Apply( prim ).Bind(
+										mat, pxr::UsdShadeTokens->fallbackStrength, purpose
+									);
+								}
+							}
+
+							if( removeMaterialContainer && pxr::UsdGeomScope::Get( m_stage, path.AppendChild( pxr::TfToken( "materials" ) ) ) )
+							{
+								// We don't need the material container anymore
+								m_stage->RemovePrim( path.AppendChild( pxr::TfToken( "materials" ) ) );
+							}
+						}
+					}
+					catch( std::exception &e )
+					{
+						IECore::msg(
+							IECore::Msg::Error, "USDScene::IO::~USDScene::IO",
+							boost::format( "Failed to write shaders with exception \"%1%\"" ) % e.what()
+						);
+					}
+				}
 				m_stage->GetRootLayer()->Save();
 			}
 		}
@@ -757,6 +848,14 @@ class USDScene::IO : public RefCounted
 		///   perhaps by not loading the descendant attributes at all?
 		pxr::UsdShadeMaterial computeBoundMaterial( const pxr::UsdPrim &prim, const pxr::TfToken &materialPurpose )
 		{
+			// For actual material prims, just return it immediately if there isn't a purpose applied.
+			if( materialPurpose.IsEmpty() )
+			{
+				if( pxr::UsdShadeMaterial material = pxr::UsdShadeMaterial::Get( m_stage, prim.GetPath() ) )
+				{
+					return material;
+				}
+			}
 			// This should be thread safe, despite using caches, because
 			// BindingsCache and CollectionQueryCache are implemented by USD as
 			// tbb::concurrent_unordered_map
@@ -789,6 +888,11 @@ class USDScene::IO : public RefCounted
 		inline int uniqueId()
 		{
 			return m_uniqueId;
+		}
+
+		void addMaterialBinding( const pxr::SdfPath &path, const pxr::SdfPath materialPath, const pxr::TfToken purpose )
+		{
+			m_materialBinds[path.GetString()][purpose] = materialPath;
 		}
 
 	private :
@@ -847,6 +951,11 @@ class USDScene::IO : public RefCounted
 		// since closing and reopening a file may cause USD to shuffle the contents ).
 		const int m_uniqueId;
 
+		// Use a material bind if the attribute usd::material::bind was found.
+		using MaterialPaths = boost::container::flat_map<pxr::TfToken, pxr::SdfPath>;
+		using MaterialBinds = tbb::concurrent_unordered_map<std::string, MaterialPaths>;
+		MaterialBinds m_materialBinds;
+
 };
 
 USDScene::USDScene( const std::string &fileName, IndexedIO::OpenMode openMode )
@@ -879,92 +988,23 @@ USDScene::~USDScene()
 				topAncestor = topAncestor.GetParentPath();
 			}
 
-			// Already converted global materials
-			if( topAncestor == pxr::SdfPath( "/materials" ) )
+			const bool isMaterialPath = m_location->prim.IsA<pxr::UsdShadeMaterial>();
+
+			pxr::SdfPath matContainerPath = topAncestor;
+			if( !isMaterialPath )
 			{
-				return;
+				matContainerPath = topAncestor.AppendChild( pxr::TfToken( "materials" ) );
 			}
 
-			if( m_materialBinds.size() )
-			{
-				bool isUnique = false;
-
-				for( const auto &[purpose, material] : m_materials )
-				{
-					if( isUnique )
-					{
-						break;
-					}
-					// Use a hash to identify the combination of shaders in this material.
-					IECore::MurmurHash materialHash;
-					for( const auto &[output, shaderNetwork] : material )
-					{
-						materialHash.append( output );
-						materialHash.append( shaderNetwork->Object::hash() );
-					}
-
-					if( m_materialBinds.contains( purpose ) )
-					{
-						pxr::UsdShadeMaterial mat = pxr::UsdShadeMaterial::Get( m_root->getStage(), m_materialBinds[purpose] );
-						if( !mat )
-						{
-							IECore::msg(
-								IECore::Msg::Warning, "USDScene::~USDScene",
-								boost::format( "Unable to find material \"%1%\" to bind to \"%2%\"" ) % m_materialBinds[purpose].GetString() % m_location->prim.GetPath().GetString()
-							);
-							isUnique = true;
-							break;
-						}
-						std::string metadataMaterialHash;
-						mat.GetPrim().GetMetadata( g_metadataMaterialHash, &metadataMaterialHash );
-						if( materialHash != IECore::MurmurHash( metadataMaterialHash ) )
-						{
-							IECore::msg(
-								IECore::Msg::Warning, "USDScene::~USDScene",
-								boost::format( "Unable to bind material \"%1%\" to \"%2%\" as they do not match." ) % m_materialBinds[purpose].GetString() % m_location->prim.GetPath().GetString()
-							);
-							isUnique = true;
-							break;
-						}
-
-						// Bind the material to this location
-						pxr::UsdShadeMaterialBindingAPI::Apply( m_location->prim ).Bind(
-							mat, pxr::UsdShadeTokens->fallbackStrength, purpose
-						);
-					}
-					else
-					{
-						IECore::msg(
-							IECore::Msg::Warning, "USDScene::~USDScene",
-							boost::format( "Unable to find the correct purpose \"%1%\" on material \"%2%\" to bind to \"%3%\"." ) % purpose.GetString() % m_materialBinds[purpose].GetString() % m_location->prim.GetPath().GetString()
-						);
-						isUnique = true;
-						break;
-					}
-				}
-
-				// Return early if the shaders can be bound to the global materials.
-				if( !isUnique )
-				{
-					return;
-				}
-				else
-				{
-					IECore::msg(
-						IECore::Msg::Warning, "USDScene::~USDScene",
-						boost::format( "Generating unique materials for \"%1%\" (see warnings above)." ) % m_location->prim.GetPath().GetString()
-					);
-				}
-			}
-
-			pxr::UsdGeomScope materialContainer = pxr::UsdGeomScope::Get( m_root->getStage(), topAncestor.AppendChild( pxr::TfToken( "materials" ) ) );
+			pxr::UsdGeomScope materialContainer = pxr::UsdGeomScope::Get( m_root->getStage(), matContainerPath );
 			if( !materialContainer )
 			{
-				// Create a /topLevel/materials container since it doesn't already exist
-				materialContainer = pxr::UsdGeomScope::Define( m_root->getStage(), topAncestor.AppendChild( pxr::TfToken( "materials" ) ) );
+				// Create a /topLevel/materials container since it doesn't already exist,
+				// or create it directly into a material base path.
+				materialContainer = pxr::UsdGeomScope::Define( m_root->getStage(), matContainerPath );
 
 				// Label with metadata to say that this is not a real location in the scene graph
-				materialContainer.GetPrim().SetMetadata( g_metadataAutoMaterials, true );
+				materialContainer.GetPrim().SetMetadata( g_metadataAutoMaterials, !isMaterialPath );
 			}
 
 			for( const auto &[purpose, material] : m_materials )
@@ -976,21 +1016,36 @@ USDScene::~USDScene()
 					materialHash.append( output );
 					materialHash.append( shaderNetwork->Object::hash() );
 				}
-				pxr::TfToken matName( "material_" + materialHash.toString() );
-
 				// Write the material if it hasn't been written already.
-				pxr::SdfPath matPath = materialContainer.GetPrim().GetPath().AppendChild( matName );
+				pxr::SdfPath matPath = m_location->prim.GetPath();
+				if( !isMaterialPath )
+				{
+					pxr::TfToken matName( "material_" + materialHash.toString() );
+					matPath = materialContainer.GetPrim().GetPath().AppendChild( matName );
+				}
 				pxr::UsdShadeMaterial mat = pxr::UsdShadeMaterial::Get( materialContainer.GetPrim().GetStage(), matPath );
 				if( !mat )
 				{
 					mat = pxr::UsdShadeMaterial::Define( materialContainer.GetPrim().GetStage(), matPath );
 					populateMaterial( mat, material );
 				}
+				else if( isMaterialPath )
+				{
+					populateMaterial( mat, material );
+				}
 
-				// Bind the material to this location
-				pxr::UsdShadeMaterialBindingAPI::Apply( m_location->prim ).Bind(
-					mat, pxr::UsdShadeTokens->fallbackStrength, purpose
-				);
+				if( !isMaterialPath )
+				{
+					// Bind the material to this location
+					pxr::UsdShadeMaterialBindingAPI::Apply( m_location->prim ).Bind(
+						mat, pxr::UsdShadeTokens->fallbackStrength, purpose
+					);
+				}
+
+				// Apply some metadata of the material hash to compare with other materials
+				// eg. allow referencing if the prim has a usd:material:binding string path
+				// to a material if the two hashes match.
+				mat.GetPrim().SetMetadata( g_metadataMaterialHash, materialHash.toString() );
 			}
 		}
 		catch( std::exception &e )
@@ -1115,6 +1170,7 @@ const IECore::InternedString g_purposeAttributeName( "usd:purpose" );
 const IECore::InternedString g_kindAttributeName( "usd:kind" );
 const IECore::InternedString g_lightAttributeName( "light" );
 const IECore::InternedString g_doubleSidedAttributeName( "doubleSided" );
+const IECore::InternedString g_schemaTypeAttributeName( "usd:schemaType" );
 
 } // namespace
 
@@ -1149,6 +1205,26 @@ bool USDScene::hasAttribute( const SceneInterface::Name &name ) const
 	else if( name == g_doubleSidedAttributeName )
 	{
 		return pxr::UsdGeomGprim( m_location->prim ).GetDoubleSidedAttr().HasAuthoredValue();
+	}
+	else if( name == g_schemaTypeAttributeName )
+	{
+		// Only material and scope for now
+		return m_location->prim.IsA<pxr::UsdShadeMaterial>() || m_location->prim.IsA<pxr::UsdGeomScope>();
+	}
+	else if( boost::starts_with( name.string(), "usd:material:binding" ) )
+	{
+		if( m_location->prim.IsA<pxr::UsdShadeMaterial>() )
+		{
+			return false;
+		}
+		const auto &[output, purpose] = materialOutputAndPurpose( name.string() );
+		if( pxr::UsdShadeMaterial mat = m_root->computeBoundMaterial( m_location->prim, purpose ) )
+		{
+			bool autoMaterials = false;
+			mat.GetPrim().GetParent().GetMetadata( g_metadataAutoMaterials, &autoMaterials );
+			return !autoMaterials;
+		}
+		return false;
 	}
 	else if( auto attribute = AttributeAlgo::findUSDAttribute( m_location->prim, name.string() ) )
 	{
@@ -1205,6 +1281,11 @@ void USDScene::attributeNames( SceneInterface::NameList &attrs ) const
 		attrs.push_back( g_doubleSidedAttributeName );
 	}
 
+	if( m_location->prim.IsA<pxr::UsdShadeMaterial>() || m_location->prim.IsA<pxr::UsdGeomScope>() )
+	{
+		attrs.push_back( g_schemaTypeAttributeName );
+	}
+
 	std::vector<pxr::UsdAttribute> attributes = m_location->prim.GetAuthoredAttributes();
 	for( const auto &attribute : attributes )
 	{
@@ -1230,6 +1311,18 @@ void USDScene::attributeNames( SceneInterface::NameList &attrs ) const
 					continue;
 				}
 				InternedString attrName = AttributeAlgo::nameFromUSD( { o.GetBaseName() , false } );
+				if( !purpose.IsEmpty() )
+				{
+					attrName = attrName.string() + ":" + purpose.GetString();
+				}
+				attrs.push_back( attrName );
+			}
+
+			bool autoMaterials = false;
+			mat.GetPrim().GetParent().GetMetadata( g_metadataAutoMaterials, &autoMaterials );
+			if( !autoMaterials && !m_location->prim.IsA<pxr::UsdShadeMaterial>() )
+			{
+				InternedString attrName = "usd:material:binding";
 				if( !purpose.IsEmpty() )
 				{
 					attrName = attrName.string() + ":" + purpose.GetString();
@@ -1313,9 +1406,35 @@ ConstObjectPtr USDScene::readAttribute( const SceneInterface::Name &name, double
 		}
 		return nullptr;
 	}
+	else if( name == g_schemaTypeAttributeName )
+	{
+		if( m_location->prim.IsA<pxr::UsdShadeMaterial>() )
+		{
+			return new StringData( "UsdShadeMaterial" );
+		}
+		else if( m_location->prim.IsA<pxr::UsdGeomScope>() )
+		{
+			return new StringData( "UsdGeomScope" );
+		}
+		return nullptr;
+	}
 	else if( pxr::UsdAttribute attribute = AttributeAlgo::findUSDAttribute( m_location->prim, name.string() ) )
 	{
 		return DataAlgo::fromUSD( attribute, m_root->timeCode( time ) );
+	}
+	else if( boost::starts_with( name.string(), "usd:material:binding" ) )
+	{
+		const auto &[output, purpose] = materialOutputAndPurpose( name.string() );
+		if( pxr::UsdShadeMaterial mat = m_root->computeBoundMaterial( m_location->prim, purpose ) )
+		{
+			bool autoMaterials = false;
+			mat.GetPrim().GetParent().GetMetadata( g_metadataAutoMaterials, &autoMaterials );
+			if( !autoMaterials && !m_location->prim.IsA<pxr::UsdShadeMaterial>() )
+			{
+				return new StringData( mat.GetPrim().GetPath().GetString() );
+			}
+		}
+		return nullptr;
 	}
 	else
 	{
@@ -1388,60 +1507,36 @@ void USDScene::writeAttribute( const SceneInterface::Name &name, const Object *a
 			}
 		}
 	}
+	else if( name == g_schemaTypeAttributeName )
+	{
+		if( const StringData *s = runTimeCast<const StringData>( attribute ) )
+		{
+			if( s->readable() == "UsdShadeMaterial" )
+			{
+				pxr::UsdShadeMaterial::Define( m_root->getStage(), m_location->prim.GetPath() );
+			}
+			else if( s->readable() == "UsdGeomScope" )
+			{
+				pxr::UsdGeomScope::Define( m_root->getStage(), m_location->prim.GetPath() );
+			}
+		}
+	}
 	else if( const IECoreScene::ShaderNetwork *shaderNetwork = runTimeCast<const ShaderNetwork>( attribute ) )
 	{
-		if( m_location->prim.GetPath().GetParentPath() == pxr::SdfPath( "/materials" ) )
+#if PXR_VERSION >= 2111
+		if( name == g_lightAttributeName )
 		{
-			const auto &[output, purpose] = materialOutputAndPurpose( name.string() );
-			m_materials[purpose][output] = shaderNetwork;
-
-			pxr::SdfPath matPath = m_location->prim.GetPath();
-			pxr::UsdGeomScope materialContainer = pxr::UsdGeomScope::Get( m_root->getStage(), matPath );
-			if( !materialContainer )
-			{
-				// Create the /materials/material here
-				materialContainer = pxr::UsdGeomScope::Define( m_root->getStage(), matPath );
-			}
-
-			// Re-calculate each time we come across a new ShaderNetwork
-			for( const auto &[purpose, material] : m_materials )
-			{
-				pxr::UsdShadeMaterial mat = pxr::UsdShadeMaterial::Get( materialContainer.GetPrim().GetStage(), matPath );
-				if( !mat )
-				{
-					mat = pxr::UsdShadeMaterial::Define( materialContainer.GetPrim().GetStage(), matPath );
-				}
-				populateMaterial( mat, material );
-
-				// Use a hash to identify the combination of shaders in this material.
-				IECore::MurmurHash materialHash;
-				for( const auto &[output, shaderNetwork] : material )
-				{
-					materialHash.append( output );
-					materialHash.append( shaderNetwork->Object::hash() );
-				}
-				// Apply some metadata of the material hash to compare with other shaders
-				// eg. allow referencing if they match.
-				mat.GetPrim().SetMetadata( g_metadataMaterialHash, materialHash.toString() );
-			}
+			ShaderAlgo::writeLight( shaderNetwork, m_location->prim );
 		}
 		else
 		{
-#if PXR_VERSION >= 2111
-			if( name == g_lightAttributeName )
-			{
-				ShaderAlgo::writeLight( shaderNetwork, m_location->prim );
-			}
-			else
-			{
-				const auto &[output, purpose] = materialOutputAndPurpose( name.string() );
-				m_materials[purpose][output] = shaderNetwork;
-			}
-#else
 			const auto &[output, purpose] = materialOutputAndPurpose( name.string() );
 			m_materials[purpose][output] = shaderNetwork;
-#endif
 		}
+#else
+		const auto &[output, purpose] = materialOutputAndPurpose( name.string() );
+		m_materials[purpose][output] = shaderNetwork;
+#endif
 	}
 	else if( name.string() == "gaffer:globals" )
 	{
@@ -1464,12 +1559,13 @@ void USDScene::writeAttribute( const SceneInterface::Name &name, const Object *a
 			}
 		}
 	}
-	else if( boost::starts_with( name.string(), "__materialBind" ) )
+	else if( boost::starts_with( name.string(), "usd:material:binding" ) )
 	{
-		if( const IECore::StringData *stringData = runTimeCast<const StringData>( attribute ) )
+		if( const StringData *s = runTimeCast<const StringData>( attribute ) )
 		{
+			// Store the material relationship for later comparing of hashes
 			const auto &[output, purpose] = materialOutputAndPurpose( name.string() );
-			m_materialBinds[purpose] = pxr::SdfPath( stringData->readable() );
+			m_root->addMaterialBinding( m_location->prim.GetPath(), pxr::SdfPath( s->readable() ), purpose );
 		}
 	}
 	else if( name.string().find( ':' ) != std::string::npos )
