@@ -1208,8 +1208,7 @@ bool USDScene::hasAttribute( const SceneInterface::Name &name ) const
 	}
 	else if( name == g_schemaTypeAttributeName )
 	{
-		// Only material and scope for now
-		return m_location->prim.IsA<pxr::UsdShadeMaterial>() || m_location->prim.IsA<pxr::UsdGeomScope>();
+		return true;
 	}
 	else if( boost::starts_with( name.string(), "usd:material:binding" ) )
 	{
@@ -1281,10 +1280,7 @@ void USDScene::attributeNames( SceneInterface::NameList &attrs ) const
 		attrs.push_back( g_doubleSidedAttributeName );
 	}
 
-	if( m_location->prim.IsA<pxr::UsdShadeMaterial>() || m_location->prim.IsA<pxr::UsdGeomScope>() )
-	{
-		attrs.push_back( g_schemaTypeAttributeName );
-	}
+	attrs.push_back( g_schemaTypeAttributeName );
 
 	std::vector<pxr::UsdAttribute> attributes = m_location->prim.GetAuthoredAttributes();
 	for( const auto &attribute : attributes )
@@ -1408,15 +1404,7 @@ ConstObjectPtr USDScene::readAttribute( const SceneInterface::Name &name, double
 	}
 	else if( name == g_schemaTypeAttributeName )
 	{
-		if( m_location->prim.IsA<pxr::UsdShadeMaterial>() )
-		{
-			return new StringData( "UsdShadeMaterial" );
-		}
-		else if( m_location->prim.IsA<pxr::UsdGeomScope>() )
-		{
-			return new StringData( "UsdGeomScope" );
-		}
-		return nullptr;
+		return new StringData( m_location->prim.GetTypeName() );
 	}
 	else if( pxr::UsdAttribute attribute = AttributeAlgo::findUSDAttribute( m_location->prim, name.string() ) )
 	{
@@ -1509,16 +1497,11 @@ void USDScene::writeAttribute( const SceneInterface::Name &name, const Object *a
 	}
 	else if( name == g_schemaTypeAttributeName )
 	{
+		// Without a typename specified, this should just revert to the defaults however attribute
+		// inheritance may intefere here eg. Scope/Xform ordering.
 		if( const StringData *s = runTimeCast<const StringData>( attribute ) )
 		{
-			if( s->readable() == "UsdShadeMaterial" )
-			{
-				pxr::UsdShadeMaterial::Define( m_root->getStage(), m_location->prim.GetPath() );
-			}
-			else if( s->readable() == "UsdGeomScope" )
-			{
-				pxr::UsdGeomScope::Define( m_root->getStage(), m_location->prim.GetPath() );
-			}
+			m_location->prim.SetTypeName( pxr::TfToken( s->readable() ) );
 		}
 	}
 	else if( const IECoreScene::ShaderNetwork *shaderNetwork = runTimeCast<const ShaderNetwork>( attribute ) )
