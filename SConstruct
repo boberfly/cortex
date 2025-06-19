@@ -1230,6 +1230,7 @@ else:
 				"/wd4275",
 				"/wd4003",  # suppress warning "not enough arguments for function-like macro invocation 'BOOST_PP_SEQ_DETAIL_IS_NOT_EMPTY'"
 				"/wd4996", # suppress warning deprecation "'boost::filesystem::extension': Use path::extension() instead"
+				"/wd4702",  # suppress warning "unreachable code". Need for OpenUSD.
 				"/D_CRT_SECURE_NO_WARNINGS",  # suppress warnings about getenv and similar
 				"/DHAVE_SNPRINTF",  # Fixes error "multiple definitions of snprintf"
 			]
