@@ -711,8 +711,6 @@ class USDScene::IO : public RefCounted
 								continue;
 							}
 
-							bool removeMaterialContainer = true;
-
 							for( const auto &[purpose, matPath] : materials )
 							{
 								pxr::UsdShadeMaterial mat = pxr::UsdShadeMaterial::Get( m_stage, matPath );
@@ -746,14 +744,19 @@ class USDScene::IO : public RefCounted
 										IECore::msg(
 											IECore::Msg::Warning, "USDScene::IO::~USDScene::IO",
 											boost::format( "Unable to bind material \"%1%\" to \"%2%\" as the existing material \"%3%\" does not match." )
-											% matPath.GetString() % pathStr % path.AppendChild( pxr::TfToken( "materials" ) ).GetString()
+											% matPath.GetString() % pathStr % objectMaterial.GetPrim().GetPath().GetString()
 										);
-										removeMaterialContainer = false;
 									}
 									else
 									{
+										pxr::UsdPrim matContainerPrim = objectMaterial.GetPrim().GetParent();
 										// We don't need this material anymore
 										m_stage->RemovePrim( objectMaterial.GetPrim().GetPath() );
+										// And remove the materials container prim (if there's no children)
+										if( !matContainerPrim.GetAllChildren() )
+										{
+											m_stage->RemovePrim( matContainerPrim.GetPath() );
+										}
 									}
 								}
 
@@ -763,12 +766,6 @@ class USDScene::IO : public RefCounted
 										mat, pxr::UsdShadeTokens->fallbackStrength, purpose
 									);
 								}
-							}
-
-							if( removeMaterialContainer && pxr::UsdGeomScope::Get( m_stage, path.AppendChild( pxr::TfToken( "materials" ) ) ) )
-							{
-								// We don't need the material container anymore
-								m_stage->RemovePrim( path.AppendChild( pxr::TfToken( "materials" ) ) );
 							}
 						}
 					}
